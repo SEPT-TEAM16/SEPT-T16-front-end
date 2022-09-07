@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'dart:convert';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 import 'package:email_validator/email_validator.dart';
-
+import 'package:http/http.dart' as http;
 
 const List<Widget> Role = <Widget>[
   Text('Patient'),
@@ -35,11 +37,7 @@ class MyApp extends StatelessWidget {
   }
   
 }
-void _submit() {
-    // you can write your
-    // own code according to
-    // whatever you want to submit;
-  }
+
 
 class MyCustomForm extends StatefulWidget {
   const MyCustomForm({super.key});
@@ -50,13 +48,41 @@ class MyCustomForm extends StatefulWidget {
 
 class _MyCustomFormState extends State<MyCustomForm>{
   final List<bool> _selectedRole = <bool>[true, false];
+  TextEditingController firstName=new TextEditingController();
+  TextEditingController lastName=new TextEditingController();
   final List<bool> _selectedGender = <bool>[false, false, false];
-  bool _obscureText = true;
+  TextEditingController _Date = TextEditingController();
+  TextEditingController phoneNumber=new TextEditingController();
+  TextEditingController email=new TextEditingController();
+  TextEditingController address=new TextEditingController();
+  TextEditingController city=new TextEditingController();
+  TextEditingController postCode=new TextEditingController();
   final TextEditingController _pass = TextEditingController();
   final TextEditingController _confirmPass = TextEditingController();
   var _PasswordController = TextEditingController();
-  TextEditingController _Date = TextEditingController();
+  bool _obscureText = true;
   get child => null;
+
+  Future _submit() async {
+    final response = await http.post(Uri.parse("http://localhost:8080/api/v1/register"), body: {
+	    "role": _selectedRole,
+      "firstName": firstName.text,
+      "lastName": lastName.text,
+      "Gender":_selectedGender,
+      "mobile":phoneNumber.text,
+	    "email": email.text,
+      "address": "${address.text} ${city.text} ${postCode.text}",
+      "password": _pass.text, 
+
+    });
+     var data = json.decode(response.body);
+     if(data == "Success"){
+        Fluttertoast.showToast(msg: "Registration Successfull");
+     } else{
+      Fluttertoast.showToast(msg: "Registration Failed");
+     }
+  }
+
   @override
   Widget build(BuildContext context) {
 
@@ -94,6 +120,7 @@ class _MyCustomFormState extends State<MyCustomForm>{
         Padding(
           padding:  EdgeInsets.symmetric(horizontal: 8, vertical: 16),
           child: TextFormField(
+            controller: firstName,
             decoration: const InputDecoration(
               border: UnderlineInputBorder(),
               labelText: 'First Name',
@@ -104,6 +131,7 @@ class _MyCustomFormState extends State<MyCustomForm>{
         Padding(
           padding:  EdgeInsets.symmetric(horizontal: 8, vertical: 16),
           child: TextFormField(
+            controller: lastName,
             decoration: const InputDecoration(
               border: UnderlineInputBorder(),
               labelText: 'Last Name',
@@ -165,6 +193,7 @@ class _MyCustomFormState extends State<MyCustomForm>{
         Padding(
           padding:  EdgeInsets.symmetric(horizontal: 8, vertical: 16),
           child: TextFormField(
+            controller: phoneNumber,
             inputFormatters: <TextInputFormatter> [FilteringTextInputFormatter.digitsOnly],
             decoration: const InputDecoration(
               border: UnderlineInputBorder(),
@@ -177,6 +206,7 @@ class _MyCustomFormState extends State<MyCustomForm>{
         Padding(
           padding:  EdgeInsets.symmetric(horizontal: 8, vertical: 16),
           child: TextFormField(
+          controller: email,
           decoration:const InputDecoration(
               border: UnderlineInputBorder(),
               labelText: 'Email Address',
@@ -193,6 +223,7 @@ class _MyCustomFormState extends State<MyCustomForm>{
         Padding(
           padding:  EdgeInsets.symmetric(horizontal: 8, vertical: 16),
           child: TextFormField(
+            controller: address,
             decoration: const InputDecoration(
               border: UnderlineInputBorder(),
               labelText: 'Address',
@@ -203,6 +234,7 @@ class _MyCustomFormState extends State<MyCustomForm>{
         Padding(
           padding:  EdgeInsets.symmetric(horizontal: 8, vertical: 16),
           child: TextFormField(
+            controller: city,
             decoration: const InputDecoration(
               border: UnderlineInputBorder(),
               labelText: 'City',
@@ -213,6 +245,7 @@ class _MyCustomFormState extends State<MyCustomForm>{
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
           child: TextFormField(
+            controller: postCode,
             inputFormatters: <TextInputFormatter> [FilteringTextInputFormatter.digitsOnly],
             decoration: const InputDecoration(
               border: UnderlineInputBorder(),
