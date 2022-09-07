@@ -64,17 +64,19 @@ class _MyCustomFormState extends State<MyCustomForm>{
   get child => null;
 
   Future _submit() async {
-    final response = await http.post(Uri.parse("http://localhost:8080/api/v1/register"), body: {
-	    "role": _selectedRole,
+    final response = await http.post(Uri.parse("http://localhost:8081/api/v1/register"),  headers: {"Content-Type": "application/json"}, body: jsonEncode({
+	    "role": "PATIENT",
       "firstName": firstName.text,
-      "lastName": lastName.text,
-      "Gender":_selectedGender,
+      "lastName": lastName.text,  
+      //"Gender":_selectedGender,
       "mobile":phoneNumber.text,
 	    "email": email.text,
       "address": "${address.text} ${city.text} ${postCode.text}",
       "password": _pass.text, 
-
-    });
+      "DoB": _Date.text,
+      "accountActive": true
+  
+    }));
      var data = json.decode(response.body);
      if(data == "Success"){
         Fluttertoast.showToast(msg: "Registration Successfull");
