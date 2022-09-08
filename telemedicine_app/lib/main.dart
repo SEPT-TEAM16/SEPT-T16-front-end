@@ -7,10 +7,8 @@ import 'package:intl/intl.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:http/http.dart' as http;
 
-const List<Widget> Role = <Widget>[
-  Text('Patient'),
-  Text('Doctor')
-];
+
+const List<String> role = <String>['Patient','Doctor'];
 
 const List<Widget> Gender = <Widget>[
   Text('Male'),
@@ -47,10 +45,9 @@ class MyCustomForm extends StatefulWidget {
 }
 
 class _MyCustomFormState extends State<MyCustomForm>{
-  final List<bool> _selectedRole = <bool>[true, false];
+  TextEditingController selectedRole=new TextEditingController();
   TextEditingController firstName=new TextEditingController();
   TextEditingController lastName=new TextEditingController();
-  final List<bool> _selectedGender = <bool>[false, false, false];
   TextEditingController _Date = TextEditingController();
   TextEditingController phoneNumber=new TextEditingController();
   TextEditingController email=new TextEditingController();
@@ -61,11 +58,12 @@ class _MyCustomFormState extends State<MyCustomForm>{
   final TextEditingController _confirmPass = TextEditingController();
   var _PasswordController = TextEditingController();
   bool _obscureText = true;
+  String dropdownValue = role.first;
   get child => null;
 
   Future _submit() async {
     final response = await http.post(Uri.parse("http://localhost:8081/api/v1/register"),  headers: {"Content-Type": "application/json"}, body: jsonEncode({
-	    "role": "PATIENT",
+	    "role": selectedRole.text,
       "firstName": firstName.text,
       "lastName": lastName.text,  
       "mobileNumber":phoneNumber.text,
@@ -74,7 +72,7 @@ class _MyCustomFormState extends State<MyCustomForm>{
       "password": _pass.text, 
       "DoB": _Date.text,
       "accountActive": true
-  
+
     }));
      var data = json.decode(response.body);
      if(data == "Success"){
@@ -92,25 +90,32 @@ class _MyCustomFormState extends State<MyCustomForm>{
         const Text("What is your role?"),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
-          child: ToggleButtons(isSelected: _selectedRole,
-          onPressed: (int index) {
-            setState(() {
-              for(int i = 0; i < _selectedRole.length; i++){
-                _selectedRole[i] = i == index;
-              }
-            });
-          },
-          borderRadius: const BorderRadius.all(Radius.circular(8)),
-          selectedBorderColor: Colors.blue[700],
-          selectedColor: Colors.white,
-          fillColor: Colors.blue[200],
-          color: Colors.blue[400],
-          constraints: const BoxConstraints(
-            minHeight: 40.0,
-            minWidth: 80.0,
-          ),
-          children: Role.toList(),),
-          ),
+          child: 
+          DropdownButton<String>(
+            value: dropdownValue,
+            icon: const Icon(Icons.arrow_downward),
+            elevation: 16,
+            style: const TextStyle(color: Colors.deepPurple),
+            underline: Container(
+              height: 3,
+              color: Colors.deepPurpleAccent,
+            ),
+            onChanged: (String? value) {
+              // This is called when the user selects an item.
+              setState(() {
+                dropdownValue = value!;
+                selectedRole.text = value;
+              });
+            },
+            items: role.map<DropdownMenuItem<String>>((String value) {
+              return DropdownMenuItem<String>(
+                value: value,
+                child: Text(value),
+          );
+        }).toList(),
+        )
+        ),
+
         // Personal Information
         Padding(
           padding:  EdgeInsets.symmetric(horizontal: 8, vertical: 16),
@@ -139,29 +144,6 @@ class _MyCustomFormState extends State<MyCustomForm>{
             ),
           ),
         ),
-        //Gender
-        const Text("Gender"),
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
-          child: ToggleButtons(isSelected: _selectedGender,
-          onPressed: (int index) {
-            setState(() {
-              for(int i = 0; i < _selectedGender.length; i++){
-                _selectedGender[i] = i == index;
-              }
-            });
-          },
-          borderRadius: const BorderRadius.all(Radius.circular(8)),
-          selectedBorderColor: Colors.blue[700],
-          selectedColor: Colors.white,
-          fillColor: Colors.blue[200],
-          color: Colors.blue[400],
-          constraints: const BoxConstraints(
-            minHeight: 40.0,
-            minWidth: 80.0,
-          ),
-          children:  Gender.toList(),),
-          ),
         //Date of Birth
         Padding(
           padding:  EdgeInsets.symmetric(horizontal: 8, vertical: 16),
