@@ -7,6 +7,8 @@ import 'package:intl/intl.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:http/http.dart' as http;
 
+
+//REGO PAGE
 const List<Widget> Role = <Widget>[
   Text('Patient'),
   Text('Doctor')
@@ -16,6 +18,7 @@ const List<Widget> Gender = <Widget>[
   Text('Male'),
   Text('Female'),
   Text('Other')
+
 ];
 void main() => runApp(const MyApp());
 class MyApp extends StatelessWidget {
@@ -31,7 +34,7 @@ class MyApp extends StatelessWidget {
           title: const Center(child: Text(appTitle),),
         ),
         resizeToAvoidBottomInset: false,
-        body: SingleChildScrollView(child: MyCustomForm()),
+        body: SingleChildScrollView(child: RegistrationPage()),
       ),
     );
   }
@@ -39,14 +42,14 @@ class MyApp extends StatelessWidget {
 }
 
 
-class MyCustomForm extends StatefulWidget {
-  const MyCustomForm({super.key});
+class RegistrationPage extends StatefulWidget {
+  const RegistrationPage({super.key});
 
   @override
-  State<MyCustomForm> createState() => _MyCustomFormState();
+  State<RegistrationPage> createState() => _RegistrationPageState();
 }
 
-class _MyCustomFormState extends State<MyCustomForm>{
+class _RegistrationPageState extends State<RegistrationPage>{
   final List<bool> _selectedRole = <bool>[true, false];
   TextEditingController firstName=new TextEditingController();
   TextEditingController lastName=new TextEditingController();
@@ -65,10 +68,10 @@ class _MyCustomFormState extends State<MyCustomForm>{
 
   Future _submit() async {
     final response = await http.post(Uri.parse("http://localhost:8080/api/v1/register"), body: {
-	    "role": _selectedRole,
+	    //"role": _selectedRole,
       "firstName": firstName.text,
       "lastName": lastName.text,
-      "Gender":_selectedGender,
+      //"Gender":_selectedGender,
       "mobile":phoneNumber.text,
 	    "email": email.text,
       "address": "${address.text} ${city.text} ${postCode.text}",
@@ -98,6 +101,8 @@ class _MyCustomFormState extends State<MyCustomForm>{
                 _selectedRole[i] = i == index;
               }
             });
+            //Set up for pushing user to next screen
+            //Navigator.pushNamed(context, '/patientprofile');
           },
           borderRadius: const BorderRadius.all(Radius.circular(8)),
           selectedBorderColor: Colors.blue[700],
