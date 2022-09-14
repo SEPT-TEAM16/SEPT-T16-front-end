@@ -10,11 +10,7 @@ import 'package:http/http.dart' as http;
 
 const List<String> role = <String>['Patient','Doctor'];
 
-const List<Widget> Gender = <Widget>[
-  Text('Male'),
-  Text('Female'),
-  Text('Other')
-];
+
 void main() => runApp(const MyApp());
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
