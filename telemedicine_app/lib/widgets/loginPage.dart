@@ -98,6 +98,7 @@ class _Login extends State<Login>{
             SizedBox(
               height: 130,
             ),
+            Text("Don't have an account?  Register Now")
           ],
         ),
       ),
