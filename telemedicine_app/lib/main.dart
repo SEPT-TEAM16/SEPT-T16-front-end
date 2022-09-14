@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
         appBar: AppBar(
           title: const Center(child: Text(appTitle),),
         ),
-        resizeToAvoidBottomInset: false,
+        resizeToAvoidBottomInset: true,
         body: SingleChildScrollView(child: MyCustomForm()),
       ),
     );
