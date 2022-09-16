@@ -54,3 +54,87 @@ class DoctorBookingPage extends StatelessWidget{
     );
   }
 }
+
+class DoctorDashboardPage extends StatelessWidget{
+  @override
+  Widget build(BuildContext context){
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Welcome to your Dashboard')
+      ),
+      body: SingleChildScrollView(child: DoctorDashboard()),
+    );
+  }
+}
+
+class DoctorsAvailabilitiesPage extends StatelessWidget{
+  @override
+  Widget build(BuildContext context){
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Set your Availabilities')
+      ),
+      body: SingleChildScrollView(child: DoctorAvailability()),
+    );
+  }
+}
+
+class DoctorsChatPage extends StatelessWidget{
+  @override
+  Widget build(BuildContext context){
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Chat with a patient')
+      ),
+      body: SingleChildScrollView(child: DoctorChat()),
+    );
+  }
+}
+
+class PatientsDashboardPage extends StatelessWidget{
+  @override
+  Widget build(BuildContext context){
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Welcome to your dashboard')
+      ),
+      body: SingleChildScrollView(child: PatientDashboard()),
+    );
+  }
+}
+
+class PatientsProfilePage extends StatelessWidget{
+  @override
+  Widget build(BuildContext context){
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Enter your details')
+      ),
+      body: SingleChildScrollView(child: PatientProfile()),
+    );
+  }
+}
+
+class PatientsChatPage extends StatelessWidget{
+  @override
+  Widget build(BuildContext context){
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('')
+      ),
+      body: SingleChildScrollView(child: PatientChat()),
+    );
+  }
+}
+
+class PatientsBookingPage extends StatelessWidget{
+  @override
+  Widget build(BuildContext context){
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Book an Appointment')
+      ),
+      body: SingleChildScrollView(child: PatientBooking()),
+    );
+  }
+}

@@ -286,6 +286,15 @@ class _MyCustomFormState extends State<MyCustomForm>{
 
 
 //Doctor Booking
+
+// HARDCODED DOCTORS AND TIMES FOR TESTING
+const List<String> Doctorlist = <String>['Doctor 1', 'Doctor 2', 'Doctor 3'];
+const List<String> TimeList = <String>['11:00', '3:00', '3:30'];
+
+//Strings for the dropdown values
+String doctorDropDownValue = Doctorlist.first;
+String timeDropDownValue = TimeList.first;
+
 class DoctorBooking extends StatefulWidget {
   const DoctorBooking({super.key});
 
@@ -305,7 +314,6 @@ Future _submitBooking() async { //                                           v g
       "doctor": doctorName.text,
       "time": time.text,
       "accountActive": true
-
     }));
      
   }
@@ -343,13 +351,63 @@ Future _submitBooking() async { //                                           v g
         ),
 
         //Doctor List
-        //Padding(padding: padding
-        //)
+
+        
+
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+          child: DropdownButton<String>(
+            value: doctorDropDownValue,
+            icon: const Icon(Icons.arrow_downward),
+            elevation: 16,
+            style: const TextStyle(color: Colors.deepOrange),
+            underline: Container(
+              height: 2,
+              color: Colors.deepOrangeAccent,
+            ),
+            onChanged: (String? value) {
+              setState(() {
+                doctorDropDownValue = value!;
+                doctorName.text = doctorDropDownValue;
+              }
+              );
+            },
+            items: Doctorlist.map<DropdownMenuItem<String>>((String value) {
+              return DropdownMenuItem<String>(
+                value: value,
+                child: Text(value),
+                );
+            }).toList(),
+          ),
+        ),
 
         //Available Time
-      //  Padding(
-
-      //  )
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+          child: DropdownButton<String>(
+            value: timeDropDownValue,
+            icon: const Icon(Icons.arrow_downward),
+            elevation: 16,
+            style: const TextStyle(color: Colors.deepOrange),
+            underline: Container(
+              height: 2,
+              color: Colors.deepOrangeAccent,
+            ),
+            onChanged: (String? value) {
+              setState(() {
+                timeDropDownValue = value!;
+                time.text = timeDropDownValue;
+              }
+              );
+            },
+            items: TimeList.map<DropdownMenuItem<String>>((String value) {
+              return DropdownMenuItem<String>(
+                value: value,
+                child: Text(value),
+                );
+            }).toList(),
+          ),
+        ),
 
         //Submit Button
         Padding(
@@ -366,4 +424,190 @@ Future _submitBooking() async { //                                           v g
   }
 }
 
-//login page
+//Login Page
+
+//Doctors Dashboard
+class DoctorDashboard extends StatefulWidget {
+  const DoctorDashboard({super.key});
+
+  @override
+  State<DoctorDashboard> createState() => DoctorDashboardState();
+}
+
+class DoctorDashboardState extends State<DoctorDashboard>{
+  // TextEditingController date = new TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+
+    return Column(
+      children: <Widget>[
+        const Text("Enter your selection"),
+
+        //Different Fields
+        Padding(
+
+        )
+      ],
+    );
+  }
+}
+
+//Doctors Availabilies
+class DoctorAvailability extends StatefulWidget {
+  const DoctorAvailability({super.key});
+
+  @override
+  State<DoctorAvailability> createState() => DoctorAvailabilityState();
+}
+
+class DoctorAvailabilityState extends State<DoctorAvailability>{
+  // TextEditingController date = new TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+
+    return Column(
+      children: <Widget>[
+        const Text("Enter your selection"),
+
+        //Different Fields
+        Padding(
+          
+        )
+      ],
+    );
+  }
+}
+//Doctors Chat
+class DoctorChat extends StatefulWidget {
+  const DoctorChat({super.key});
+
+  @override
+  State<DoctorChat> createState() => DoctorChatState();
+}
+
+class DoctorChatState extends State<DoctorChat>{
+  // TextEditingController date = new TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+
+    return Column(
+      children: <Widget>[
+        const Text("Enter your selection"),
+
+        //Different Fields
+        Padding(
+          
+        )
+      ],
+    );
+  }
+}
+//Patients Dashboard
+class PatientDashboard extends StatefulWidget {
+  const PatientDashboard({super.key});
+
+  @override
+  State<PatientDashboard> createState() => PatientDashboardState();
+}
+
+class PatientDashboardState extends State<PatientDashboard>{
+  // TextEditingController date = new TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+
+    return Column(
+      children: <Widget>[
+        const Text("Enter your selection"),
+
+        //Different Fields
+        Padding(
+          
+        )
+      ],
+    );
+  }
+}
+
+//Patients Profile
+class PatientProfile extends StatefulWidget {
+  const PatientProfile({super.key});
+
+  @override
+  State<PatientProfile> createState() => PatientProfileState();
+}
+
+class PatientProfileState extends State<PatientProfile>{
+  // TextEditingController date = new TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+
+    return Column(
+      children: <Widget>[
+        const Text("Enter your selection"),
+
+        //Different Fields
+        Padding(
+          
+        )
+      ],
+    );
+  }
+}
+//Patients Chat
+class PatientChat extends StatefulWidget {
+  const PatientChat({super.key});
+
+  @override
+  State<PatientChat> createState() => PatientChatState();
+}
+
+class PatientChatState extends State<PatientChat>{
+  // TextEditingController date = new TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+
+    return Column(
+      children: <Widget>[
+        const Text("Enter your selection"),
+
+        //Different Fields
+        Padding(
+          
+        )
+      ],
+    );
+  }
+}
+
+//Patients Booking
+class PatientBooking extends StatefulWidget {
+  const PatientBooking({super.key});
+
+  @override
+  State<PatientBooking> createState() => PatientBookingState();
+}
+
+class PatientBookingState extends State<PatientBooking>{
+  // TextEditingController date = new TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+
+    return Column(
+      children: <Widget>[
+        const Text("Enter your selection"),
+
+        //Different Fields
+        Padding(
+          
+        )
+      ],
+    );
+  }
+}
