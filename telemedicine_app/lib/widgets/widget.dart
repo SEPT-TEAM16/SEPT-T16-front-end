@@ -79,7 +79,7 @@ class _MyCustomFormState extends State<MyCustomForm>{
               // This is called when the user selects an item.
               setState(() {
                 dropdownValue = value!;
-                selectedRole.text = value;
+                selectedRole.text = dropdownValue;
               });
             },
             items: role.map<DropdownMenuItem<String>>((String value) {
