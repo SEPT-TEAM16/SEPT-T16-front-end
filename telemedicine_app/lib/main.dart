@@ -129,14 +129,15 @@ class PatientsDashboardPage extends StatelessWidget{
 //   }
 // }
 
-// class PatientsBookingPage extends StatelessWidget{
-//   @override
-//   Widget build(BuildContext context){
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text('Book an Appointment')
-//       ),
-//       body: SingleChildScrollView(child: PatientBooking()),
-//     );
-//   }
-// }
+class PatientsBookingPage extends StatelessWidget{
+  @override
+  Widget build(BuildContext context){
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Book an Appointment')
+      ),
+      body: SingleChildScrollView(child: PatientBooking()),
+    );
+  }
+}
+

@@ -13,6 +13,7 @@ var customRoutes = <String, WidgetBuilder>{
   '/DdashtoChats': (context) => DoctorsChatPage(),
   '/RegotoProfile': (context) => LoginPage(),
   '/LogintoPDashboard':(context) => PatientsDashboardPage(),
-  '/LogintoRego':(context) => RegistrationPage()
-  
+  '/LogintoRego':(context) => RegistrationPage(),
+  '/PdashtoBooking':(context) => PatientsBookingPage()
+
 };

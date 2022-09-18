@@ -288,15 +288,6 @@ class _MyCustomFormState extends State<MyCustomForm>{
 
 
 //Doctor Booking
-
-// HARDCODED DOCTORS AND TIMES FOR TESTING
-const List<String> Doctorlist = <String>['Doctor 1', 'Doctor 2', 'Doctor 3'];
-const List<String> TimeList = <String>['11:00', '3:00', '3:30'];
-
-//Strings for the dropdown values
-String doctorDropDownValue = Doctorlist.first;
-String timeDropDownValue = TimeList.first;
-
 class DoctorBooking extends StatefulWidget {
   const DoctorBooking({super.key});
 
@@ -305,122 +296,25 @@ class DoctorBooking extends StatefulWidget {
 }
 
 class DoctorBookingState extends State<DoctorBooking>{
-  TextEditingController date = new TextEditingController();
-  TextEditingController doctorName = new TextEditingController();
-  TextEditingController time = new TextEditingController();
-  get child => null;
-
-Future _submitBooking() async { //                                           v get
-    final response = await http.post(Uri.parse("http://localhost:8081/api/v1/booking"),  headers: {"Content-Type": "application/json"}, body: jsonEncode({
-	    "date": date.text,
-      "doctor": doctorName.text,
-      "time": time.text,
-      "accountActive": true
-    }));
-     
-  }
-
 
 //Builds DoctorBookingState Widget
   @override
   Widget build(BuildContext context) {
-
     return Column(
       children: <Widget>[
-        const Text("Enter your selection"),
+        const Text("Upcoming bookings"),
 
-        //Date Picker
+        //Different Fields
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+          padding: EdgeInsets.symmetric(horizontal: 9, vertical: 16),
           child: TextFormField(
-            controller: date,
+            //controller: postCode,
             decoration: const InputDecoration(
               border: UnderlineInputBorder(),
-              labelText: 'Appointment Times'
+              labelText: 'Doctors Bookings',
             ),
-            onTap: () async{
-              DateTime? pickedDate = await showDatePicker( context: context,initialDate: DateTime.now(), firstDate: DateTime(2022), lastDate: DateTime(2101));
-              if (pickedDate != null){
-                setState((){
-                  DateTime finaldate = DateTime.parse(pickedDate.toString());
-                  String convertedDate = DateFormat("yyyy-MM-dd").format(finaldate);
-                  date.text = convertedDate;
-                }
-                );
-              }
-            }
-          )
-        ),
-
-        //Doctor List
-
-        
-
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
-          child: DropdownButton<String>(
-            value: doctorDropDownValue,
-            icon: const Icon(Icons.arrow_downward),
-            elevation: 16,
-            style: const TextStyle(color: Colors.deepOrange),
-            underline: Container(
-              height: 2,
-              color: Colors.deepOrangeAccent,
-            ),
-            onChanged: (String? value) {
-              setState(() {
-                doctorDropDownValue = value!;
-                doctorName.text = doctorDropDownValue;
-              }
-              );
-            },
-            items: Doctorlist.map<DropdownMenuItem<String>>((String value) {
-              return DropdownMenuItem<String>(
-                value: value,
-                child: Text(value),
-                );
-            }).toList(),
           ),
         ),
-
-        //Available Time
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
-          child: DropdownButton<String>(
-            value: timeDropDownValue,
-            icon: const Icon(Icons.arrow_downward),
-            elevation: 16,
-            style: const TextStyle(color: Colors.deepOrange),
-            underline: Container(
-              height: 2,
-              color: Colors.deepOrangeAccent,
-            ),
-            onChanged: (String? value) {
-              setState(() {
-                timeDropDownValue = value!;
-                time.text = timeDropDownValue;
-              }
-              );
-            },
-            items: TimeList.map<DropdownMenuItem<String>>((String value) {
-              return DropdownMenuItem<String>(
-                value: value,
-                child: Text(value),
-                );
-            }).toList(),
-          ),
-        ),
-
-        //Submit Button
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
-          child: ElevatedButton(
-            onPressed: (){
-              _submitBooking();
-            },
-            child: Text("Submit Booking"),
-          )
-        )
       ],
     );
   }
@@ -694,29 +588,137 @@ class PatientDashboardState extends State<PatientDashboard>{
 //   }
 // }
 
-// //Patients Booking
-// class PatientBooking extends StatefulWidget {
-//   const PatientBooking({super.key});
+//Patients Booking
 
-//   @override
-//   State<PatientBooking> createState() => PatientBookingState();
-// }
+// HARDCODED DOCTORS AND TIMES FOR TESTING
+const List<String> Doctorlist = <String>['Doctor 1', 'Doctor 2', 'Doctor 3'];
+const List<String> TimeList = <String>['11:00', '3:00', '3:30'];
 
-// class PatientBookingState extends State<PatientBooking>{
-//   // TextEditingController date = new TextEditingController();
+//Strings for the dropdown values
+String doctorDropDownValue = Doctorlist.first;
+String timeDropDownValue = TimeList.first;
 
-//   @override
-//   Widget build(BuildContext context) {
+class PatientBooking extends StatefulWidget {
+  const PatientBooking({super.key});
 
-//     return Column(
-//       children: <Widget>[
-//         const Text("Enter your selection"),
+  @override
+  State<PatientBooking> createState() => PatientBookingState();
+}
 
-//         //Different Fields
-//         Padding(
-          
-//         )
-//       ],
-//     );
-//   }
-// }
+class PatientBookingState extends State<PatientBooking>{
+  TextEditingController date = new TextEditingController();
+  TextEditingController doctorName = new TextEditingController();
+  TextEditingController time = new TextEditingController();
+  get child => null;
+
+Future _submitBooking() async { //                                           v get
+    final response = await http.post(Uri.parse("http://localhost:8081/api/v1/booking"),  headers: {"Content-Type": "application/json"}, body: jsonEncode({
+	    "date": date.text,
+      "doctor": doctorName.text,
+      "time": time.text,
+      "accountActive": true
+    }));
+     
+  }
+
+  //Building the Widget
+  @override
+  Widget build(BuildContext context) {
+
+  return Column(
+        children: <Widget>[
+          const Text("Enter your selection"),
+
+          //Date Picker
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+            child: TextFormField(
+              controller: date,
+              decoration: const InputDecoration(
+                border: UnderlineInputBorder(),
+                labelText: 'Appointment Times'
+              ),
+              onTap: () async{
+                DateTime? pickedDate = await showDatePicker( context: context,initialDate: DateTime.now(), firstDate: DateTime(2022), lastDate: DateTime(2101));
+                if (pickedDate != null){
+                  setState((){
+                    DateTime finaldate = DateTime.parse(pickedDate.toString());
+                    String convertedDate = DateFormat("yyyy-MM-dd").format(finaldate);
+                    date.text = convertedDate;
+                  }
+                  );
+                }
+              }
+            )
+          ),
+
+          //Doctor List
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+            child: DropdownButton<String>(
+              value: doctorDropDownValue,
+              icon: const Icon(Icons.arrow_downward),
+              elevation: 16,
+              style: const TextStyle(color: Colors.deepOrange),
+              underline: Container(
+                height: 2,
+                color: Colors.deepOrangeAccent,
+              ),
+              onChanged: (String? value) {
+                setState(() {
+                  doctorDropDownValue = value!;
+                  doctorName.text = doctorDropDownValue;
+                }
+                );
+              },
+              items: Doctorlist.map<DropdownMenuItem<String>>((String value) {
+                return DropdownMenuItem<String>(
+                  value: value,
+                  child: Text(value),
+                  );
+              }).toList(),
+            ),
+          ),
+
+          //Available Time
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+            child: DropdownButton<String>(
+              value: timeDropDownValue,
+              icon: const Icon(Icons.arrow_downward),
+              elevation: 16,
+              style: const TextStyle(color: Colors.deepOrange),
+              underline: Container(
+                height: 2,
+                color: Colors.deepOrangeAccent,
+              ),
+              onChanged: (String? value) {
+                setState(() {
+                  timeDropDownValue = value!;
+                  time.text = timeDropDownValue;
+                }
+                );
+              },
+              items: TimeList.map<DropdownMenuItem<String>>((String value) {
+                return DropdownMenuItem<String>(
+                  value: value,
+                  child: Text(value),
+                  );
+              }).toList(),
+            ),
+          ),
+
+          //Submit Button
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+            child: ElevatedButton(
+              onPressed: (){
+                _submitBooking();
+              },
+              child: Text("Submit Booking"),
+            )
+          )
+        ],
+      );
+    }
+}
