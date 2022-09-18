@@ -437,20 +437,17 @@ class Login extends StatefulWidget{
 class _Login extends State<Login>{
  @override
   Widget build(BuildContext context) {
-    // return Scaffold(
-    //   // backgroundColor: Colors.white,
-    //   // body: SingleChildScrollView(
         return Column(
           children: <Widget>[
-            // Padding(
-            //   padding: const EdgeInsets.only(top: 60.0),
-            //   child: Center(
-            //     child: Container(
-            //         width: 200,
-            //         height: 150,
-            //         ),
-            //   ),
-            // ),
+            Padding(
+              padding: const EdgeInsets.only(top: 60.0),
+              child: Center(
+                child: Container(
+                    width: 200,
+                    height: 150,
+                    ),
+              ),
+            ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 15),
               child: TextField(
