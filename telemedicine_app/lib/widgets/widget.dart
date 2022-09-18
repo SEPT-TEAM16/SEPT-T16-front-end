@@ -273,7 +273,8 @@ class _MyCustomFormState extends State<MyCustomForm>{
           padding: EdgeInsets.symmetric(horizontal: 8,vertical: 16),
           child: ElevatedButton(
             onPressed: (){  
-            _submit()       ;     
+            _submit();     
+            Navigator.pushNamed(context, '/RegotoProfile');
           },
           child: Text("Submit"),
         ),
@@ -426,6 +427,80 @@ Future _submitBooking() async { //                                           v g
 }
 
 //Login Page
+class Login extends StatefulWidget{
+  const Login({super.key});
+
+  @override
+  State<Login> createState() => _Login();
+}
+
+class _Login extends State<Login>{
+ @override
+  Widget build(BuildContext context) {
+    // return Scaffold(
+    //   // backgroundColor: Colors.white,
+    //   // body: SingleChildScrollView(
+        return Column(
+          children: <Widget>[
+            // Padding(
+            //   padding: const EdgeInsets.only(top: 60.0),
+            //   child: Center(
+            //     child: Container(
+            //         width: 200,
+            //         height: 150,
+            //         ),
+            //   ),
+            // ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 15),
+              child: TextField(
+                decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'Email',
+                    hintText: 'Enter valid email id as abc@gmail.com'),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(
+                  left: 15.0, right: 15.0, top: 15, bottom: 0),
+              child: TextField(
+
+                obscureText: true,
+                decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'Password',
+                    hintText: 'Enter secure password'),
+              ),
+            ),
+            Container(
+              margin:EdgeInsets.all(30.0),
+              height: 40,
+              width: 150,
+              decoration: BoxDecoration(
+                  color: Colors.blue, borderRadius: BorderRadius.circular(20)),
+              child: TextButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, '/LogintoPDashboard');
+                },
+                child: Text(
+                  'Login',
+                  style: TextStyle(color: Colors.white, fontSize: 15),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 130,
+            ),
+            Container(child: TextButton( 
+              onPressed:(){       
+                Navigator.pushNamed(context, '/LogintoRego');
+            
+              },
+            child: Text("Don't have an account?  Register Now"),),)
+          ],
+        );
+  }
+}
 
 //Doctors Dashboard
 class DoctorDashboard extends StatefulWidget {
@@ -542,32 +617,32 @@ class DoctorChatState extends State<DoctorChat>{
     );
   }
 }
-// //Patients Dashboard
-// class PatientDashboard extends StatefulWidget {
-//   const PatientDashboard({super.key});
+//Patients Dashboard
+class PatientDashboard extends StatefulWidget {
+  const PatientDashboard({super.key});
 
-//   @override
-//   State<PatientDashboard> createState() => PatientDashboardState();
-// }
+  @override
+  State<PatientDashboard> createState() => PatientDashboardState();
+}
 
-// class PatientDashboardState extends State<PatientDashboard>{
-//   // TextEditingController date = new TextEditingController();
+class PatientDashboardState extends State<PatientDashboard>{
+  // TextEditingController date = new TextEditingController();
 
-//   @override
-//   Widget build(BuildContext context) {
+  @override
+  Widget build(BuildContext context) {
 
-//     return Column(
-//       children: <Widget>[
-//         const Text("Enter your selection"),
+    return Column(
+      children: <Widget>[
+        const Text("Paitent Name"), //Get patient Name
 
-//         //Different Fields
-//         Padding(
+        //Different Fields
+        // Padding(
           
-//         )
-//       ],
-//     );
-//   }
-// }
+        // )
+      ],
+    );
+  }
+}
 
 // //Patients Profile
 // class PatientProfile extends StatefulWidget {

@@ -5,9 +5,14 @@ import '/main.dart';
 
 var customRoutes = <String, WidgetBuilder>{
   //Set for home screen: Can use for testing page, will set to login once everything done.
-  '/': (context) => DoctorDashboardPage(),
+  '/': (context) => LoginPage(),
 
+  //Routes for program
   '/DdashtoAvailability': (context) => DoctorsAvailabilitiesPage(),
   '/DdashtoBooking': (context) => DoctorBookingPage(),
-  '/DdashtoChats': (context) => DoctorsChatPage()
+  '/DdashtoChats': (context) => DoctorsChatPage(),
+  '/RegotoProfile': (context) => LoginPage(),
+  '/LogintoPDashboard':(context) => PatientsDashboardPage(),
+  '/LogintoRego':(context) => RegistrationPage()
+  
 };

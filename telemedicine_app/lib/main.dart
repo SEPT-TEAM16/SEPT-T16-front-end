@@ -21,17 +21,29 @@ void main() {
   ));
 }
 
-// class LoginPage extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context){
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text("Login Page")
-//       ),
-//       body: SingleChildScrollView(child: loginPage())
-//     );
-//   }
-// }
+class RegistrationPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context){
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Register Now")
+      ),
+      body: SingleChildScrollView(child: MyCustomForm())
+    );
+  }
+}
+
+class LoginPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context){
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Login Page")
+      ),
+      body: SingleChildScrollView(child: Login())
+    );
+  }
+}
 
 class DoctorBookingPage extends StatelessWidget{
   @override
@@ -81,17 +93,17 @@ class DoctorsChatPage extends StatelessWidget{
   }
 }
 
-// class PatientsDashboardPage extends StatelessWidget{
-//   @override
-//   Widget build(BuildContext context){
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text('Welcome to your dashboard')
-//       ),
-//       body: SingleChildScrollView(child: PatientDashboard()),
-//     );
-//   }
-// }
+class PatientsDashboardPage extends StatelessWidget{
+  @override
+  Widget build(BuildContext context){
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Welcome to your dashboard')
+      ),
+      body: SingleChildScrollView(child: PatientDashboard()),
+    );
+  }
+}
 
 // class PatientsProfilePage extends StatelessWidget{
 //   @override
