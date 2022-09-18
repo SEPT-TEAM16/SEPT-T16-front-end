@@ -6,6 +6,7 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:http/http.dart' as http;
+import 'package:telemedicine_app/main.dart';
 //We build all of our widgets here to call into main :)
 
 //rego
@@ -442,11 +443,36 @@ class DoctorDashboardState extends State<DoctorDashboard>{
 
     return Column(
       children: <Widget>[
-        const Text("Enter your selection"),
-
-        //Different Fields
+        const Text("Dr John He"), //Need to find doctor name
+        
         Padding(
+          padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+          child: ElevatedButton(
+            onPressed: (){
+              Navigator.pushNamed(context, '/DdashtoAvailability');
+            },
+            child: Text("Adjust Availability"),
+          )
+        ),
 
+         Padding(
+          padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+          child: ElevatedButton(
+            onPressed: (){
+              Navigator.pushNamed(context, '/DdashtoBooking');
+            },
+            child: Text("Bookings"),
+          )
+        ),
+
+         Padding(
+          padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+          child: ElevatedButton(
+            onPressed: (){
+              Navigator.pushNamed(context, '/DdashtoChats');
+            },
+            child: Text("Chats"),
+          )
         )
       ],
     );
@@ -469,16 +495,22 @@ class DoctorAvailabilityState extends State<DoctorAvailability>{
 
     return Column(
       children: <Widget>[
-        const Text("Enter your selection"),
-
         //Different Fields
         Padding(
-          
-        )
+          padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+          child: TextFormField(
+            //controller: postCode,
+            decoration: const InputDecoration(
+              border: UnderlineInputBorder(),
+              labelText: 'Monday',
+            ),
+          ),
+        ),
       ],
     );
   }
 }
+
 //Doctors Chat
 class DoctorChat extends StatefulWidget {
   const DoctorChat({super.key});
@@ -495,119 +527,124 @@ class DoctorChatState extends State<DoctorChat>{
 
     return Column(
       children: <Widget>[
-        const Text("Enter your selection"),
-
         //Different Fields
         Padding(
-          
-        )
+          padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+          child: TextFormField(
+            //controller: postCode,
+            decoration: const InputDecoration(
+              border: UnderlineInputBorder(),
+              labelText: 'Chat',
+            ),
+          ),
+        ),
       ],
     );
   }
 }
-//Patients Dashboard
-class PatientDashboard extends StatefulWidget {
-  const PatientDashboard({super.key});
+// //Patients Dashboard
+// class PatientDashboard extends StatefulWidget {
+//   const PatientDashboard({super.key});
 
-  @override
-  State<PatientDashboard> createState() => PatientDashboardState();
-}
+//   @override
+//   State<PatientDashboard> createState() => PatientDashboardState();
+// }
 
-class PatientDashboardState extends State<PatientDashboard>{
-  // TextEditingController date = new TextEditingController();
+// class PatientDashboardState extends State<PatientDashboard>{
+//   // TextEditingController date = new TextEditingController();
 
-  @override
-  Widget build(BuildContext context) {
+//   @override
+//   Widget build(BuildContext context) {
 
-    return Column(
-      children: <Widget>[
-        const Text("Enter your selection"),
+//     return Column(
+//       children: <Widget>[
+//         const Text("Enter your selection"),
 
-        //Different Fields
-        Padding(
+//         //Different Fields
+//         Padding(
           
-        )
-      ],
-    );
-  }
-}
+//         )
+//       ],
+//     );
+//   }
+// }
 
-//Patients Profile
-class PatientProfile extends StatefulWidget {
-  const PatientProfile({super.key});
+// //Patients Profile
+// class PatientProfile extends StatefulWidget {
+//   const PatientProfile({super.key});
 
-  @override
-  State<PatientProfile> createState() => PatientProfileState();
-}
+//   @override
+//   State<PatientProfile> createState() => PatientProfileState();
+// }
 
-class PatientProfileState extends State<PatientProfile>{
-  // TextEditingController date = new TextEditingController();
+// class PatientProfileState extends State<PatientProfile>{
+//   // TextEditingController date = new TextEditingController();
 
-  @override
-  Widget build(BuildContext context) {
+//   @override
+//   Widget build(BuildContext context) {
 
-    return Column(
-      children: <Widget>[
-        const Text("Enter your selection"),
+//     return Column(
+//       children: <Widget>[
+//         const Text("Enter your selection"),
 
-        //Different Fields
-        Padding(
+//         //Different Fields
+//         Padding(
           
-        )
-      ],
-    );
-  }
-}
-//Patients Chat
-class PatientChat extends StatefulWidget {
-  const PatientChat({super.key});
+//         )
+//       ],
+//     );
+//   }
+// }
+// //Patients Chat
+// class PatientChat extends StatefulWidget {
+//   const PatientChat({super.key});
 
-  @override
-  State<PatientChat> createState() => PatientChatState();
-}
+//   @override
+//   State<PatientChat> createState() => PatientChatState();
+// }
 
-class PatientChatState extends State<PatientChat>{
-  // TextEditingController date = new TextEditingController();
+// class PatientChatState extends State<PatientChat>{
+//   // TextEditingController date = new TextEditingController();
 
-  @override
-  Widget build(BuildContext context) {
+//   @override
+//   Widget build(BuildContext context) {
 
-    return Column(
-      children: <Widget>[
-        const Text("Enter your selection"),
+//     return Column(
+//       children: <Widget>[
+//         const Text("Enter your selection"),
 
-        //Different Fields
-        Padding(
+//         //Different Fields
+//         Padding(
           
-        )
-      ],
-    );
-  }
-}
+//         )
+//       ],
+//     );
+//   }
+// }
 
-//Patients Booking
-class PatientBooking extends StatefulWidget {
-  const PatientBooking({super.key});
+// //Patients Booking
+// class PatientBooking extends StatefulWidget {
+//   const PatientBooking({super.key});
 
-  @override
-  State<PatientBooking> createState() => PatientBookingState();
-}
+//   @override
+//   State<PatientBooking> createState() => PatientBookingState();
+// }
 
-class PatientBookingState extends State<PatientBooking>{
-  // TextEditingController date = new TextEditingController();
+// class PatientBookingState extends State<PatientBooking>{
+//   // TextEditingController date = new TextEditingController();
 
-  @override
-  Widget build(BuildContext context) {
+//   @override
+//   Widget build(BuildContext context) {
 
-    return Column(
-      children: <Widget>[
-        const Text("Enter your selection"),
+//     return Column(
+//       children: <Widget>[
+//         const Text("Enter your selection"),
 
-        //Different Fields
-        Padding(
+//         //Different Fields
+//         Padding(
           
-        )
-      ],
-    );
-  }
-}
+//         )
+//       ],
+//     );
+//   }
+// }

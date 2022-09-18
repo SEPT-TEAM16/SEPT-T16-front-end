@@ -7,8 +7,7 @@ import 'package:intl/intl.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:http/http.dart' as http;
 import "/widgets/widget.dart";
-
-
+import "/config/routes/routes.dart";
 
 
 void main() {
@@ -18,16 +17,7 @@ void main() {
       primarySwatch: Colors.blue,
     ),
     initialRoute: '/',
-
-    routes: {
-    //TESTING PURPOSES
-    '/':(context) => DoctorBookingPage(),
-      
-    // '/': (context) => LoginPage(),
-    // 'RegotoPDash' => PatientDashboardScreen();
-    // 'DdashtoBooking' => DbookingScreen();
-    // 'PdashtoBooking' => PbookingScreen();
-    },
+    routes: customRoutes,
   ));
 }
 
@@ -91,50 +81,50 @@ class DoctorsChatPage extends StatelessWidget{
   }
 }
 
-class PatientsDashboardPage extends StatelessWidget{
-  @override
-  Widget build(BuildContext context){
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Welcome to your dashboard')
-      ),
-      body: SingleChildScrollView(child: PatientDashboard()),
-    );
-  }
-}
+// class PatientsDashboardPage extends StatelessWidget{
+//   @override
+//   Widget build(BuildContext context){
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: Text('Welcome to your dashboard')
+//       ),
+//       body: SingleChildScrollView(child: PatientDashboard()),
+//     );
+//   }
+// }
 
-class PatientsProfilePage extends StatelessWidget{
-  @override
-  Widget build(BuildContext context){
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Enter your details')
-      ),
-      body: SingleChildScrollView(child: PatientProfile()),
-    );
-  }
-}
+// class PatientsProfilePage extends StatelessWidget{
+//   @override
+//   Widget build(BuildContext context){
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: Text('Enter your details')
+//       ),
+//       body: SingleChildScrollView(child: PatientProfile()),
+//     );
+//   }
+// }
 
-class PatientsChatPage extends StatelessWidget{
-  @override
-  Widget build(BuildContext context){
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('')
-      ),
-      body: SingleChildScrollView(child: PatientChat()),
-    );
-  }
-}
+// class PatientsChatPage extends StatelessWidget{
+//   @override
+//   Widget build(BuildContext context){
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: Text('')
+//       ),
+//       body: SingleChildScrollView(child: PatientChat()),
+//     );
+//   }
+// }
 
-class PatientsBookingPage extends StatelessWidget{
-  @override
-  Widget build(BuildContext context){
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Book an Appointment')
-      ),
-      body: SingleChildScrollView(child: PatientBooking()),
-    );
-  }
-}
+// class PatientsBookingPage extends StatelessWidget{
+//   @override
+//   Widget build(BuildContext context){
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: Text('Book an Appointment')
+//       ),
+//       body: SingleChildScrollView(child: PatientBooking()),
+//     );
+//   }
+// }
