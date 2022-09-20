@@ -10,6 +10,9 @@ import 'package:http/http.dart' as http;
 import 'package:telemedicine_app/main.dart';
 import 'package:intl/intl.dart';
 import 'package:ionicons/ionicons.dart';
+import 'package:telemedicine_app/constants/api_service.dart';
+import 'package:telemedicine_app/modules/profile/models/patients_models.dart';
+
 
 //We build all of our widgets here to call into main :)
 
@@ -295,6 +298,10 @@ class _MyCustomFormState extends State<MyCustomForm>{
 
 
 //Doctor Booking
+
+const List<String> timePeriod = <String>['Today','Tomorrow', 'Week'];
+String timeValue = timePeriod.first;
+
 class DoctorBooking extends StatefulWidget {
   const DoctorBooking({super.key});
 
@@ -304,16 +311,45 @@ class DoctorBooking extends StatefulWidget {
 
 class DoctorBookingState extends State<DoctorBooking>{
 
+  TextEditingController selectedTime=new TextEditingController();
+
 //Builds DoctorBookingState Widget
   @override
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
         const Text("Upcoming bookings"),
+        Container(
+          padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+          child: 
+          DropdownButton<String>(
+            value: timeValue,
+            icon: const Icon(Icons.arrow_downward),
+            elevation: 16,
+            style: const TextStyle(color: Colors.deepPurple),
+            underline: Container(
+              height: 3,
+              color: Colors.deepPurpleAccent,
+            ),
+            onChanged: (String? value) {
+              // This is called when the user selects an item.
+              setState(() {
+                timeValue = value!;
+                selectedTime.text = timeValue;
+              });
+            },
+            items: role.map<DropdownMenuItem<String>>((String value) {
+              return DropdownMenuItem<String>(
+                value: value,
+                child: Text(value),
+          );
+        }).toList(),
+        )
+        ),
 
         //Different Fields
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: 9, vertical: 16),
+          padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
           child: TextFormField(
             //controller: postCode,
             decoration: const InputDecoration(
