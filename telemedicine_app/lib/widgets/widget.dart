@@ -344,7 +344,7 @@ class _Login extends State<Login>{
                 child: Container(
                     width: 200,
                     height: 150,
-                    child: Icon(),
+                    // child: Icon(),
                     ),
               ),
             ),
@@ -357,7 +357,7 @@ class _Login extends State<Login>{
                     hintText: 'Enter valid email id as abc@gmail.com'),
               ),
             ),
-            
+
             Padding(
               padding: const EdgeInsets.only(
                   left: 15.0, right: 15.0, top: 15, bottom: 0),
