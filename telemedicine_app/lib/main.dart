@@ -64,6 +64,7 @@ class DoctorDashboardPage extends StatelessWidget{
       appBar: AppBar(
         title: Text('Welcome to your Dashboard')
       ),
+      
       body: SingleChildScrollView(child: DoctorDashboard()),
     );
   }

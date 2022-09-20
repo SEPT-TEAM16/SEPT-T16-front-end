@@ -7,6 +7,8 @@ import 'package:intl/intl.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:http/http.dart' as http;
 import 'package:telemedicine_app/main.dart';
+import 'package:intl/intl.dart';
+
 //We build all of our widgets here to call into main :)
 
 //rego
@@ -404,40 +406,124 @@ class DoctorDashboard extends StatefulWidget {
 class DoctorDashboardState extends State<DoctorDashboard>{
   // TextEditingController date = new TextEditingController();
 
+
+  //Getting Doctor Name
+  String dName = 'Dr ' + 'John ' + 'He'; //string should be first_name + last_name under doctors
+
+  //Getting Date
+  var dt = DateTime.now();
+  //formating date
+  String cdate2 = DateFormat("MMMM, dd, yyyy").format(DateTime.now());
+
   @override
   Widget build(BuildContext context) {
 
     return Column(
       children: <Widget>[
-        const Text("Dr John He"), //Need to find doctor name
+        Container(
+          child: Text(
+            dName,
+            style: TextStyle(
+              color: Colors.grey[800],
+              fontWeight: FontWeight.bold,
+              fontSize: 18
+            )
+          )
+        ),
         
-        Padding(
+        Container( //DATE CONTAINER 
           padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+          child: Text(
+            cdate2,
+            style: TextStyle(
+              color: Colors.grey[800],
+              fontWeight: FontWeight.w200,
+              fontSize: 14
+            )
+          )
+        ),
+
+        Container(
+          padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+          width: double.infinity,
+          height: 100,
           child: ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              primary: Colors.blue,
+              onPrimary: Colors.white,
+              shadowColor: Colors.blueAccent,
+              elevation: 3,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10.0)
+                ),
+              minimumSize: Size(100, 40),
+            ),
             onPressed: (){
               Navigator.pushNamed(context, '/DdashtoAvailability');
             },
-            child: Text("Adjust Availability"),
+            child: Text("Adjust Availability",
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.w600,
+                fontSize: 14
+              )
+            ),
           )
         ),
 
-         Padding(
+         Container(
           padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+          width: double.infinity,
+          height: 100,
           child: ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              primary: Colors.blue,
+              onPrimary: Colors.white,
+              shadowColor: Colors.blueAccent,
+              elevation: 3,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10.0)
+                ),
+              minimumSize: Size(100, 40),
+            ),
             onPressed: (){
               Navigator.pushNamed(context, '/DdashtoBooking');
             },
-            child: Text("Bookings"),
+            child: Text("Bookings",
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.w600,
+                fontSize: 14
+              )
+            ),
           )
         ),
 
-         Padding(
+         Container(
           padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+          width: double.infinity,
+          height: 100,
           child: ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              primary: Colors.blue,
+              onPrimary: Colors.white,
+              shadowColor: Colors.blueAccent,
+              elevation: 3,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10.0)
+                ),
+              minimumSize: Size(100, 40),
+            ),
             onPressed: (){
               Navigator.pushNamed(context, '/DdashtoChats');
             },
-            child: Text("Chats"),
+            child: Text("Patient Chat",
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.w500,
+                fontSize: 14
+              )
+            ),
           )
         )
       ],
