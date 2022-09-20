@@ -178,7 +178,7 @@ class _MyCustomFormState extends State<MyCustomForm>{
             ),
             validator: (value) {
               if(value == null || value.isEmpty || !value.contains('@') || !value.contains('.')){
-                return 'Invalid Email';
+                return  'Invalid Email';
               }
               return null;
             },
@@ -398,8 +398,6 @@ class _Login extends State<Login>{
                     }
         
                   }
-
-
 
 
                 },
@@ -1312,11 +1310,12 @@ class PatientBookingState extends State<PatientBooking>{
   get child => null;
 
 Future _submitBooking() async { //                                           v get
-    final response = await http.post(Uri.parse("http://localhost:8081/api/v1/booking"),  headers: {"Content-Type": "application/json"}, body: jsonEncode({
-	    "date": date.text,
-      "doctor": doctorName.text,
-      "time": time.text,
-      "accountActive": true
+    final response = await http.post(Uri.parse("http://localhost:8081/api/v1/create-appointment"),  headers: {"Content-Type": "application/json"}, body: jsonEncode({
+      "appointmentStartDate" : date.text + ("T"+time.text+":00"), // Temp value
+      "patientId": 33, // Temp Value
+      "doctorId" : 44, // Temp Value
+      "appointmentStatus": "ACTIVE", // Temp value
+
     }));
      
   }
