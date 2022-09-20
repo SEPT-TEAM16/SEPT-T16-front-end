@@ -1290,7 +1290,7 @@ class PatientChatState extends State<PatientChat>{
 
 // HARDCODED DOCTORS AND TIMES FOR TESTING
 const List<String> Doctorlist = <String>['Doctor 1', 'Doctor 2', 'Doctor 3']; // temporary Doctor names
-const List<String> TimeList = <String>['11:00', '3:00', '3:30']; // Temporary Times
+const List<String> TimeList = <String>['11:00', '15:00', '15:30']; // Temporary Times
 
 //Strings for the dropdown values
 String doctorDropDownValue = Doctorlist.first;
