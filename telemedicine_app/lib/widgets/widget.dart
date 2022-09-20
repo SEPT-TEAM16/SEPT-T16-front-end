@@ -958,67 +958,113 @@ class PatientDashboardState extends State<PatientDashboard>{
       children: <Widget>[
         const Text("Paitent Name"), //Get patient Name
 
-        //Different Fields
-        // Padding(
-          
-        // )
+        //Bookings
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+          child: ElevatedButton(
+            onPressed: (){
+              Navigator.pushNamed(context, '/PdashtoBooking');
+            },
+            child: Text("Book an appointment"),
+          )
+        ),
+
+        //Profile
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+          child: ElevatedButton(
+            onPressed: (){
+              Navigator.pushNamed(context, '/PdashtoProfile');
+            },
+            child: Text("Edit Details"),
+          )
+        ),
+
+        //Chat
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+          child: ElevatedButton(
+            onPressed: (){
+              Navigator.pushNamed(context, '/DdashtoChats');
+            },
+            child: Text("Chat to a GP now"),
+          )
+        ),
+
       ],
     );
   }
 }
 
-// //Patients Profile
-// class PatientProfile extends StatefulWidget {
-//   const PatientProfile({super.key});
+//Patients Profile
+class PatientProfile extends StatefulWidget {
+  const PatientProfile({super.key});
 
-//   @override
-//   State<PatientProfile> createState() => PatientProfileState();
-// }
+  @override
+  State<PatientProfile> createState() => PatientProfileState();
+}
 
-// class PatientProfileState extends State<PatientProfile>{
-//   // TextEditingController date = new TextEditingController();
+class PatientProfileState extends State<PatientProfile>{
+  // TextEditingController date = new TextEditingController();
 
-//   @override
-//   Widget build(BuildContext context) {
+  @override
+  Widget build(BuildContext context) {
 
-//     return Column(
-//       children: <Widget>[
-//         const Text("Enter your selection"),
+    return Column(
+      children: <Widget>[
+        const Text("Enter your selection"),
 
-//         //Different Fields
-//         Padding(
-          
-//         )
-//       ],
-//     );
-//   }
-// }
-// //Patients Chat
-// class PatientChat extends StatefulWidget {
-//   const PatientChat({super.key});
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+          child: TextFormField(
+            //controller: postCode,
+            decoration: const InputDecoration(
+              border: UnderlineInputBorder(),
+              labelText: 'profile',
+            )
+          ),
+        ),
 
-//   @override
-//   State<PatientChat> createState() => PatientChatState();
-// }
+        //Different Fields
+        
+      ],
+    );
+  }
+}
 
-// class PatientChatState extends State<PatientChat>{
-//   // TextEditingController date = new TextEditingController();
+//Patients Chat
+class PatientChat extends StatefulWidget {
+  const PatientChat({super.key});
 
-//   @override
-//   Widget build(BuildContext context) {
+  @override
+  State<PatientChat> createState() => PatientChatState();
+}
 
-//     return Column(
-//       children: <Widget>[
-//         const Text("Enter your selection"),
+class PatientChatState extends State<PatientChat>{
+  // TextEditingController date = new TextEditingController();
 
-//         //Different Fields
-//         Padding(
-          
-//         )
-//       ],
-//     );
-//   }
-// }
+  @override
+  Widget build(BuildContext context) {
+
+    return Column(
+      children: <Widget>[
+        const Text("Enter your selection"),
+
+        //Different Fields
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+          child: TextFormField(
+            //controller: postCode,
+            decoration: const InputDecoration(
+              border: UnderlineInputBorder(),
+              labelText: 'chat',
+            )
+          ),
+        ),
+      ],
+    );
+  }
+}
 
 //Patients Booking
 
