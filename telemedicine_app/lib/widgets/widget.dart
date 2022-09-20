@@ -8,6 +8,7 @@ import 'package:email_validator/email_validator.dart';
 import 'package:http/http.dart' as http;
 import 'package:telemedicine_app/main.dart';
 import 'package:intl/intl.dart';
+import 'package:ionicons/ionicons.dart';
 
 //We build all of our widgets here to call into main :)
 
@@ -344,7 +345,7 @@ class _Login extends State<Login>{
                 child: Container(
                     width: 200,
                     height: 150,
-                    // child: Icon(),
+                    child: Icon(Ionicons.medkit, size: 100, color: Colors.red),
                     ),
               ),
             ),
@@ -1267,8 +1268,8 @@ class PatientChatState extends State<PatientChat>{
 //Patients Booking
 
 // HARDCODED DOCTORS AND TIMES FOR TESTING
-const List<String> Doctorlist = <String>['Doctor 1', 'Doctor 2', 'Doctor 3'];
-const List<String> TimeList = <String>['11:00', '3:00', '3:30'];
+const List<String> Doctorlist = <String>['Doctor 1', 'Doctor 2', 'Doctor 3']; // temporary Doctor names
+const List<String> TimeList = <String>['11:00', '3:00', '3:30']; // Temporary Times
 
 //Strings for the dropdown values
 String doctorDropDownValue = Doctorlist.first;
@@ -1329,7 +1330,9 @@ Future _submitBooking() async { //                                           v g
           ),
 
           //Doctor List
-          Padding(
+
+          Container(
+            child:Padding(
             padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
             child: DropdownButton<String>(
               value: doctorDropDownValue,
@@ -1355,6 +1358,8 @@ Future _submitBooking() async { //                                           v g
               }).toList(),
             ),
           ),
+          ),
+          
 
           //Available Time
           Padding(
