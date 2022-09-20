@@ -344,6 +344,7 @@ class _Login extends State<Login>{
                 child: Container(
                     width: 200,
                     height: 150,
+                    child: Icon(),
                     ),
               ),
             ),
@@ -356,6 +357,7 @@ class _Login extends State<Login>{
                     hintText: 'Enter valid email id as abc@gmail.com'),
               ),
             ),
+            
             Padding(
               padding: const EdgeInsets.only(
                   left: 15.0, right: 15.0, top: 15, bottom: 0),
@@ -566,6 +568,18 @@ class DoctorAvailabilityState extends State<DoctorAvailability>{
   String FridayStart = Times.first;
   String FridayEnd = Times.first;
 
+  // Submit Doctor Avaliability
+  Future _submitDoctorAvalibitiy() async { //                                   v get actualt link
+  final response = await http.post(Uri.parse("http://localhost:8081/api/v1/avalibities"),  headers: {"Content-Type": "application/json"}, body: jsonEncode({  
+    //Monday Time
+    //TuesdayTime
+    //Wednesday Time
+    //Thursday Time
+    //Friday Time
+
+  }));
+    
+}
   @override
   Widget build(BuildContext context) {
 
@@ -685,7 +699,7 @@ class DoctorAvailabilityState extends State<DoctorAvailability>{
           padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
           child: 
           DropdownButton<String>(
-            value: MondayStart,
+            value: TuesdayStart,
             icon: const Icon(Icons.arrow_downward),
             elevation: 16,
             style: const TextStyle(color: Colors.deepPurple),
@@ -696,8 +710,8 @@ class DoctorAvailabilityState extends State<DoctorAvailability>{
             onChanged: (String? value) {
               // This is called when the user selects an item.
               setState(() {
-                MondayStart = value!;
-                MondayStartTime.text = MondayStart;
+                TuesdayStart = value!;
+                TuesdayStartTime.text = TuesdayStart;
               });
             },
             items: Times.map<DropdownMenuItem<String>>((String value) {
@@ -714,7 +728,7 @@ class DoctorAvailabilityState extends State<DoctorAvailability>{
           padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
           child: 
           DropdownButton<String>(
-            value: MondayEnd,
+            value: TuesdayEnd,
             icon: const Icon(Icons.arrow_downward),
             elevation: 16,
             style: const TextStyle(color: Colors.deepPurple),
@@ -725,8 +739,8 @@ class DoctorAvailabilityState extends State<DoctorAvailability>{
             onChanged: (String? value) {
               // This is called when the user selects an item.
               setState(() {
-                MondayEnd = value!;
-                MondayEndTime.text = MondayEnd;
+                TuesdayEnd = value!;
+                TuesdayEndTime.text = TuesdayEnd;
               });
             },
             items: Times.map<DropdownMenuItem<String>>((String value) {
@@ -741,254 +755,265 @@ class DoctorAvailabilityState extends State<DoctorAvailability>{
           ),
         ),
 
-    //     // Monday Time / End time
-    //     Text("Monday Start Time"),
-    //     Padding(
-    //       padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
-    //       child: 
-    //       DropdownButton<String>(
-    //         value: MondayStart,
-    //         icon: const Icon(Icons.arrow_downward),
-    //         elevation: 16,
-    //         style: const TextStyle(color: Colors.deepPurple),
-    //         underline: Container(
-    //           height: 3,
-    //           color: Colors.deepPurpleAccent,
-    //         ),
-    //         onChanged: (String? value) {
-    //           // This is called when the user selects an item.
-    //           setState(() {
-    //             MondayStart = value!;
-    //             MondayStartTime.text = MondayStart;
-    //           });
-    //         },
-    //         items: Times.map<DropdownMenuItem<String>>((String value) {
-    //           return DropdownMenuItem<String>(
-    //             value: value,
-    //             child: Text(value),
-    //       );
-    //     }).toList(),
-    //     )
-    //     ),
-    //     // Monday end time
-    //     Text("Monday End Time"),
-    //     Padding(
-    //       padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
-    //       child: 
-    //       DropdownButton<String>(
-    //         value: MondayEnd,
-    //         icon: const Icon(Icons.arrow_downward),
-    //         elevation: 16,
-    //         style: const TextStyle(color: Colors.deepPurple),
-    //         underline: Container(
-    //           height: 3,
-    //           color: Colors.deepPurpleAccent,
-    //         ),
-    //         onChanged: (String? value) {
-    //           // This is called when the user selects an item.
-    //           setState(() {
-    //             MondayEnd = value!;
-    //             MondayEndTime.text = MondayEnd;
-    //           });
-    //         },
-    //         items: Times.map<DropdownMenuItem<String>>((String value) {
-    //           return DropdownMenuItem<String>(
-    //             value: value,
-    //             child: Text(value),
-    //       );
-    //     }).toList(),
-    //     )
-    //     ),
-    //     //Spacing
-    //     Padding(padding: EdgeInsets.all(20.0)),
+      // Wednesday text
+        Center(
+          child: Row(
+            children: <Widget>[
+              Expanded(
+                child: Padding(padding: EdgeInsets.symmetric(horizontal: 8,vertical: 16),
+                child: Text("Wednesday Start Time",),
+                ),
+                ),
+              Expanded(
+                child: Padding(padding: EdgeInsets.symmetric(horizontal: 8,vertical: 16),
+                child: Text("Wednesday End Time"),
+                ),
+                ),
+            ],
+          ),
+        ),
+
+        // Wednesday Dropdown menu
+        Center(
+          child: Row(
+          children: <Widget>[
+          Expanded(
+          child:Padding(
+          padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+          child: 
+          DropdownButton<String>(
+            value: WednesdayStart,
+            icon: const Icon(Icons.arrow_downward),
+            elevation: 16,
+            style: const TextStyle(color: Colors.deepPurple),
+            underline: Container(
+              height: 3,
+              color: Colors.deepPurpleAccent,
+            ),
+            onChanged: (String? value) {
+              // This is called when the user selects an item.
+              setState(() {
+                WednesdayStart = value!;
+                WednesdayStartTime.text = WednesdayStart;
+              });
+            },
+            items: Times.map<DropdownMenuItem<String>>((String value) {
+              return DropdownMenuItem<String>(
+                value: value,
+                child: Text(value),
+          );
+        }).toList(),
+        )
+        ),
+        ),
+        Expanded(
+          child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+          child: 
+          DropdownButton<String>(
+            value: WednesdayEnd,
+            icon: const Icon(Icons.arrow_downward),
+            elevation: 16,
+            style: const TextStyle(color: Colors.deepPurple),
+            underline: Container(
+              height: 3,
+              color: Colors.deepPurpleAccent,
+            ),
+            onChanged: (String? value) {
+              // This is called when the user selects an item.
+              setState(() {
+                WednesdayEnd = value!;
+                WednesdayEndTime.text = WednesdayEnd;
+              });
+            },
+            items: Times.map<DropdownMenuItem<String>>((String value) {
+              return DropdownMenuItem<String>(
+                value: value,
+                child: Text(value),
+          );
+        }).toList(),
+        )
+        ),)
+            ],
+          ),
+        ),
 
 
-    //     // Tuesday Time / End time
-    //     Text("Tuesday Start Time"),
-    //     Padding(
-    //       padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
-    //       child: 
-    //       DropdownButton<String>(
-    //         value: TuesdayStart,
-    //         icon: const Icon(Icons.arrow_downward),
-    //         elevation: 16,
-    //         style: const TextStyle(color: Colors.deepPurple),
-    //         underline: Container(
-    //           height: 3,
-    //           color: Colors.deepPurpleAccent,
-    //         ),
-    //         onChanged: (String? value) {
-    //           // This is called when the user selects an item.
-    //           setState(() {
-    //             TuesdayStart = value!;
-    //             TuesdayStartTime.text = TuesdayStart;
-    //           });
-    //         },
-    //         items: Times.map<DropdownMenuItem<String>>((String value) {
-    //           return DropdownMenuItem<String>(
-    //             value: value,
-    //             child: Text(value),
-    //       );
-    //     }).toList(),
-    //     )
-    //     ),
-    //     // Tuesday end time
-    //     Text("Tuesday End Time"),
-    //     Padding(
-    //       padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
-    //       child: 
-    //       DropdownButton<String>(
-    //         value: TuesdayEnd,
-    //         icon: const Icon(Icons.arrow_downward),
-    //         elevation: 16,
-    //         style: const TextStyle(color: Colors.deepPurple),
-    //         underline: Container(
-    //           height: 3,
-    //           color: Colors.deepPurpleAccent,
-    //         ),
-    //         onChanged: (String? value) {
-    //           // This is called when the user selects an item.
-    //           setState(() {
-    //             TuesdayEnd = value!;
-    //             TuesdayEndTime.text = TuesdayEnd;
-    //           });
-    //         },
-    //         items: Times.map<DropdownMenuItem<String>>((String value) {
-    //           return DropdownMenuItem<String>(
-    //             value: value,
-    //             child: Text(value),
-    //       );
-    //     }).toList(),
-    //     )
-    //     ),
+        // Thursday text
+        Center(
+          child: Row(
+            children: <Widget>[
+              Expanded(
+                child: Padding(padding: EdgeInsets.symmetric(horizontal: 8,vertical: 16),
+                child: Text("Thursday Start Time",),
+                ),
+                ),
+              Expanded(
+                child: Padding(padding: EdgeInsets.symmetric(horizontal: 8,vertical: 16),
+                child: Text("Thursday End Time"),
+                ),
+                ),
+            ],
+          ),
+        ),
+        // Thursday Dropdown menu
+        Center(
+          child: Row(
+          children: <Widget>[
+          Expanded(
+          child:Padding(
+          padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+          child: 
+          DropdownButton<String>(
+            value: ThursdayStart,
+            icon: const Icon(Icons.arrow_downward),
+            elevation: 16,
+            style: const TextStyle(color: Colors.deepPurple),
+            underline: Container(
+              height: 3,
+              color: Colors.deepPurpleAccent,
+            ),
+            onChanged: (String? value) {
+              // This is called when the user selects an item.
+              setState(() {
+                ThursdayStart = value!;
+                ThursdayStartTime.text = ThursdayStart;
+              });
+            },
+            items: Times.map<DropdownMenuItem<String>>((String value) {
+              return DropdownMenuItem<String>(
+                value: value,
+                child: Text(value),
+          );
+        }).toList(),
+        )
+        ),
+        ),
+        Expanded(
+          child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+          child: 
+          DropdownButton<String>(
+            value: ThursdayEnd,
+            icon: const Icon(Icons.arrow_downward),
+            elevation: 16,
+            style: const TextStyle(color: Colors.deepPurple),
+            underline: Container(
+              height: 3,
+              color: Colors.deepPurpleAccent,
+            ),
+            onChanged: (String? value) {
+              // This is called when the user selects an item.
+              setState(() {
+                ThursdayEnd = value!;
+                ThursdayEndTime.text = ThursdayEnd;
+              });
+            },
+            items: Times.map<DropdownMenuItem<String>>((String value) {
+              return DropdownMenuItem<String>(
+                value: value,
+                child: Text(value),
+          );
+        }).toList(),
+        )
+        ),)
+            ],
+          ),
+        ),
 
-    // //Spacing
-    // Padding(padding: EdgeInsets.all(20.0)),
+        // Friday text
+        Center(
+          child: Row(
+            children: <Widget>[
+              Expanded(
+                child: Padding(padding: EdgeInsets.symmetric(horizontal: 8,vertical: 16),
+                child: Text("Friday Start Time",),
+                ),
+                ),
+              Expanded(
+                child: Padding(padding: EdgeInsets.symmetric(horizontal: 8,vertical: 16),
+                child: Text("Friday End Time"),
+                ),
+                ),
+            ],
+          ),
+        ),
+        // Friday Dropdown menu
+        Center(
+          child: Row(
+          children: <Widget>[
+          Expanded(
+          child:Padding(
+          padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+          child: 
+          DropdownButton<String>(
+            value: FridayStart,
+            icon: const Icon(Icons.arrow_downward),
+            elevation: 16,
+            style: const TextStyle(color: Colors.deepPurple),
+            underline: Container(
+              height: 3,
+              color: Colors.deepPurpleAccent,
+            ),
+            onChanged: (String? value) {
+              // This is called when the user selects an item.
+              setState(() {
+                FridayStart = value!;
+                FridayStartTime.text = FridayStart;
+              });
+            },
+            items: Times.map<DropdownMenuItem<String>>((String value) {
+              return DropdownMenuItem<String>(
+                value: value,
+                child: Text(value),
+          );
+        }).toList(),
+        )
+        ),
+        ),
+        Expanded(
+          child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+          child: 
+          DropdownButton<String>(
+            value: FridayEnd,
+            icon: const Icon(Icons.arrow_downward),
+            elevation: 16,
+            style: const TextStyle(color: Colors.deepPurple),
+            underline: Container(
+              height: 3,
+              color: Colors.deepPurpleAccent,
+            ),
+            onChanged: (String? value) {
+              // This is called when the user selects an item.
+              setState(() {
+                FridayEnd = value!;
+                FridayEndTime.text = FridayEnd;
+              });
+            },
+            items: Times.map<DropdownMenuItem<String>>((String value) {
+              return DropdownMenuItem<String>(
+                value: value,
+                child: Text(value),
+          );
+        }).toList(),
+        )
+        ),)
+            ],
+          ),
+        ),
 
 
-    //   // Wednesday Time / End time
-    //     Text("Wednesday Start Time"),
-    //     Padding(
-    //       padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
-    //       child: 
-    //       DropdownButton<String>(
-    //         value: WednesdayStart,
-    //         icon: const Icon(Icons.arrow_downward),
-    //         elevation: 16,
-    //         style: const TextStyle(color: Colors.deepPurple),
-    //         underline: Container(
-    //           height: 3,
-    //           color: Colors.deepPurpleAccent,
-    //         ),
-    //         onChanged: (String? value) {
-    //           // This is called when the user selects an item.
-    //           setState(() {
-    //             WednesdayStart = value!;
-    //             WednesdayStartTime.text = WednesdayStart;
-    //           });
-    //         },
-    //         items: Times.map<DropdownMenuItem<String>>((String value) {
-    //           return DropdownMenuItem<String>(
-    //             value: value,
-    //             child: Text(value),
-    //       );
-    //     }).toList(),
-    //     )
-    //     ),
-    //     // Wednesday end time
-    //     Text("Wednesday End Time"),
-    //     Padding(
-    //       padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
-    //       child: 
-    //       DropdownButton<String>(
-    //         value: WednesdayEnd,
-    //         icon: const Icon(Icons.arrow_downward),
-    //         elevation: 16,
-    //         style: const TextStyle(color: Colors.deepPurple),
-    //         underline: Container(
-    //           height: 3,
-    //           color: Colors.deepPurpleAccent,
-    //         ),
-    //         onChanged: (String? value) {
-    //           // This is called when the user selects an item.
-    //           setState(() {
-    //             WednesdayEnd = value!;
-    //             WednesdayEndTime.text = WednesdayEnd;
-    //           });
-    //         },
-    //         items: Times.map<DropdownMenuItem<String>>((String value) {
-    //           return DropdownMenuItem<String>(
-    //             value: value,
-    //             child: Text(value),
-    //       );
-    //     }).toList(),
-    //     )
-    //     ),
-      
-    //   //Spacing
-    //   Padding(padding: EdgeInsets.all(20.0)),
-
-    //   // Thursday Time / End time
-    //     Text("Thursday Start Time"),
-    //     Padding(
-    //       padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
-    //       child: 
-    //       DropdownButton<String>(
-    //         value: ThursdayStart,
-    //         icon: const Icon(Icons.arrow_downward),
-    //         elevation: 16,
-    //         style: const TextStyle(color: Colors.deepPurple),
-    //         underline: Container(
-    //           height: 3,
-    //           color: Colors.deepPurpleAccent,
-    //         ),
-    //         onChanged: (String? value) {
-    //           // This is called when the user selects an item.
-    //           setState(() {
-    //             ThursdayStart = value!;
-    //             ThursdayStartTime.text = ThursdayStart;
-    //           });
-    //         },
-    //         items: Times.map<DropdownMenuItem<String>>((String value) {
-    //           return DropdownMenuItem<String>(
-    //             value: value,
-    //             child: Text(value),
-    //       );
-    //     }).toList(),
-    //     )
-    //     ),
-
-    //     // Thursday end time
-    //     Text("Thursday End Time"),
-    //     Padding(
-    //       padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
-    //       child: 
-    //       DropdownButton<String>(
-    //         value: ThursdayEnd,
-    //         icon: const Icon(Icons.arrow_downward),
-    //         elevation: 16,
-    //         style: const TextStyle(color: Colors.deepPurple),
-    //         underline: Container(
-    //           height: 3,
-    //           color: Colors.deepPurpleAccent,
-    //         ),
-    //         onChanged: (String? value) {
-    //           // This is called when the user selects an item.
-    //           setState(() {
-    //             ThursdayEnd = value!;
-    //             ThursdayEndTime.text = ThursdayEnd;
-    //           });
-    //         },
-    //         items: Times.map<DropdownMenuItem<String>>((String value) {
-    //           return DropdownMenuItem<String>(
-    //             value: value,
-    //             child: Text(value),
-    //       );
-    //     }).toList(),
-    //     )
-    //     ),
-        
-
+      // Submit button
+      Center(
+        child: ElevatedButton(
+            onPressed: (){
+              // _submitDoctorAvalibitiy(); will be used later when intergrating front to back
+              Navigator.pushNamed(context, '/DdashBoard');
+            },
+            child: Text("Submit Avalibities"),
+          ),
+      )
 
       ],
     );
@@ -1039,45 +1064,132 @@ class PatientDashboardState extends State<PatientDashboard>{
 
   @override
   Widget build(BuildContext context) {
+    
+    //Getting Doctor Name
+  String pName = ' Oscar ' + ' Nguyen '; //string should be first_name + last_name for Patient
+  //Getting Date
+  var dt = DateTime.now();
+  //formating date
+  String pdate2 = DateFormat("MMMM, dd, yyyy").format(DateTime.now());
 
-    return Column(
+    return Center( 
+      child: Column(
       children: <Widget>[
-        const Text("Paitent Name"), //Get patient Name
+        Container(
+          child: Text(
+            pName,
+            style: TextStyle(
+              color: Colors.grey[800],
+              fontWeight: FontWeight.bold,
+              fontSize: 25
+            )
+          )
+        ),
+        
+        Container( //DATE CONTAINER 
+          padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+          child: Text(
+            pdate2,
+            style: TextStyle(
+              color: Colors.grey[800],
+              fontWeight: FontWeight.w400,
+              fontSize: 16
+            )
+          )
+        ),
+
 
         //Bookings
-        Padding(
+        Container(
           padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+          width: double.infinity,
+          height: 100,
           child: ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              primary: Colors.blue,
+              onPrimary: Colors.white,
+              shadowColor: Colors.blueAccent,
+              elevation: 3,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10.0)
+                ),
+              minimumSize: Size(100, 40),
+            ),
             onPressed: (){
               Navigator.pushNamed(context, '/PdashtoBooking');
             },
-            child: Text("Book an appointment"),
+            child: Text("Book an appointment",
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.w600,
+                fontSize: 14
+              )
+            ),
           )
         ),
 
         //Profile
-        Padding(
+        Container(
           padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+          width: double.infinity,
+          height: 100,
           child: ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              primary: Colors.blue,
+              onPrimary: Colors.white,
+              shadowColor: Colors.blueAccent,
+              elevation: 3,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10.0)
+                ),
+              minimumSize: Size(100, 40),
+            ),
             onPressed: (){
               Navigator.pushNamed(context, '/PdashtoProfile');
             },
-            child: Text("Edit Details"),
+            child: Text("Edit Details",
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.w600,
+                fontSize: 14
+              )
+            ),
           )
         ),
 
+
         //Chat
-        Padding(
+                Container(
           padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+          width: double.infinity,
+          height: 100,
           child: ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              primary: Colors.blue,
+              onPrimary: Colors.white,
+              shadowColor: Colors.blueAccent,
+              elevation: 3,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10.0)
+                ),
+              minimumSize: Size(100, 40),
+            ),
             onPressed: (){
               Navigator.pushNamed(context, '/DdashtoChats');
             },
-            child: Text("Chat to a GP now"),
+            child: Text("Chat to a GP now",
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.w600,
+                fontSize: 14
+              )
+            ),
           )
         ),
 
+
       ],
+    ),
     );
   }
 }
