@@ -336,6 +336,7 @@ class Login extends StatefulWidget{
 }
 
 class _Login extends State<Login>{
+  TextEditingController Username = TextEditingController();
  @override
   Widget build(BuildContext context) {
         return Column(
@@ -353,6 +354,7 @@ class _Login extends State<Login>{
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 15),
               child: TextField(
+                controller: Username,
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'Email',
@@ -364,7 +366,6 @@ class _Login extends State<Login>{
               padding: const EdgeInsets.only(
                   left: 15.0, right: 15.0, top: 15, bottom: 0),
               child: TextField(
-
                 obscureText: true,
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
@@ -379,8 +380,28 @@ class _Login extends State<Login>{
               decoration: BoxDecoration(
                   color: Colors.blue, borderRadius: BorderRadius.circular(20)),
               child: TextButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, '/LogintoPDashboard');
+                  onPressed: () {
+
+                  //temp If statement until login page is intergrated
+                  //Check the account Info If Doctor Sent to Doctor dashboard
+                  if( !Username.text.contains("@") ){
+                    Fluttertoast.showToast(msg: "Please Enter valid email");
+                  }
+                  else{
+                      if(Username.text.contains("doctor") && Username.text.contains("@")){
+                      Navigator.pushNamed(context, '/LogintoDDashboard');
+                    }
+                    //Check the account Info If Patient Sent to Paitent dashboard
+                    else
+                    {
+                      Navigator.pushNamed(context, '/LogintoPDashboard');
+                    }
+        
+                  }
+
+
+
+
                 },
                 child: Text(
                   'Login',
