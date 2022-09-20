@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'dart:convert';
@@ -1304,10 +1305,14 @@ Future _submitBooking() async { //                                           v g
 
   return Column(
         children: <Widget>[
-          const Text("Enter your selection"),
+          Container( child: Padding( padding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+          child: Text("Select prefered date"),
+          ),
+          ),
 
           //Date Picker
-          Padding(
+          Container(
+            child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
             child: TextFormField(
               controller: date,
@@ -1327,10 +1332,15 @@ Future _submitBooking() async { //                                           v g
                 }
               }
             )
-          ),
+          ),),
 
           //Doctor List
-
+          Container(
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 8,vertical: 16),
+              child: Text("Select prefered doctor"),
+          ),
+          ),
           Container(
             child:Padding(
             padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
@@ -1362,7 +1372,14 @@ Future _submitBooking() async { //                                           v g
           
 
           //Available Time
-          Padding(
+          Container(
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 8,vertical: 16),
+              child: Text("Select prefered time"),
+          ),
+          ),
+          Container(
+            child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
             child: DropdownButton<String>(
               value: timeDropDownValue,
@@ -1388,9 +1405,11 @@ Future _submitBooking() async { //                                           v g
               }).toList(),
             ),
           ),
+          ),
+          
 
           //Submit Button
-          Padding(
+          Center(child:  Container(child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
             child: ElevatedButton(
               onPressed: (){
@@ -1398,7 +1417,8 @@ Future _submitBooking() async { //                                           v g
               },
               child: Text("Submit Booking"),
             )
-          )
+          ),),)
+          
         ],
       );
     }
