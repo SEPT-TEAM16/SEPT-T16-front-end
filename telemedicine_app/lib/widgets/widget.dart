@@ -12,6 +12,9 @@ import 'package:telemedicine_app/main.dart';
 //rego
 const List<String> role = <String>['Patient','Doctor'];
 
+// Avaliabilities Time 7am to 5pm in 24hour time
+const List<String> Times = <String>['07:00','08:00','09:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00','17:00'];
+
 class MyCustomForm extends StatefulWidget {
   const MyCustomForm({super.key});
 
@@ -409,7 +412,7 @@ class DoctorDashboardState extends State<DoctorDashboard>{
 
     return Column(
       children: <Widget>[
-        const Text("Dr John He"), //Need to find doctor name
+        const Text("Doctor Name"), //Need to find doctor name
         
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
@@ -455,23 +458,452 @@ class DoctorAvailability extends StatefulWidget {
 
 class DoctorAvailabilityState extends State<DoctorAvailability>{
   // TextEditingController date = new TextEditingController();
+  TextEditingController MondayStartTime =new TextEditingController();
+  TextEditingController MondayEndTime =new TextEditingController();
+  TextEditingController TuesdayStartTime =new TextEditingController();
+  TextEditingController TuesdayEndTime =new TextEditingController();
+  TextEditingController WednesdayStartTime =new TextEditingController();
+  TextEditingController WednesdayEndTime =new TextEditingController();
+  TextEditingController ThursdayStartTime =new TextEditingController();
+  TextEditingController ThursdayEndTime =new TextEditingController();
+  TextEditingController FridayStartTime =new TextEditingController();
+  TextEditingController FridayEndTime =new TextEditingController();
+
+  String MondayStart = Times.first;
+  String MondayEnd = Times.first;
+  String TuesdayStart = Times.first;
+  String TuesdayEnd = Times.first;
+  String WednesdayStart = Times.first;
+  String WednesdayEnd = Times.first;
+  String ThursdayStart = Times.first;
+  String ThursdayEnd = Times.first;
+  String FridayStart = Times.first;
+  String FridayEnd = Times.first;
 
   @override
   Widget build(BuildContext context) {
 
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
         //Different Fields
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
-          child: TextFormField(
-            //controller: postCode,
-            decoration: const InputDecoration(
-              border: UnderlineInputBorder(),
-              labelText: 'Monday',
-            ),
+
+        // Monday Text
+        Center(
+          child: Row(
+            children: <Widget>[
+              Expanded(
+                child: Padding(padding: EdgeInsets.symmetric(horizontal: 8,vertical: 20),
+                child: Text("Monday Start Time"),
+                ),
+                ),
+              Expanded(
+                child: Padding(padding: EdgeInsets.symmetric(horizontal: 8,vertical: 20),
+                child: Text("Monday End Time"),
+                ),
+                ),
+            ],
           ),
         ),
+
+        // Monday Dropdown menus
+        Center(
+          child: Row(
+          children: <Widget>[
+          Expanded(
+          child:Padding(
+          padding: EdgeInsets.symmetric(horizontal: 8, vertical: 20),
+          child: 
+          DropdownButton<String>(
+            value: MondayStart,
+            borderRadius: BorderRadius.circular(10),
+            icon: const Icon(Icons.arrow_downward),
+            elevation: 16,
+            style: const TextStyle(color: Colors.deepPurple),
+            underline: Container(
+              height: 3,
+              color: Colors.deepPurpleAccent,
+            ),
+            onChanged: (String? value) {
+              // This is called when the user selects an item.
+              setState(() {
+                MondayStart = value!;
+                MondayStartTime.text = MondayStart;
+              });
+            },
+            items: Times.map<DropdownMenuItem<String>>((String value) {
+              return DropdownMenuItem<String>(
+                value: value,
+                child: Text(value),
+          );
+        }).toList(),
+        )
+        ),
+        ),
+        Expanded(
+          child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 8, vertical: 20),
+          child: 
+          DropdownButton<String>(
+            value: MondayEnd,
+            icon: const Icon(Icons.arrow_downward),
+            elevation: 16,
+            style: const TextStyle(color: Colors.deepPurple),
+            underline: Container(
+              height: 3,
+              color: Colors.deepPurpleAccent,
+            ),
+            onChanged: (String? value) {
+              // This is called when the user selects an item.
+              setState(() {
+                MondayEnd = value!;
+                MondayEndTime.text = MondayEnd;
+              });
+            },
+            items: Times.map<DropdownMenuItem<String>>((String value) {
+              return DropdownMenuItem<String>(
+                value: value,
+                child: Text(value),
+          );
+        }).toList(),
+        )
+        ),)
+            ],
+          ),   
+        ),
+
+        // Tuesday text
+        Center(
+          child: Row(
+            children: <Widget>[
+              Expanded(
+                child: Padding(padding: EdgeInsets.symmetric(horizontal: 8,vertical: 16),
+                child: Text("Tuesday Start Time",),
+                ),
+                ),
+              Expanded(
+                child: Padding(padding: EdgeInsets.symmetric(horizontal: 8,vertical: 16),
+                child: Text("Tuesday End Time"),
+                ),
+                ),
+            ],
+          ),
+        ),
+
+
+        Center(
+          child: Row(
+          children: <Widget>[
+          Expanded(
+          child:Padding(
+          padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+          child: 
+          DropdownButton<String>(
+            value: MondayStart,
+            icon: const Icon(Icons.arrow_downward),
+            elevation: 16,
+            style: const TextStyle(color: Colors.deepPurple),
+            underline: Container(
+              height: 3,
+              color: Colors.deepPurpleAccent,
+            ),
+            onChanged: (String? value) {
+              // This is called when the user selects an item.
+              setState(() {
+                MondayStart = value!;
+                MondayStartTime.text = MondayStart;
+              });
+            },
+            items: Times.map<DropdownMenuItem<String>>((String value) {
+              return DropdownMenuItem<String>(
+                value: value,
+                child: Text(value),
+          );
+        }).toList(),
+        )
+        ),
+        ),
+        Expanded(
+          child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+          child: 
+          DropdownButton<String>(
+            value: MondayEnd,
+            icon: const Icon(Icons.arrow_downward),
+            elevation: 16,
+            style: const TextStyle(color: Colors.deepPurple),
+            underline: Container(
+              height: 3,
+              color: Colors.deepPurpleAccent,
+            ),
+            onChanged: (String? value) {
+              // This is called when the user selects an item.
+              setState(() {
+                MondayEnd = value!;
+                MondayEndTime.text = MondayEnd;
+              });
+            },
+            items: Times.map<DropdownMenuItem<String>>((String value) {
+              return DropdownMenuItem<String>(
+                value: value,
+                child: Text(value),
+          );
+        }).toList(),
+        )
+        ),)
+            ],
+          ),
+        ),
+
+    //     // Monday Time / End time
+    //     Text("Monday Start Time"),
+    //     Padding(
+    //       padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+    //       child: 
+    //       DropdownButton<String>(
+    //         value: MondayStart,
+    //         icon: const Icon(Icons.arrow_downward),
+    //         elevation: 16,
+    //         style: const TextStyle(color: Colors.deepPurple),
+    //         underline: Container(
+    //           height: 3,
+    //           color: Colors.deepPurpleAccent,
+    //         ),
+    //         onChanged: (String? value) {
+    //           // This is called when the user selects an item.
+    //           setState(() {
+    //             MondayStart = value!;
+    //             MondayStartTime.text = MondayStart;
+    //           });
+    //         },
+    //         items: Times.map<DropdownMenuItem<String>>((String value) {
+    //           return DropdownMenuItem<String>(
+    //             value: value,
+    //             child: Text(value),
+    //       );
+    //     }).toList(),
+    //     )
+    //     ),
+    //     // Monday end time
+    //     Text("Monday End Time"),
+    //     Padding(
+    //       padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+    //       child: 
+    //       DropdownButton<String>(
+    //         value: MondayEnd,
+    //         icon: const Icon(Icons.arrow_downward),
+    //         elevation: 16,
+    //         style: const TextStyle(color: Colors.deepPurple),
+    //         underline: Container(
+    //           height: 3,
+    //           color: Colors.deepPurpleAccent,
+    //         ),
+    //         onChanged: (String? value) {
+    //           // This is called when the user selects an item.
+    //           setState(() {
+    //             MondayEnd = value!;
+    //             MondayEndTime.text = MondayEnd;
+    //           });
+    //         },
+    //         items: Times.map<DropdownMenuItem<String>>((String value) {
+    //           return DropdownMenuItem<String>(
+    //             value: value,
+    //             child: Text(value),
+    //       );
+    //     }).toList(),
+    //     )
+    //     ),
+    //     //Spacing
+    //     Padding(padding: EdgeInsets.all(20.0)),
+
+
+    //     // Tuesday Time / End time
+    //     Text("Tuesday Start Time"),
+    //     Padding(
+    //       padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+    //       child: 
+    //       DropdownButton<String>(
+    //         value: TuesdayStart,
+    //         icon: const Icon(Icons.arrow_downward),
+    //         elevation: 16,
+    //         style: const TextStyle(color: Colors.deepPurple),
+    //         underline: Container(
+    //           height: 3,
+    //           color: Colors.deepPurpleAccent,
+    //         ),
+    //         onChanged: (String? value) {
+    //           // This is called when the user selects an item.
+    //           setState(() {
+    //             TuesdayStart = value!;
+    //             TuesdayStartTime.text = TuesdayStart;
+    //           });
+    //         },
+    //         items: Times.map<DropdownMenuItem<String>>((String value) {
+    //           return DropdownMenuItem<String>(
+    //             value: value,
+    //             child: Text(value),
+    //       );
+    //     }).toList(),
+    //     )
+    //     ),
+    //     // Tuesday end time
+    //     Text("Tuesday End Time"),
+    //     Padding(
+    //       padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+    //       child: 
+    //       DropdownButton<String>(
+    //         value: TuesdayEnd,
+    //         icon: const Icon(Icons.arrow_downward),
+    //         elevation: 16,
+    //         style: const TextStyle(color: Colors.deepPurple),
+    //         underline: Container(
+    //           height: 3,
+    //           color: Colors.deepPurpleAccent,
+    //         ),
+    //         onChanged: (String? value) {
+    //           // This is called when the user selects an item.
+    //           setState(() {
+    //             TuesdayEnd = value!;
+    //             TuesdayEndTime.text = TuesdayEnd;
+    //           });
+    //         },
+    //         items: Times.map<DropdownMenuItem<String>>((String value) {
+    //           return DropdownMenuItem<String>(
+    //             value: value,
+    //             child: Text(value),
+    //       );
+    //     }).toList(),
+    //     )
+    //     ),
+
+    // //Spacing
+    // Padding(padding: EdgeInsets.all(20.0)),
+
+
+    //   // Wednesday Time / End time
+    //     Text("Wednesday Start Time"),
+    //     Padding(
+    //       padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+    //       child: 
+    //       DropdownButton<String>(
+    //         value: WednesdayStart,
+    //         icon: const Icon(Icons.arrow_downward),
+    //         elevation: 16,
+    //         style: const TextStyle(color: Colors.deepPurple),
+    //         underline: Container(
+    //           height: 3,
+    //           color: Colors.deepPurpleAccent,
+    //         ),
+    //         onChanged: (String? value) {
+    //           // This is called when the user selects an item.
+    //           setState(() {
+    //             WednesdayStart = value!;
+    //             WednesdayStartTime.text = WednesdayStart;
+    //           });
+    //         },
+    //         items: Times.map<DropdownMenuItem<String>>((String value) {
+    //           return DropdownMenuItem<String>(
+    //             value: value,
+    //             child: Text(value),
+    //       );
+    //     }).toList(),
+    //     )
+    //     ),
+    //     // Wednesday end time
+    //     Text("Wednesday End Time"),
+    //     Padding(
+    //       padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+    //       child: 
+    //       DropdownButton<String>(
+    //         value: WednesdayEnd,
+    //         icon: const Icon(Icons.arrow_downward),
+    //         elevation: 16,
+    //         style: const TextStyle(color: Colors.deepPurple),
+    //         underline: Container(
+    //           height: 3,
+    //           color: Colors.deepPurpleAccent,
+    //         ),
+    //         onChanged: (String? value) {
+    //           // This is called when the user selects an item.
+    //           setState(() {
+    //             WednesdayEnd = value!;
+    //             WednesdayEndTime.text = WednesdayEnd;
+    //           });
+    //         },
+    //         items: Times.map<DropdownMenuItem<String>>((String value) {
+    //           return DropdownMenuItem<String>(
+    //             value: value,
+    //             child: Text(value),
+    //       );
+    //     }).toList(),
+    //     )
+    //     ),
+      
+    //   //Spacing
+    //   Padding(padding: EdgeInsets.all(20.0)),
+
+    //   // Thursday Time / End time
+    //     Text("Thursday Start Time"),
+    //     Padding(
+    //       padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+    //       child: 
+    //       DropdownButton<String>(
+    //         value: ThursdayStart,
+    //         icon: const Icon(Icons.arrow_downward),
+    //         elevation: 16,
+    //         style: const TextStyle(color: Colors.deepPurple),
+    //         underline: Container(
+    //           height: 3,
+    //           color: Colors.deepPurpleAccent,
+    //         ),
+    //         onChanged: (String? value) {
+    //           // This is called when the user selects an item.
+    //           setState(() {
+    //             ThursdayStart = value!;
+    //             ThursdayStartTime.text = ThursdayStart;
+    //           });
+    //         },
+    //         items: Times.map<DropdownMenuItem<String>>((String value) {
+    //           return DropdownMenuItem<String>(
+    //             value: value,
+    //             child: Text(value),
+    //       );
+    //     }).toList(),
+    //     )
+    //     ),
+
+    //     // Thursday end time
+    //     Text("Thursday End Time"),
+    //     Padding(
+    //       padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+    //       child: 
+    //       DropdownButton<String>(
+    //         value: ThursdayEnd,
+    //         icon: const Icon(Icons.arrow_downward),
+    //         elevation: 16,
+    //         style: const TextStyle(color: Colors.deepPurple),
+    //         underline: Container(
+    //           height: 3,
+    //           color: Colors.deepPurpleAccent,
+    //         ),
+    //         onChanged: (String? value) {
+    //           // This is called when the user selects an item.
+    //           setState(() {
+    //             ThursdayEnd = value!;
+    //             ThursdayEndTime.text = ThursdayEnd;
+    //           });
+    //         },
+    //         items: Times.map<DropdownMenuItem<String>>((String value) {
+    //           return DropdownMenuItem<String>(
+    //             value: value,
+    //             child: Text(value),
+    //       );
+    //     }).toList(),
+    //     )
+    //     ),
+        
+
+
       ],
     );
   }
