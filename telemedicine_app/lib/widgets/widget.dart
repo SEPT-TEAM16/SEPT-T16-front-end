@@ -429,11 +429,10 @@ class DoctorDashboardState extends State<DoctorDashboard>{
             style: TextStyle(
               color: Colors.grey[800],
               fontWeight: FontWeight.bold,
-              fontSize: 18
+              fontSize: 25
             )
           )
         ),
-        const Text("Doctor Name"), //Need to find doctor name
         
         Container( //DATE CONTAINER 
           padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
@@ -441,8 +440,8 @@ class DoctorDashboardState extends State<DoctorDashboard>{
             cdate2,
             style: TextStyle(
               color: Colors.grey[800],
-              fontWeight: FontWeight.w200,
-              fontSize: 14
+              fontWeight: FontWeight.w400,
+              fontSize: 16
             )
           )
         ),
