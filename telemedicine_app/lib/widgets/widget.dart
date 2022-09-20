@@ -1032,7 +1032,8 @@ class DoctorAvailabilityState extends State<DoctorAvailability>{
         child: ElevatedButton(
             onPressed: (){
               // _submitDoctorAvalibitiy(); will be used later when intergrating front to back
-              Navigator.pushNamed(context, '/DdashBoard');
+              Fluttertoast.showToast(msg: "Avalibities have been submitted");
+              Navigator.pushNamed(context, '/LogintoDDashboard');
             },
             child: Text("Submit Avalibities"),
           ),
