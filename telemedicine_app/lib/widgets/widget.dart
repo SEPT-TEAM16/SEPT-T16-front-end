@@ -1309,7 +1309,7 @@ class PatientBookingState extends State<PatientBooking>{
   TextEditingController time = new TextEditingController();
   get child => null;
 
-Future _submitBooking() async { //                                           v get
+Future _submitBooking() async { 
   DateTime appdate = DateTime.parse("${date.text}${" "}${time.text}${":00Z"}") ;
   String y = appdate.toIso8601String();
   Fluttertoast.showToast(msg: y);
