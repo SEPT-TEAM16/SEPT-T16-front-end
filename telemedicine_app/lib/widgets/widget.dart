@@ -1345,11 +1345,14 @@ class PatientBookingState extends State<PatientBooking>{
   TextEditingController time = new TextEditingController();
   get child => null;
 
-Future _submitBooking() async { //                                           v get
-    final response = await http.post(Uri.parse("http://localhost:8081/api/v1/create-appointment"),  headers: {"Content-Type": "application/json"}, body: jsonEncode({
-      "appointmentStartDate" : date.text + ("T"+time.text+":00"), // Temp value
-      "patientId": 33, // Temp Value
-      "doctorId" : 44, // Temp Value
+Future _submitBooking() async { 
+  DateTime appdate = DateTime.parse("${date.text}${" "}${time.text}${":00Z"}") ;
+  String y = appdate.toIso8601String();
+  Fluttertoast.showToast(msg: y);
+    final response = await http.post(Uri.parse("http://10.0.2.2:8082/api/v1/create-appointment"),  headers: {"Content-Type": "application/json"}, body: jsonEncode({
+      "appointmentStartDate" : y, // Temp value
+      "patientId": 111, // Temp Value
+      "doctorId" : 111, // Temp Value
       "appointmentStatus": "ACTIVE", // Temp value
 
     }));
