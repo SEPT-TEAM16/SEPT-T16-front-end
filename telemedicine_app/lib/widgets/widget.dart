@@ -1,4 +1,4 @@
-
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'dart:convert';
@@ -299,8 +299,11 @@ class _MyCustomFormState extends State<MyCustomForm>{
 
 //Doctor Booking
 
-const List<String> timePeriod = <String>['Today','Tomorrow', 'Week'];
-String timeValue = timePeriod.first;
+const List<Widget> times = <Widget>[
+  Text('Today'),
+  Text('Tomorrow'),
+  Text('Week'),
+];
 
 class DoctorBooking extends StatefulWidget {
   const DoctorBooking({super.key});
@@ -310,56 +313,57 @@ class DoctorBooking extends StatefulWidget {
 }
 
 class DoctorBookingState extends State<DoctorBooking>{
-
-  TextEditingController selectedTime=new TextEditingController();
-
-  String timeValue = timePeriod.first;
+  final List<bool> _selectedTimes = <bool>[true, false, false];
+  bool vertical = false;
 
 //Builds DoctorBookingState Widget
   @override
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        const Text("Upcoming bookings"),
         Container(
-          padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
-          child: 
-          DropdownButton<String>(
-            value: timeValue,
-            icon: const Icon(Icons.arrow_downward),
-            elevation: 16,
-            style: const TextStyle(color: Colors.deepPurple),
-            underline: Container(
-              height: 3,
-              color: Colors.deepPurpleAccent,
-            ),
-            onChanged: (String? value) {
-              // This is called when the user selects an item.
+          child: Padding(
+          padding: EdgeInsets.all(10), //NEED TO FIX PADDING TO CENTER
+
+          child: ToggleButtons(
+            direction: vertical ? Axis.vertical : Axis.horizontal,
+            onPressed: (int index) {
               setState(() {
-                timeValue = value!;
-                selectedTime.text = timeValue;
+                for (int i = 0; i < _selectedTimes.length; i++) {
+                  _selectedTimes[i] = i == index;
+                }
               });
             },
-            items: timePeriod.map<DropdownMenuItem<String>>((String value) {
-              return DropdownMenuItem<String>(
-                value: value,
-                child: Text(value),
-          );
-        }).toList(),
-        )
-        ),
-
-        //Different Fields
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
-          child: TextFormField(
-            //controller: postCode,
-            decoration: const InputDecoration(
-              border: UnderlineInputBorder(),
-              labelText: 'Doctors Bookings',
-            ),
+            borderRadius: const BorderRadius.all(Radius.circular(8)),
+                  selectedBorderColor: Colors.orange[700],
+                  selectedColor: Colors.white,
+                  fillColor: Colors.orange[200],
+                  color: Colors.orange[400],
+                  constraints: const BoxConstraints(
+                    minHeight: 40.0,
+                    minWidth: 80.0,
+                  ),
+                  isSelected: _selectedTimes,
+                  children: times,
+          ),
           ),
         ),
+
+        Container(
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+            
+            child: Text(
+              'Booking 1',
+              style: TextStyle(
+                fontSize: 20.0,
+                fontFamily: 'Roboto',
+                color: Colors.black,
+              ),
+            ),
+          ),
+        )
+
       ],
     );
   }
