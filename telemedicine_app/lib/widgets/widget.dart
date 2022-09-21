@@ -313,6 +313,8 @@ class DoctorBookingState extends State<DoctorBooking>{
 
   TextEditingController selectedTime=new TextEditingController();
 
+  String timeValue = timePeriod.first;
+
 //Builds DoctorBookingState Widget
   @override
   Widget build(BuildContext context) {
@@ -338,7 +340,7 @@ class DoctorBookingState extends State<DoctorBooking>{
                 selectedTime.text = timeValue;
               });
             },
-            items: role.map<DropdownMenuItem<String>>((String value) {
+            items: timePeriod.map<DropdownMenuItem<String>>((String value) {
               return DropdownMenuItem<String>(
                 value: value,
                 child: Text(value),
