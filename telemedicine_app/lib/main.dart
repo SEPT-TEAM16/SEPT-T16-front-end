@@ -9,8 +9,13 @@ import 'package:http/http.dart' as http;
 import "/widgets/widget.dart";
 import "/config/routes/routes.dart";
 
+import 'package:telemedicine_app/widgets/quotes/core/locator.dart';
+
+
 
 void main() {
+  Locator.injectDependencies();
+
   runApp(MaterialApp(
     title: "ND Telemedicine",
     theme: ThemeData(

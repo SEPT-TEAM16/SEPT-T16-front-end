@@ -35,6 +35,14 @@ dependencies:
   email_validator: ^2.1.17
   ionicons: ^0.2.1
 
+#For quotes
+
+  dio: ^4.0.4
+  get_it: ^7.2.0
+  mocktail: ^0.3.0
+  equatable: ^2.0.3
+  dartz: ^0.10.1
+
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.

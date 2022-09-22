@@ -12,6 +12,9 @@ import 'package:intl/intl.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:telemedicine_app/constants/api_service.dart';
 import 'package:telemedicine_app/modules/profile/models/patients_models.dart';
+import 'package:telemedicine_app/widgets/quotes/core/locator.dart';
+import 'package:telemedicine_app/widgets/quotes/quotes_widget.dart';
+import 'package:telemedicine_app/widgets/quotes/quotes_widget_controller.dart';
 
 
 //We build all of our widgets here to call into main :)
@@ -487,7 +490,18 @@ class DoctorDashboard extends StatefulWidget {
 
 class DoctorDashboardState extends State<DoctorDashboard>{
   // TextEditingController date = new TextEditingController();
-
+  
+  //Quotes
+  final QuoteWidgetController controller = locator.get();
+  @override 
+  void initState() {
+    super.initState();
+    controller.init();
+  }
+  @override
+  void dispose() {
+    super.dispose();
+  }
 
   //Getting Doctor Name
   String dName = 'Dr ' + 'John ' + 'He'; //string should be first_name + last_name under doctors
@@ -523,6 +537,26 @@ class DoctorDashboardState extends State<DoctorDashboard>{
               fontSize: 16
             )
           )
+        ),
+
+        Container( //Quotes
+          child: ValueListenableBuilder(
+            valueListenable: controller.valueNotifier,
+            builder: (context, value, child) {
+              if (controller.failure == null) {
+                return QuoteWidget(quote: value.toString());
+              }
+              else {
+                return const QuoteWidget(
+                  quote: ""
+                );
+              }
+            }
+          ),
+        ),
+
+        SizedBox( //SPACER
+          height: 150,
         ),
 
         Container(
@@ -1140,6 +1174,19 @@ class PatientDashboard extends StatefulWidget {
 class PatientDashboardState extends State<PatientDashboard>{
   // TextEditingController date = new TextEditingController();
 
+    //Quotes
+  final QuoteWidgetController controller = locator.get();
+  @override 
+  void initState() {
+    super.initState();
+    controller.init();
+  }
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
+
   @override
   Widget build(BuildContext context) {
     
@@ -1174,6 +1221,22 @@ class PatientDashboardState extends State<PatientDashboard>{
               fontSize: 16
             )
           )
+        ),
+
+                Container( //Quotes
+          child: ValueListenableBuilder(
+            valueListenable: controller.valueNotifier,
+            builder: (context, value, child) {
+              if (controller.failure == null) {
+                return QuoteWidget(quote: value.toString());
+              }
+              else {
+                return const QuoteWidget(
+                  quote: ""
+                );
+              }
+            }
+          ),
         ),
 
 
