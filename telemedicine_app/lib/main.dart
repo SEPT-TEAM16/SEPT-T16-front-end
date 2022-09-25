@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'dart:convert';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:intl/date_symbol_data_local.dart';
-import 'package:intl/intl.dart';
-import 'package:email_validator/email_validator.dart';
-import 'package:http/http.dart' as http;
-import "/widgets/widget.dart";
+import 'package:telemedicine_app/screens/PatientBooking_Page.dart';
 import "/config/routes/routes.dart";
-
 import 'package:telemedicine_app/widgets/quotes/core/locator.dart';
 
-
+//Screens imports
+import 'package:telemedicine_app/screens/Registration_Page.dart';
+import 'package:telemedicine_app/screens/Login_Page.dart';
+import 'package:telemedicine_app/screens/DoctorAvailabilities_Page.dart';
+import 'package:telemedicine_app/screens/DoctorBooking_Page.dart';
+import 'package:telemedicine_app/screens/DoctorChat_Page.dart';
+import 'package:telemedicine_app/screens/DoctorDashboard_Page.dart';
+import 'package:telemedicine_app/screens/PatientChat_Page.dart';
+import 'package:telemedicine_app/screens/PatientDashboard_Page.dart';
+import 'package:telemedicine_app/screens/PatientProfile_Page.dart';
 
 void main() {
   Locator.injectDependencies();

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:telemedicine_app/main.dart';
 import 'package:telemedicine_app/widgets/quotes/core/domain/quotes_entity.dart';
-import 'package:telemedicine_app/widgets/widget.dart';
 import '/main.dart';
 import 'package:telemedicine_app/modules/profile/screens/quote_widget_teseter.dart';
 
