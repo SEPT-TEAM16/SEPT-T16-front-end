@@ -4,6 +4,9 @@ import 'package:telemedicine_app/widgets/quotes/core/locator.dart';
 import 'package:telemedicine_app/widgets/quotes/quotes_widget.dart';
 import 'package:telemedicine_app/widgets/quotes/quotes_widget_controller.dart';
 
+
+
+
 class PatientDashboard extends StatefulWidget {
   const PatientDashboard({super.key});
 
@@ -26,6 +29,8 @@ class PatientDashboardState extends State<PatientDashboard>{
     super.dispose();
   }
 
+  
+
 
   @override
   Widget build(BuildContext context) {
@@ -36,6 +41,43 @@ class PatientDashboardState extends State<PatientDashboard>{
   var dt = DateTime.now();
   //formating date
   String pdate2 = DateFormat("MMMM, dd, yyyy").format(DateTime.now());
+
+  //Upcoming Assessments widget => Should call for the next appointment for the patient.
+  var textCols = Column(
+    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    children: [
+      Text(
+        'Upcoming Appointment',
+        style: TextStyle(
+          color: Colors.white,
+          fontWeight: FontWeight.w500,
+          letterSpacing: 0.5,
+          fontSize: 20,
+        ),
+      ),
+
+      Text(
+        '30 ' + 'Friday ' + '9:00 AM', //GET TIME
+        style: TextStyle(
+          color: Colors.white,
+          fontWeight: FontWeight.w400,
+          letterSpacing: 0.5,
+          fontSize: 15,
+        ),
+      ), 
+
+      Text(
+        'Dr. ' + 'John ' + 'He ', //GET NAME
+        style: TextStyle(
+          color: Colors.white,
+          fontWeight: FontWeight.w400,
+          letterSpacing: 0.5,
+          fontSize: 15,
+        ),
+      ), 
+      
+    ],
+  );
 
     return Center( 
       child: Column(
@@ -79,38 +121,42 @@ class PatientDashboardState extends State<PatientDashboard>{
           ),
         ),
 
+        InkWell( //please fix indentation
+
+        child: Container(
+          padding: EdgeInsets.symmetric(horizontal: 8, vertical: 26),
+          height: 125,
+          width: MediaQuery.of(context).size.width * 0.95,
+
+          decoration: BoxDecoration(
+            color: Color.fromRGBO(110, 130, 207, 1),
+            borderRadius: BorderRadius.all(Radius.circular(15)),
+          ),
+
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              textCols,
+              Icon(
+                Icons.calendar_month, 
+                color: Colors.white,
+                size: 100,
+              ),
+            ],
+          ),
+
+
+        ),
+        onTap: (() {
+          Navigator.pushNamed(context, '/PdashtoBooking');
+        }),
+        ),
+
+
         SizedBox(
           height: 30,
         ),
 
-        //Bookings
-        Container(
-          padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
-          width: double.infinity,
-          height: 100,
-          child: ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              primary: Colors.blue,
-              onPrimary: Colors.white,
-              shadowColor: Colors.blueAccent,
-              elevation: 3,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10.0)
-                ),
-              minimumSize: Size(100, 40),
-            ),
-            onPressed: (){
-              Navigator.pushNamed(context, '/PdashtoBooking');
-            },
-            child: Text("Book an appointment",
-              style: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.w600,
-                fontSize: 14
-              )
-            ),
-          )
-        ),
 
         //Profile
         Container(
@@ -142,8 +188,13 @@ class PatientDashboardState extends State<PatientDashboard>{
         ),
 
 
+
+        SizedBox(
+          height: 30,
+        ),
         //Chat
-                Container(
+          
+          Container(
           padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
           width: double.infinity,
           height: 100,
@@ -170,6 +221,8 @@ class PatientDashboardState extends State<PatientDashboard>{
             ),
           )
         ),
+
+        
       ],
       ),
     );
