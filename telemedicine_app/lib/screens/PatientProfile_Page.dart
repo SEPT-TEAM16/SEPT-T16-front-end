@@ -106,7 +106,7 @@ class PatientProfileState extends State<PatientProfile>{
                       ),
                     ),
                      actions: [
-                      RaisedButton(
+                      ElevatedButton(
                           child: Text("Submit"),
                           onPressed: () {
                             // NEED TO DO POST HERE
@@ -168,7 +168,7 @@ class PatientProfileState extends State<PatientProfile>{
                       )
                     ),
                     actions: [
-                      RaisedButton(
+                      ElevatedButton(
                         child: Text('Submit'),
                         onPressed: () {
                           //NEED TO POST
@@ -235,7 +235,7 @@ class PatientProfileState extends State<PatientProfile>{
                       )
                     ),
                     actions: [
-                      RaisedButton(
+                      ElevatedButton(
                         child: Text('Submit'),
                         onPressed: () {
                           //NEED TO POST
@@ -248,6 +248,102 @@ class PatientProfileState extends State<PatientProfile>{
             }
           )
         ),
+      
+Container(
+          padding: EdgeInsets.all(10),
+          width: double.infinity,
+          height: 75,
+
+          child: ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              primary: Colors.blue,
+              onPrimary: Colors.white,
+              shadowColor: Colors.blueAccent,
+              elevation: 3,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10.0)
+                ),
+              minimumSize: Size(100, 40),
+            ),
+          
+          //Medical record
+          child: Text("Medical Record Information",
+            style: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.w500,
+              fontSize: 16
+            )
+          ),
+          onPressed: () {
+            showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return AlertDialog(
+                    scrollable: true,
+                    title: Text('Change Medical Record Details'),
+                    content: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Form(
+                        child: Column(
+                          children: <Widget>[
+                            //Medicare No.
+                            // Text('Medicare No.'),
+
+                            TextFormField(
+                              decoration: InputDecoration(
+                                labelText: 'Medicare No. (Optional)',
+                                icon: Icon(Icons.card_membership),
+                              ),
+                            ),
+                            TextFormField(
+                              decoration: InputDecoration(
+                                labelText: 'Weight',
+                                icon: Icon(Icons.line_weight),
+                              ),
+                            ),
+                            TextFormField( //change to date pickerk
+                              decoration: InputDecoration(
+                                labelText: 'Height',
+                                icon: Icon(Icons.height),
+                              ),
+                            ),
+
+                            TextFormField( 
+                              decoration: InputDecoration(
+                                labelText: 'Local GP',
+                                icon: Icon(Icons.account_box),
+                              ),
+                            ),
+                            TextFormField( 
+                              decoration: InputDecoration(
+                                labelText: 'Previous Health History',
+                              ),
+                            ),
+                            TextFormField( 
+                              decoration: InputDecoration(
+                                labelText: 'Gender',
+                                icon: Icon(Icons.person),
+                            ),
+                            )
+
+                          ],
+                        ),
+                      ),
+                    ),
+                     actions: [
+                      ElevatedButton(
+                          child: Text("Submit"),
+                          onPressed: () {
+                            // NEED TO DO POST HERE
+                          })
+                    ],
+                  );
+                });
+          },
+        ),
+        ),
+
+
       ],
     );
   }
