@@ -27,14 +27,19 @@ class PatientBookingState extends State<PatientBooking>{
   Future _submitBooking() async {
   DateTime appdate = DateTime.parse("${dateTime.text}${"+10:00"}") ;
   String y = appdate.toIso8601String();
-  Fluttertoast.showToast(msg: y);
     final response = await http.post(Uri.parse("http://10.0.2.2:8082/api/v1/create-appointment"),  headers: {"Content-Type": "application/json"}, body: jsonEncode({
-      "appointmentStartDate" : y, // Temp value
+      "appointmentStartDate" : y,
       "patientId": 12344, // Temp Value
       "doctorId" : 44321, // Temp Value
       "appointmentStatus": "ACTIVE", // Temp value
 
     }));
+    if(response.statusCode == 200 ){  
+      Fluttertoast.showToast(msg:"Appointment booked");
+    }else{
+      Fluttertoast.showToast(msg:"Appointment booking failed");
+    };
+
   }
 
   //Building the Widget
@@ -61,9 +66,16 @@ class PatientBookingState extends State<PatientBooking>{
               onTap: () async{
                 DateTime? pickedDate = await showDatePicker ( context: context,initialDate: DateTime.now(), firstDate: DateTime(2022), lastDate: DateTime(2101));
                 TimeOfDay? pickedTime = await showTimePicker(context: context, initialTime: TimeOfDay.now());
-                if (pickedDate != null){
+                if (pickedDate != null && pickedTime != null){
                   setState((){
-                    final bookedDate = DateTime(pickedDate.year, pickedDate.month, pickedDate.day, pickedTime!.hour, pickedTime.minute);
+                    int Minute;
+                    if(pickedTime.minute > 30){
+                      Minute = 0;
+                    }
+                    else{
+                      Minute = 30;
+                    }
+                    final bookedDate = DateTime(pickedDate.year, pickedDate.month, pickedDate.day, pickedTime.hour, Minute, );
                     dateTime.text = bookedDate.toString();
                   }
                   );
@@ -107,44 +119,7 @@ class PatientBookingState extends State<PatientBooking>{
             ),
           ),
           ),
-          
 
-          //Available Time
-          // Container(
-          //   child: Padding(
-          //     padding: EdgeInsets.symmetric(horizontal: 8,vertical: 16),
-          //     child: Text("Select prefered time"),
-          // ),
-          // ),
-          // Container(
-          //   child: Padding(
-          //   padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
-          //   child: DropdownButton<String>(
-          //     value: timeDropDownValue,
-          //     icon: const Icon(Icons.arrow_downward),
-          //     elevation: 16,
-          //     style: const TextStyle(color: Colors.deepOrange),
-          //     underline: Container(
-          //       height: 2,
-          //       color: Colors.deepOrangeAccent,
-          //     ),
-          //     onChanged: (String? value) {
-          //       setState(() {
-          //         timeDropDownValue = value!;
-          //         time.text = timeDropDownValue;
-          //       }
-          //       );
-          //     },
-          //     items: TimeList.map<DropdownMenuItem<String>>((String value) {
-          //       return DropdownMenuItem<String>(
-          //         value: value,
-          //         child: Text(value),
-          //         );
-          //     }).toList(),
-          //   ),
-          // ),
-          // ),
-          
 
           //Submit Button
           Center(child:  Container(child: Padding(
