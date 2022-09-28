@@ -19,6 +19,7 @@ class PatientProfileState extends State<PatientProfile>{
       children: <Widget>[
         const Text("Enter your selection"),
 
+        //General Account Information
         Container(
           padding: EdgeInsets.all(10),
           width: double.infinity,
@@ -258,8 +259,8 @@ class PatientProfileState extends State<PatientProfile>{
           )
         ),
 
-
-Container(
+        //Medical Records
+        Container(
           padding: EdgeInsets.all(10),
           width: double.infinity,
           height: 75,
