@@ -129,7 +129,7 @@ class PatientDashboardState extends State<PatientDashboard>{
           width: MediaQuery.of(context).size.width * 0.95,
 
           decoration: BoxDecoration(
-            color: Color.fromRGBO(110, 130, 207, 1),
+            color: Colors.blue,
             borderRadius: BorderRadius.all(Radius.circular(15)),
           ),
 
