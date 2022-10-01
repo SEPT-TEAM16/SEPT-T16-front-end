@@ -25,6 +25,7 @@ class DoctorAvailabilityState extends State<DoctorAvailability>{
   TextEditingController ThursdayEndTime =new TextEditingController();
   TextEditingController FridayStartTime =new TextEditingController();
   TextEditingController FridayEndTime =new TextEditingController();
+  TextEditingController dateRange =new TextEditingController();
 
   String MondayStart = Times.first;
   String MondayEnd = Times.first;
@@ -56,6 +57,21 @@ class DoctorAvailabilityState extends State<DoctorAvailability>{
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
         //Different Fields
+          Center(child: Row(
+            children: <Widget>[
+              Expanded(
+                child: TextFormField(
+                  controller: dateRange,
+                  onTap: () async{
+                    DateTimeRange? pickedDates = await showDateRangePicker(context: context, firstDate: DateTime(2022), lastDate: DateTime(2023),);
+                    setState(() {
+                      dateRange.text = pickedDates.toString();
+                    });
+                  } ,
+                ))
+            ],
+          ),),
+
 
         // Monday Text
         Center(
