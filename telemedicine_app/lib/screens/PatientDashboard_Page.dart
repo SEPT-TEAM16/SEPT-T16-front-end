@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:intl/intl.dart';
 import 'package:telemedicine_app/widgets/quotes/core/locator.dart';
 import 'package:telemedicine_app/widgets/quotes/quotes_widget.dart';
@@ -79,7 +80,54 @@ class PatientDashboardState extends State<PatientDashboard>{
     ],
   );
 
-    return Center( 
+  //For medicine box
+  var profMedInfo = Column(
+    mainAxisAlignment: MainAxisAlignment.start,
+    children: [
+      Text(
+        '2 everyday', //pull if we have to
+        style: TextStyle(
+          color: Colors.white,
+          fontWeight: FontWeight.w500,
+          letterSpacing: 0.5,
+          fontSize: 13,
+        ),
+      ),
+      Text(
+        '1 morning', //pull if we have to
+        style: TextStyle(
+          color: Colors.white,
+          fontWeight: FontWeight.w500,
+          letterSpacing: 0.5,
+          fontSize: 13,
+        ),
+      ),
+      Text(
+        '1 night', //pull if we have to
+        style: TextStyle(
+          color: Colors.white,
+          fontWeight: FontWeight.w500,
+          letterSpacing: 0.5,
+          fontSize: 13,
+        ),
+        ),
+    ],
+  );
+  //For medicine box
+  var profMed = Row(
+    children: [
+      Expanded(
+        child: profMedInfo,
+      ),
+      Icon(
+        Icons.medication_liquid_outlined,
+        size: 75,
+        color: Colors.white,
+      ),
+    ],
+  );
+
+    return Container( 
       child: Column(
       children: <Widget>[
         Container(
@@ -157,8 +205,34 @@ class PatientDashboardState extends State<PatientDashboard>{
           height: 30,
         ),
 
+        //Medicing box maybe we keep maybe we dont. Need to find way to push to side please
+        Container(
+          padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+          height: 130,
+          width: MediaQuery.of(context).size.width * 0.45,
 
-        //Profile
+          decoration: BoxDecoration(
+            color: Colors.blue,
+            borderRadius: BorderRadius.all(Radius.circular(15)),
+          ),
+
+          child: Column(
+            children: [
+              Text(
+                'Phosparin', //Get madicine name
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w500,
+                  letterSpacing: 0.5,
+                  fontSize: 16,
+                ),
+              ),
+              profMed //we would have to pull other stuff
+            ],
+          ),
+        ),
+
+        //Edit Details
         Container(
           padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
           width: double.infinity,
@@ -177,7 +251,8 @@ class PatientDashboardState extends State<PatientDashboard>{
             onPressed: (){
               Navigator.pushNamed(context, '/PdashtoProfile');
             },
-            child: Text("Edit Details",
+            child: Text(
+              "Edit Details",
               style: TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w600,
@@ -187,11 +262,6 @@ class PatientDashboardState extends State<PatientDashboard>{
           )
         ),
 
-
-
-        SizedBox(
-          height: 30,
-        ),
         //Chat
           
           Container(
@@ -221,6 +291,10 @@ class PatientDashboardState extends State<PatientDashboard>{
             ),
           )
         ),
+
+        
+
+        
 
         
       ],

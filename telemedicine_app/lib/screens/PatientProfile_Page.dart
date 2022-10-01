@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import 'package:telemedicine_app/Submit_Futures/PatientProfile_Page/futures.dart';
+
+
 class PatientProfile extends StatefulWidget {
   const PatientProfile({super.key});
 
@@ -8,7 +11,7 @@ class PatientProfile extends StatefulWidget {
 }
 
 class PatientProfileState extends State<PatientProfile>{
-  
+
   @override
   Widget build(BuildContext context) {
 
@@ -16,6 +19,7 @@ class PatientProfileState extends State<PatientProfile>{
       children: <Widget>[
         const Text("Enter your selection"),
 
+        //General Account Information
         Container(
           padding: EdgeInsets.all(10),
           width: double.infinity,
@@ -57,18 +61,21 @@ class PatientProfileState extends State<PatientProfile>{
                             Text('PERSONAL INFORMATION'),
 
                             TextFormField(
+                              controller: first_Name,
                               decoration: InputDecoration(
                                 labelText: 'First Name',
                                 icon: Icon(Icons.account_box),
                               ),
                             ),
                             TextFormField(
+                              controller: last_Name,
                               decoration: InputDecoration(
                                 labelText: 'Last Name',
                                 icon: Icon(Icons.email),
                               ),
                             ),
                             TextFormField( //change to date pickerk
+                            controller: DOB,
                               decoration: InputDecoration(
                                 labelText: 'Date of Birth',
                                 icon: Icon(Icons.message ),
@@ -83,6 +90,7 @@ class PatientProfileState extends State<PatientProfile>{
                               ),
                             ),
                             TextFormField( 
+                              controller: EmailAddress,
                               decoration: InputDecoration(
                                 labelText: 'Address',
                               ),
@@ -97,6 +105,7 @@ class PatientProfileState extends State<PatientProfile>{
                               ),
                             ),
                             TextFormField( 
+                              controller: NewPassword,
                               decoration: InputDecoration(
                                 labelText: 'Retype New Password',
                               ),
@@ -109,7 +118,8 @@ class PatientProfileState extends State<PatientProfile>{
                       ElevatedButton(
                           child: Text("Submit"),
                           onPressed: () {
-                            // NEED TO DO POST HERE
+                            submitGAI();
+                            Navigator.pushNamed(context, 'PdashtoProfile');
                           })
                     ],
                   );
@@ -248,8 +258,9 @@ class PatientProfileState extends State<PatientProfile>{
             }
           )
         ),
-      
-Container(
+
+        //Medical Records
+        Container(
           padding: EdgeInsets.all(10),
           width: double.infinity,
           height: 75,
@@ -290,18 +301,21 @@ Container(
                             // Text('Medicare No.'),
 
                             TextFormField(
+                              controller: MedicareNumber,
                               decoration: InputDecoration(
                                 labelText: 'Medicare No. (Optional)',
                                 icon: Icon(Icons.card_membership),
                               ),
                             ),
                             TextFormField(
+                              controller: PatientWeight,
                               decoration: InputDecoration(
                                 labelText: 'Weight',
                                 icon: Icon(Icons.line_weight),
                               ),
                             ),
-                            TextFormField( //change to date pickerk
+                            TextFormField( //change to date picker <=WHAT DO YOU MEAN LUCAS???
+                              controller: PatientHeight,
                               decoration: InputDecoration(
                                 labelText: 'Height',
                                 icon: Icon(Icons.height),
@@ -309,23 +323,25 @@ Container(
                             ),
 
                             TextFormField( 
+                              controller: LocalGp,
                               decoration: InputDecoration(
                                 labelText: 'Local GP',
                                 icon: Icon(Icons.account_box),
                               ),
                             ),
                             TextFormField( 
+                              controller: PrevHistory,
                               decoration: InputDecoration(
                                 labelText: 'Previous Health History',
                               ),
                             ),
                             TextFormField( 
+                              controller: PatientGender,
                               decoration: InputDecoration(
                                 labelText: 'Gender',
                                 icon: Icon(Icons.person),
                             ),
                             )
-
                           ],
                         ),
                       ),
@@ -334,7 +350,8 @@ Container(
                       ElevatedButton(
                           child: Text("Submit"),
                           onPressed: () {
-                            // NEED TO DO POST HERE
+                            submitMR();
+                            Navigator.pushNamed(context, '/PdashtoProfile');
                           })
                     ],
                   );

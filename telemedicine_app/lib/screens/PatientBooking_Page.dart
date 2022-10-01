@@ -22,6 +22,7 @@ class PatientBooking extends StatefulWidget {
 class PatientBookingState extends State<PatientBooking>{
   TextEditingController doctorName = new TextEditingController();
   TextEditingController dateTime = new TextEditingController();
+  TextEditingController dateTimeText = new TextEditingController();
   get child => null;
 
   Future _submitBooking() async {
@@ -58,7 +59,7 @@ class PatientBookingState extends State<PatientBooking>{
             child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
             child: TextFormField(
-              controller: dateTime,
+              controller: dateTimeText,
               decoration: const InputDecoration(
                 border: UnderlineInputBorder(),
                 labelText: 'Appointment Times'
@@ -69,7 +70,7 @@ class PatientBookingState extends State<PatientBooking>{
                 if (pickedDate != null && pickedTime != null){
                   setState((){
                     int Minute;
-                    if(pickedTime.minute > 30){
+                    if(pickedTime.minute < 30){
                       Minute = 0;
                     }
                     else{
@@ -77,6 +78,11 @@ class PatientBookingState extends State<PatientBooking>{
                     }
                     final bookedDate = DateTime(pickedDate.year, pickedDate.month, pickedDate.day, pickedTime.hour, Minute, );
                     dateTime.text = bookedDate.toString();
+                    if (pickedTime.hour > 12){
+                      dateTimeText.text = "${pickedDate.year}-${pickedDate.month}-${pickedDate.day} at ${pickedTime.hour - 12}:${Minute}pm";
+                    }else{
+                      dateTimeText.text = "${pickedDate.year}-${pickedDate.month}-${pickedDate.day} at ${pickedTime.hour}:${Minute}am";
+                    }
                   }
                   );
                 }
