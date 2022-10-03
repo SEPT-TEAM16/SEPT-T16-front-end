@@ -39,14 +39,44 @@ class DoctorAvailabilityState extends State<DoctorAvailability>{
   String FridayStart = Times.first;
   String FridayEnd = Times.first;
 
+  //Start and end time variables
+  String Start1 = "";
+  String End1 = "";
+  String Start2 = "";
+  String End2 = "";
+  String Start3 = "";
+  String End3 = "";
+  String Start4 = "";
+  String End4 = "";
+  String Start5 = "";
+  String End5 = "";
+
   // Submit Doctor Avaliability
   Future _submitDoctorAvalibitiy() async { //                                   v get actualt link
   final response = await http.post(Uri.parse("http://localhost:8081/api/v1/avalibities"),  headers: {"Content-Type": "application/json"}, body: jsonEncode({  
-    //Monday Time
-    //TuesdayTime
-    //Wednesday Time
-    //Thursday Time
-    //Friday Time
+        "doctorID" : 123,
+    "Schedule" : [
+      {
+        "start": Start1,
+        "end": End1
+      },
+      {
+        "start": Start2,
+        "end": End2
+      },
+      {
+        "start": Start3,
+        "end": End3
+      },
+      {
+        "start": Start4,
+        "end": End4
+      },
+      {
+        "start": Start5,
+        "end": End5
+      },
+    ]
 
   }));
     
@@ -515,23 +545,35 @@ class DoctorAvailabilityState extends State<DoctorAvailability>{
               // _submitDoctorAvalibitiy(); will be used later when intergrating front to back
 
 
-              // Test Section
-              List<DateTime> getDaysInBeteween(DateTime startDate, DateTime endDate) {
-              List<DateTime> days = [];
+              // Get All dates
+              List<DateTime> getDaysInBetween(DateTime startDate, DateTime endDate) {
+                List<DateTime> days = [];
                 for (int i = 0; i <= endDate.difference(startDate).inDays; i++) {
-                  days.add(
-                    DateTime(
-                      startDate.year, 
-                      startDate.month, 
-                      // In Dart you can set more than. 30 days, DateTime will do the trick
-                      startDate.day + i)
-                  );
+                  days.add(startDate.add(Duration(days: i)));
                 }
-              return days;
+                return days;
               }
+              DateTime startDate = dateRange.selectedRange!.startDate as  DateTime;
+              DateTime endDate = dateRange.selectedRange!.endDate as  DateTime; 
+              List<DateTime> days = getDaysInBetween(startDate, endDate);
+
+              //Monday Start Time
+              String x = days[0].toIso8601String().split("T").first.toString();
+              String mS1 = x + " " + MondayStartTime.text + ":00+10:00";;
+              DateTime appdate = DateTime.parse(mS1);
+              Start1 = appdate.toIso8601String();
+              print(MondayStartTime.text);
+              print(mS1);
+              //Monday End Time
+              x = days[0].toIso8601String().split("T").first.toString();
+              mS1 = x + " " + MondayEndTime.text + ":00+10:00";;
+              appdate = DateTime.parse(mS1);
+              End1 = appdate.toIso8601String();
+              print(Start1);
+
               //Test Section
 
-              Fluttertoast.showToast(msg: "Temp");
+              // Fluttertoast.showToast(msg: dateRange.selectedRange!.startDate.toString());
               // Navigator.pushNamed(context, '/LogintoDDashboard');
             },
             child: Text("Submit Avalibities"),
