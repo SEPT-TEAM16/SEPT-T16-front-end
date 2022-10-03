@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
+import 'package:telemedicine_app/Submit_Futures/PatientProfile_Page/futures.dart';
 
 // Avaliabilities Time 7am to 5pm in 24hour time
 const List<String> Times = <String>['07:00','08:00','09:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00','17:00'];
@@ -557,23 +558,84 @@ class DoctorAvailabilityState extends State<DoctorAvailability>{
               DateTime endDate = dateRange.selectedRange!.endDate as  DateTime; 
               List<DateTime> days = getDaysInBetween(startDate, endDate);
 
+              String x = "";
+              String mS1 = "";
+              DateTime appdate;
               //Monday Start Time
-              String x = days[0].toIso8601String().split("T").first.toString();
-              String mS1 = x + " " + MondayStartTime.text + ":00+10:00";;
-              DateTime appdate = DateTime.parse(mS1);
+               x = days[0].toIso8601String().split("T").first.toString();
+              // mS1 = x + " " + MondayStartTime.text + ":00+10:00";
+              mS1 = "$x${" "}${MondayStartTime.text}";
+              appdate = DateTime.parse(mS1);
               Start1 = appdate.toIso8601String();
-              print(MondayStartTime.text);
-              print(mS1);
+
               //Monday End Time
               x = days[0].toIso8601String().split("T").first.toString();
-              mS1 = x + " " + MondayEndTime.text + ":00+10:00";;
+              mS1 = "$x${" "}${MondayEndTime.text}";
               appdate = DateTime.parse(mS1);
               End1 = appdate.toIso8601String();
-              print(Start1);
+
+              //Tuesday Start Time
+               x = days[0].toIso8601String().split("T").first.toString();
+              mS1 = "$x${" "}${TuesdayStartTime.text}";
+              appdate = DateTime.parse(mS1);
+              Start2 = appdate.toIso8601String();
+
+              //Tuesday End Time
+              x = days[0].toIso8601String().split("T").first.toString();
+              mS1 = "$x${" "}${TuesdayEndTime.text}";
+              appdate = DateTime.parse(mS1);
+              End2 = appdate.toIso8601String();
+
+              
+              //Wednesday Start Time
+               x = days[0].toIso8601String().split("T").first.toString();
+              mS1 = "$x${" "}${WednesdayStartTime.text}";
+              appdate = DateTime.parse(mS1);
+              Start3 = appdate.toIso8601String();
+
+              //Wednesday End Time
+              x = days[0].toIso8601String().split("T").first.toString();
+              mS1 = "$x${" "}${WednesdayEndTime.text}";
+              appdate = DateTime.parse(mS1);
+              End3 = appdate.toIso8601String();
+
+              //Thursday Start Time
+               x = days[0].toIso8601String().split("T").first.toString();
+              mS1 = "$x${" "}${ThursdayStartTime.text}";
+              appdate = DateTime.parse(mS1);
+              Start4 = appdate.toIso8601String();
+
+              //Wednesday End Time
+              x = days[0].toIso8601String().split("T").first.toString();
+              mS1 = "$x${" "}${ThursdayEndTime.text}";
+              appdate = DateTime.parse(mS1);
+              End4 = appdate.toIso8601String();
+
+              //Friday Start Time
+               x = days[0].toIso8601String().split("T").first.toString();
+              mS1 = "$x${" "}${FridayStartTime.text}";
+              appdate = DateTime.parse(mS1);
+              Start5 = appdate.toIso8601String();
+
+              //Wednesday End Time
+              x = days[0].toIso8601String().split("T").first.toString();
+              mS1 = "$x${" "}${FridayEndTime.text}";
+              appdate = DateTime.parse(mS1);
+              End5 = appdate.toIso8601String();
 
               //Test Section
+              // _submitDoctorAvalibitiy();
+              print(Start1);
+              print(End1);
+              print(Start2);
+              print(End2);
+              print(Start3);
+              print(End3);
+              print(Start4);
+              print(End4);
+              print(Start5);
+              print(End5);
 
-              // Fluttertoast.showToast(msg: dateRange.selectedRange!.startDate.toString());
               // Navigator.pushNamed(context, '/LogintoDDashboard');
             },
             child: Text("Submit Avalibities"),
