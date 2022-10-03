@@ -34,6 +34,7 @@ dependencies:
   intl: ^0.17.0
   email_validator: ^2.1.17
   ionicons: ^0.2.1
+  syncfusion_flutter_datepicker: ^20.3.47
 
 #For quotes
 

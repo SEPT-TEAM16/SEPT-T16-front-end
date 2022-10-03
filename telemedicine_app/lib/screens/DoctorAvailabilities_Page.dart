@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
+import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
 // Avaliabilities Time 7am to 5pm in 24hour time
 const List<String> Times = <String>['07:00','08:00','09:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00','17:00'];
@@ -25,7 +26,7 @@ class DoctorAvailabilityState extends State<DoctorAvailability>{
   TextEditingController ThursdayEndTime =new TextEditingController();
   TextEditingController FridayStartTime =new TextEditingController();
   TextEditingController FridayEndTime =new TextEditingController();
-  TextEditingController dateRange =new TextEditingController();
+  DateRangePickerController dateRange =new DateRangePickerController();
 
   String MondayStart = Times.first;
   String MondayEnd = Times.first;
@@ -60,17 +61,35 @@ class DoctorAvailabilityState extends State<DoctorAvailability>{
           Center(child: Row(
             children: <Widget>[
               Expanded(
-                child: TextFormField(
+                child: SfDateRangePicker(
                   controller: dateRange,
-                  onTap: () async{
-                    DateTimeRange? pickedDates = await showDateRangePicker(context: context, firstDate: DateTime(2022), lastDate: DateTime(2023),);
-                    setState(() {
-                      dateRange.text = pickedDates.toString();
-                    });
-                  } ,
-                ))
-            ],
-          ),),
+                  view: DateRangePickerView.month,
+                  selectionMode: DateRangePickerSelectionMode.range,
+                  monthViewSettings:DateRangePickerMonthViewSettings(blackoutDates:[DateTime(2020, 03, 26)],
+                  weekendDays: [7,6],
+                  specialDates:[DateTime(2020, 03, 20),DateTime(2020, 03, 16),DateTime(2020,03,17)],
+                  showTrailingAndLeadingDates: true),
+                  monthCellStyle: DateRangePickerMonthCellStyle(
+                    blackoutDatesDecoration: BoxDecoration(
+                        color: Colors.red,
+                        border: Border.all(color: const Color(0xFFF44436), width: 1),
+                        shape: BoxShape.circle),
+                  weekendDatesDecoration: BoxDecoration(
+                      color: const Color(0xFFDFDFDF),
+                      border: Border.all(color: const Color(0xFFB6B6B6), width: 1),
+                      shape: BoxShape.circle),
+                  specialDatesDecoration: BoxDecoration(
+                      color: Colors.green,
+                      border: Border.all(color: const Color(0xFF2B732F), width: 1),
+                      shape: BoxShape.circle),
+            blackoutDateTextStyle: TextStyle(color: Colors.white, decoration: TextDecoration.lineThrough),
+            specialDatesTextStyle: const TextStyle(color: Colors.white),
+                ),
+                )
+          ),
+          ],
+          ),
+          ),
 
 
         // Monday Text
@@ -494,8 +513,26 @@ class DoctorAvailabilityState extends State<DoctorAvailability>{
         child: ElevatedButton(
             onPressed: (){
               // _submitDoctorAvalibitiy(); will be used later when intergrating front to back
-              Fluttertoast.showToast(msg: "Avalibities have been submitted");
-              Navigator.pushNamed(context, '/LogintoDDashboard');
+
+
+              // Test Section
+              List<DateTime> getDaysInBeteween(DateTime startDate, DateTime endDate) {
+              List<DateTime> days = [];
+                for (int i = 0; i <= endDate.difference(startDate).inDays; i++) {
+                  days.add(
+                    DateTime(
+                      startDate.year, 
+                      startDate.month, 
+                      // In Dart you can set more than. 30 days, DateTime will do the trick
+                      startDate.day + i)
+                  );
+                }
+              return days;
+              }
+              //Test Section
+
+              Fluttertoast.showToast(msg: "Temp");
+              // Navigator.pushNamed(context, '/LogintoDDashboard');
             },
             child: Text("Submit Avalibities"),
           ),
