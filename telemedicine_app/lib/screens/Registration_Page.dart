@@ -36,24 +36,25 @@ class _MyCustomFormState extends State<MyCustomForm>{
 
   //Our submit function to wrap the data into JSON and parsing into the selected endpoint in our database
   Future _submit() async {
-    final response = await http.post(Uri.parse("http://localhost:8081/api/v1/register"),  headers: {"Content-Type": "application/json"}, body: jsonEncode({
-	    "role": selectedRole.text,
-      "firstName": firstName.text,
-      "lastName": lastName.text,  
-      "mobileNumber":phoneNumber.text,
-	    "email": email.text,
-      "address": "${address.text} ${city.text} ${postCode.text}",
-      "password": _pass.text, 
-      "DoB": _Date.text,
-      "accountActive": true
-
+    final response = await http.post(Uri.parse("http://10.0.2.2:8080/api/v1/register"),  headers: {"Content-Type": "application/json"}, body: jsonEncode({
+            "email": email.text,
+            "firstName": firstName.text,
+            "lastName": lastName.text,
+            "password": _pass.text,
+            "DoB": _Date.text,
+            "address": "${address.text} ${city.text} ${postCode.text}",
+            "mobileNumber": phoneNumber.text,
+            "accountActive": "true",
+            "role":"PATIENT"
     }));
-     var data = json.decode(response.body);
-     if(data == "Success"){
-        Fluttertoast.showToast(msg: "Registration Successfull");
-     } else{
-      Fluttertoast.showToast(msg: "Registration Failed");
-     }
+
+    Fluttertoast.showToast(msg: response.body);
+    //  var data = json.decode(response.body);
+    //  if(data == "Success"){
+    //     Fluttertoast.showToast(msg: "Registration Successfull");
+    //  } else{
+    //   Fluttertoast.showToast(msg: "Registration Failed");
+    //  }
   }
 
   //Where we build the screen with widgets
@@ -283,8 +284,8 @@ class _MyCustomFormState extends State<MyCustomForm>{
           padding: EdgeInsets.symmetric(horizontal: 8,vertical: 16),
           child: ElevatedButton(
             onPressed: (){  
-            _submit();     
-            Navigator.pushNamed(context, '/RegotoProfile');
+            _submit();
+            // Navigator.pushNamed(context, '/RegotoProfile');
             },
           child: Text("Submit"),
           ),
