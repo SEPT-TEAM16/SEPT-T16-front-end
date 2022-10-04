@@ -1,7 +1,9 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:ionicons/ionicons.dart';
-
+import 'package:jwt_decode/jwt_decode.dart';
+import 'package:http/http.dart' as http;
 
 class Login extends StatefulWidget{
   const Login({super.key});
@@ -10,8 +12,32 @@ class Login extends StatefulWidget{
   State<Login> createState() => _Login();
 }
 
+
 class _Login extends State<Login>{
   TextEditingController Username = TextEditingController();
+  TextEditingController Password = TextEditingController();
+  Map<String, dynamic> payload = Map<String, dynamic>();
+
+Future submitLoginDetails() async{
+  var response = await http.post(Uri.parse("http://10.0.2.2:8080/api/v1/authenticate"),  headers: {"Content-Type": "application/json"}, body: jsonEncode(
+  {
+      "username": Username.text, 
+      "password": Password.text
+  }));
+  if (response.statusCode == 200){
+    payload = Jwt.parseJwt(response.body);
+    if(payload.containsValue("ROLE_PATIENT")){
+      Navigator.pushNamed(context, '/LogintoPDashboard');
+    }
+    else if (payload.containsValue("ROLE_DOCTOR")){
+      Navigator.pushNamed(context, '/LogintoDDashboard');
+    }
+  }
+  else{
+    Fluttertoast.showToast(msg: "Username or password is incorrect");
+  }
+  
+}
 
  @override
   Widget build(BuildContext context) {
@@ -44,6 +70,7 @@ class _Login extends State<Login>{
               padding: const EdgeInsets.only(
                   left: 15.0, right: 15.0, top: 15, bottom: 0),
               child: TextField(
+                controller: Password,
                 obscureText: true,
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
@@ -60,22 +87,7 @@ class _Login extends State<Login>{
                   color: Colors.blue, borderRadius: BorderRadius.circular(20)),
               child: TextButton(
                   onPressed: () {
-
-                  //temp If statement until login page is intergrated
-                  //Check the account Info If Doctor Sent to Doctor dashboard
-                  if( !Username.text.contains("@") ){
-                    Fluttertoast.showToast(msg: "Please Enter valid email");
-                  }
-                  else{
-                      if(Username.text.contains("doctor") && Username.text.contains("@")){
-                      Navigator.pushNamed(context, '/LogintoDDashboard');
-                    }
-                    //Check the account Info If Patient Sent to Paitent dashboard
-                    else
-                    {
-                      Navigator.pushNamed(context, '/LogintoPDashboard');
-                    }
-                  }
+                  submitLoginDetails();
                 },
                 child: Text(
                   'Login',
