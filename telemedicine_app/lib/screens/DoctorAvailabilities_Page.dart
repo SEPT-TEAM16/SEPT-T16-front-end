@@ -55,8 +55,8 @@ class DoctorAvailabilityState extends State<DoctorAvailability>{
   // Submit Doctor Avaliability
   Future _submitDoctorAvalibitiy() async { //                                   v get actualt link
   final response = await http.post(Uri.parse("http://localhost:8081/api/v1/avalibities"),  headers: {"Content-Type": "application/json"}, body: jsonEncode({  
-        "doctorID" : 123,
-    "Schedule" : [
+    "doctorID" : 123,
+    "schedule" : [
       {
         "start": Start1,
         "end": End1
