@@ -20,6 +20,9 @@ class DoctorBookingState extends State<DoctorBooking>{
   //booleans for the toggle button at the top of the screen
   final List<bool> _selectedTimes = <bool>[true, false, false];
   bool vertical = false;
+  bool today = true;
+  bool tomorrow = false;
+  bool week = false;
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +48,26 @@ class DoctorBookingState extends State<DoctorBooking>{
             onPressed: (int index) {
               setState(() {
                 for (int i = 0; i < _selectedTimes.length; i++) {
-                  _selectedTimes[i] = i == index;
+                  
+                  //CHOOSES THE TOGGLE BUTTONS AND THEN CHANGES OUR BOOLEANS
+                  if (i == index) {
+                    _selectedTimes[i] = true;
+                    if (index == 0) {
+                      today = true;
+                      tomorrow = false;
+                      week = false;
+                    } else if (index == 1) {
+                      today = false;
+                      tomorrow = true;
+                      week = false;
+                    } else if (index == 2) {
+                      today = false;
+                      tomorrow = false;
+                      week = true;
+                    }
+                  } else {
+                    _selectedTimes[i] = false;
+                  }
                 }
               });
             },
@@ -64,22 +86,33 @@ class DoctorBookingState extends State<DoctorBooking>{
           ),
         ),
 
-        //Create constructor to build new bookings per get body
         Container(
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
-            
-            child: Text(
-              'Booking 1',
-              style: TextStyle(
-                fontSize: 20.0,
-                fontFamily: 'Roboto',
-                color: Colors.black,
+          child: Column(
+            children: <Widget>[
+              if (today == true) ...[
+              Container(
+                height: 300,
+                width: MediaQuery.of(context).size.width,
+                child: Text('Show todays bookings from get'), //GET
               ),
-            ),
-          ),
-        )
-
+              ]
+              else if (tomorrow == true) ...[
+                Container(
+                height: 300,
+                width: MediaQuery.of(context).size.width,
+                child: Text('Show tomorrows bookings from get'), //GET
+              ),
+              ]
+              else if (week == true) ...[
+                Container(
+                height: 300,
+                width: MediaQuery.of(context).size.width,
+                child: Text('Show weeks bookings from get'), //GET
+              )
+              ]
+            ],
+          )
+        ),  
       ],
     );
   }
