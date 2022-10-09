@@ -561,6 +561,8 @@ class DoctorAvailabilityState extends State<DoctorAvailability>{
               String x = "";
               String mS1 = "";
               DateTime appdate;
+
+              
               //Monday Start Time
                x = days[0].toIso8601String().split("T").first.toString();
               // mS1 = x + " " + MondayStartTime.text + ":00+10:00";
@@ -623,18 +625,18 @@ class DoctorAvailabilityState extends State<DoctorAvailability>{
               appdate = DateTime.parse(mS1);
               End5 = appdate.toIso8601String();
 
-              //Test Section
-              // _submitDoctorAvalibitiy();
-              print(Start1);
-              print(End1);
-              print(Start2);
-              print(End2);
-              print(Start3);
-              print(End3);
-              print(Start4);
-              print(End4);
-              print(Start5);
-              print(End5);
+
+              _submitDoctorAvalibitiy();
+              // print(Start1);
+              // print(End1);
+              // print(Start2);
+              // print(End2);
+              // print(Start3);
+              // print(End3);
+              // print(Start4);
+              // print(End4);
+              // print(Start5);
+              // print(End5);
 
               // Navigator.pushNamed(context, '/LogintoDDashboard');
             },
