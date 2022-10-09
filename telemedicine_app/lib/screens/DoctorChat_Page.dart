@@ -12,9 +12,14 @@ class DoctorChatState extends State<DoctorChat>{
 
   @override
   Widget build(BuildContext context) {
+    
+    //When loaded it should come up with list of patients doctor can talk to
+    //Once chosen, the doctor should be able to talk to patient.
+
 
     return Column(
       children: <Widget>[
+        const Text('Start your chat with: ' + 'Patient Name'),
         //Different Fields
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
