@@ -94,6 +94,8 @@ class DoctorBookingState extends State<DoctorBooking>{
                 height: 300,
                 width: MediaQuery.of(context).size.width,
                 child: Text('Show todays bookings from get'), //GET
+                //We will need: appointmentStartDate + appointmentEndDate + patient + appointmentStatus
+                //from the response body from get i think
               ),
               ]
               else if (tomorrow == true) ...[
