@@ -16,7 +16,6 @@ class DoctorAvailability extends StatefulWidget {
 }
 
 class DoctorAvailabilityState extends State<DoctorAvailability>{
-  // TextEditingController date = new TextEditingController();
   TextEditingController MondayStartTime =new TextEditingController();
   TextEditingController MondayEndTime =new TextEditingController();
   TextEditingController TuesdayStartTime =new TextEditingController();
@@ -53,9 +52,9 @@ class DoctorAvailabilityState extends State<DoctorAvailability>{
   String End5 = "";
 
   // Submit Doctor Avaliability
-  Future _submitDoctorAvalibitiy() async { //                                   v get actualt link
-  final response = await http.post(Uri.parse("http://localhost:8081/api/v1/avalibities"),  headers: {"Content-Type": "application/json"}, body: jsonEncode({  
-    "doctorID" : 123,
+  Future _submitDoctorAvalibitiy() async { 
+  final response = await http.post(Uri.parse("http://10.0.2.2:8082/api/v1/create-doc-availability"),  headers: {"Content-Type": "application/json"}, body: jsonEncode({  
+    "doctorID" : 39,
     "schedule" : [
       {
         "start": Start1,
@@ -79,7 +78,8 @@ class DoctorAvailabilityState extends State<DoctorAvailability>{
       },
     ]
 
-  }));
+  }
+  ));
     
 }
   @override
