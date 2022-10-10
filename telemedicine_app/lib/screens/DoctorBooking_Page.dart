@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:telemedicine_app/constants/api_service.dart';
+
+import 'package:telemedicine_app/modules/profile/models/appointment_models.dart';
 
 
 //List for the time periods that shows on doctors booking
@@ -23,6 +26,15 @@ class DoctorBookingState extends State<DoctorBooking>{
   bool today = true;
   bool tomorrow = false;
   bool week = false;
+
+  //FOR THE GET
+  late Future<AppInfo> futureAppInfo;
+
+  @override
+  void initState() {
+    super.initState();
+    futureAppInfo = getAppointmentDoctor();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -91,11 +103,28 @@ class DoctorBookingState extends State<DoctorBooking>{
             children: <Widget>[
               if (today == true) ...[
               Container(
-                height: 300,
-                width: MediaQuery.of(context).size.width,
-                child: Text('Show todays bookings from get'), //GET
-                //We will need: appointmentStartDate + appointmentEndDate + patient + appointmentStatus
-                //from the response body from get i think
+                // height: 300,
+                // width: MediaQuery.of(context).size.width,
+                // // child: Text('Show todays bookings from get'), //GET
+                // //We will need: appointmentStartDate + appointmentEndDate + patient + appointmentStatus
+                // //from the response body from get i think
+
+                //Get Test
+
+                child: FutureBuilder<AppInfo>(
+                  future: futureAppInfo,
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      return Text(snapshot.data!.appointmentStartDate.toString());
+                    } else if (snapshot.hasError) {
+                      return Text('${snapshot.error}');
+                    }
+
+                    return const CircularProgressIndicator();
+                  },
+                )
+
+
               ),
               ]
               else if (tomorrow == true) ...[

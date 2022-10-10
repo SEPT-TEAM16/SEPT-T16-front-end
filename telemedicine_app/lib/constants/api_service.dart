@@ -1,6 +1,9 @@
-// import 'dart:developer';
+import 'dart:convert';
+import 'dart:developer';
 
-// import 'package:http/http.dart' as http;
+import 'package:http/http.dart' as http;
+import 'package:telemedicine_app/modules/profile/models/appointment_models.dart';
+import 'package:telemedicine_app/constants/app_constants.dart';
 
 // import "package:telemedicine_app/constants/app_constants.dart";
 // import "package:telemedicine_app/modules/profile/models/patients_models.dart";
@@ -21,3 +24,17 @@
 //     }
 //   }
 // }
+
+//Get Requests
+
+Future<AppInfo> getAppointmentDoctor() async {
+
+  var url = Uri.parse(ApiConstants.baseURL + ApiConstants.AppoinmentINFO + '1');
+  var response = await http.get(url);
+
+  if (response.statusCode == 200) {
+    return AppInfo.fromJson(jsonDecode(response.body));
+  } else {
+    throw Exception('Failed to load');
+  }
+}
