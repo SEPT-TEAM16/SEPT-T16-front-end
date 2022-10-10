@@ -21,7 +21,6 @@ class PatientChatState extends State<PatientChat>{
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
           child: TextFormField(
-            //controller: postCode,
             decoration: const InputDecoration(
               border: UnderlineInputBorder(),
               labelText: 'chat',
