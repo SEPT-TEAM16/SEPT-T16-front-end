@@ -8,7 +8,7 @@ import 'package:telemedicine_app/modules/profile/screens/quote_widget_teseter.da
 
 var customRoutes = <String, WidgetBuilder>{
   //Set for home screen: Can use for testing page, will set to login once everything done.
-  '/': (context) => DoctorBookingPage(),
+  '/': (context) => LoginPage(),
 
   //Routes for program
   '/DdashtoAvailability': (context) => DoctorsAvailabilitiesPage(),

@@ -54,7 +54,7 @@ class DoctorAvailabilityState extends State<DoctorAvailability>{
   // Submit Doctor Avaliability
   Future _submitDoctorAvalibitiy() async { 
   final response = await http.post(Uri.parse("http://10.0.2.2:8082/api/v1/create-doc-availability"),  headers: {"Content-Type": "application/json"}, body: jsonEncode({  
-    "doctorID" : 39,
+    "doctorId" : 2,
     "schedule" : [
       {
         "start": Start1,
@@ -572,18 +572,21 @@ class DoctorAvailabilityState extends State<DoctorAvailability>{
 
               //Monday End Time
               x = days[0].toIso8601String().split("T").first.toString();
+              // mS1 = x + " " + MondayEndTime.text + ":00+10:00";
               mS1 = "$x${" "}${MondayEndTime.text}";
               appdate = DateTime.parse(mS1);
               End1 = appdate.toIso8601String();
 
               //Tuesday Start Time
                x = days[0].toIso8601String().split("T").first.toString();
+               mS1 = x + " " + TuesdayStartTime.text + ":00+10:00";
               mS1 = "$x${" "}${TuesdayStartTime.text}";
               appdate = DateTime.parse(mS1);
               Start2 = appdate.toIso8601String();
 
               //Tuesday End Time
               x = days[0].toIso8601String().split("T").first.toString();
+              mS1 = x + " " + TuesdayEndTime.text + ":00+10:00";
               mS1 = "$x${" "}${TuesdayEndTime.text}";
               appdate = DateTime.parse(mS1);
               End2 = appdate.toIso8601String();
@@ -591,36 +594,42 @@ class DoctorAvailabilityState extends State<DoctorAvailability>{
               
               //Wednesday Start Time
                x = days[0].toIso8601String().split("T").first.toString();
+               mS1 = x + " " + WednesdayStartTime.text + ":00+10:00";
               mS1 = "$x${" "}${WednesdayStartTime.text}";
               appdate = DateTime.parse(mS1);
               Start3 = appdate.toIso8601String();
 
               //Wednesday End Time
               x = days[0].toIso8601String().split("T").first.toString();
+              mS1 = x + " " + WednesdayEndTime.text + ":00+10:00";
               mS1 = "$x${" "}${WednesdayEndTime.text}";
               appdate = DateTime.parse(mS1);
               End3 = appdate.toIso8601String();
 
               //Thursday Start Time
                x = days[0].toIso8601String().split("T").first.toString();
+               mS1 = x + " " + ThursdayStartTime.text + ":00+10:00";
               mS1 = "$x${" "}${ThursdayStartTime.text}";
               appdate = DateTime.parse(mS1);
               Start4 = appdate.toIso8601String();
 
               //Wednesday End Time
               x = days[0].toIso8601String().split("T").first.toString();
+              mS1 = x + " " + ThursdayEndTime.text + ":00+10:00";
               mS1 = "$x${" "}${ThursdayEndTime.text}";
               appdate = DateTime.parse(mS1);
               End4 = appdate.toIso8601String();
 
               //Friday Start Time
                x = days[0].toIso8601String().split("T").first.toString();
+               mS1 = x + " " + FridayStartTime.text + ":00+10:00";
               mS1 = "$x${" "}${FridayStartTime.text}";
               appdate = DateTime.parse(mS1);
               Start5 = appdate.toIso8601String();
 
               //Wednesday End Time
               x = days[0].toIso8601String().split("T").first.toString();
+              mS1 = x + " " + FridayEndTime.text + ":00+10:00";
               mS1 = "$x${" "}${FridayEndTime.text}";
               appdate = DateTime.parse(mS1);
               End5 = appdate.toIso8601String();
