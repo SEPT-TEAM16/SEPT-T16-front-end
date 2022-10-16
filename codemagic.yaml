@@ -10,9 +10,14 @@ workflows:
       - name: Set up local.properties
         script: | 
           echo "flutter.sdk=$HOME/programs/flutter" > "$CM_BUILD_DIR/android/local.properties"
-      - name: fix for missing pubspec file
+      - name: Set up local properties
         script: |
-          flutter clean
+          echo "sdk.dir=$ANDROID_SDK_ROOT" > "$CM_BUILD_DIR/my_host_app/local.properties"   
+      - name: Build Flutter module & host application
+        script: |
+          cd my_flutter_module && flutter pub get
+          cd my_host_app && ./gradlew assembleDebug   
+
       - name: Get Flutter packages
         script: | 
           flutter packages pub get
