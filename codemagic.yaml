@@ -7,11 +7,15 @@ workflows:
     environment:
       flutter: stable
     scripts:
-      - name: Get Flutter Packages
-        script: flutter pub get
-      - name: Build APK
-        script: futter vuild apk --release
-      
+      - name: Set up local.properties
+        script: | 
+          echo "flutter.sdk=$HOME/programs/flutter" > "$CM_BUILD_DIR/android/local.properties"
+      - name: Get Flutter packages
+        script: | 
+          flutter packages pub get
+      - name: Build APK with Flutter
+        script: | 
+           flutter build apk --debug
     triggering:
       events:
         - push
@@ -20,6 +24,7 @@ workflows:
           include: true
           
     artifacts:
-      - build/**/outputs/apk/**/*.apk
       - build/**/outputs/**/*.aab
+      - build/**/outputs/**/mapping.txt
+      - flutter_drive.log
       
