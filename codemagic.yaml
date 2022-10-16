@@ -13,11 +13,6 @@ workflows:
       - name: Set up local properties
         script: |
           echo "sdk.dir=$ANDROID_SDK_ROOT" > "$CM_BUILD_DIR/my_host_app/local.properties"   
-      - name: Build Flutter module & host application
-        script: |
-          cd my_flutter_module && flutter pub get
-          cd my_host_app && ./gradlew assembleDebug   
-
       - name: Get Flutter packages
         script: | 
           flutter packages pub get
