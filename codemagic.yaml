@@ -8,7 +8,7 @@ workflows:
       flutter: stable
     scripts:
       - name: Get Flutter Packages
-        script: flutter packagespub get
+        script: flutter packages pub get
       - name: Build APK
         script: futter vuild apk --release
       
