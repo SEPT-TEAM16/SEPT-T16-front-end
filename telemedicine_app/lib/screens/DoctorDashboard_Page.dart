@@ -3,6 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:telemedicine_app/widgets/quotes/core/locator.dart';
 import 'package:telemedicine_app/widgets/quotes/quotes_widget.dart';
 import 'package:telemedicine_app/widgets/quotes/quotes_widget_controller.dart';
+import 'package:telemedicine_app/globals/global_variable.dart' as globals;
 
 class DoctorDashboard extends StatefulWidget {
   const DoctorDashboard({super.key});
@@ -28,7 +29,7 @@ class DoctorDashboardState extends State<DoctorDashboard>{
 
   //Getting Doctor Name
   String dName = 'Dr ' + 'John ' + 'He'; //string should be first_name + last_name under doctors
-
+  
   //Getting Date
   var dt = DateTime.now();
   //formating date

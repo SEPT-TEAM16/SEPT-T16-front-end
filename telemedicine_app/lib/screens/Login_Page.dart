@@ -4,7 +4,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:jwt_decode/jwt_decode.dart';
 import 'package:http/http.dart' as http;
-
+import 'package:telemedicine_app/globals/global_variable.dart' as globals;
 class Login extends StatefulWidget{
   const Login({super.key});
 
@@ -28,9 +28,11 @@ Future submitLoginDetails() async{
     payload = Jwt.parseJwt(response.body);
     if(payload.containsValue("ROLE_PATIENT")){
       Navigator.pushNamed(context, '/LogintoPDashboard');
+      globals.role = "ROLE_PATIENT";
     }
     else if (payload.containsValue("ROLE_DOCTOR")){
       Navigator.pushNamed(context, '/LogintoDDashboard');
+      globals.role = "ROLE_DOCTOR";
     }
   }
   else{
