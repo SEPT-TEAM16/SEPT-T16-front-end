@@ -97,7 +97,7 @@ class DoctorBookingState extends State<DoctorBooking>{
           ),
           ),
         ),
-
+ 
         Container(
           child: Column(
             children: <Widget>[
@@ -119,12 +119,9 @@ class DoctorBookingState extends State<DoctorBooking>{
                     } else if (snapshot.hasError) {
                       return Text('${snapshot.error}');
                     }
-
                     return const CircularProgressIndicator();
                   },
                 )
-
-
               ),
               ]
               else if (tomorrow == true) ...[
