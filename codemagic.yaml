@@ -15,6 +15,7 @@ workflows:
           echo "sdk.dir=$ANDROID_SDK_ROOT" > "$CM_BUILD_DIR/my_host_app/local.properties"   
       - name: Get Flutter packages
         script: | 
+          cd my_flutter_module
           flutter packages pub get
       - name: Build APK with Flutter
         script: | 
