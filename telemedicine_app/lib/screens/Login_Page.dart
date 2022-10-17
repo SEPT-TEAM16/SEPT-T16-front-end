@@ -22,13 +22,11 @@ class _Login extends State<Login>{
 Future findPatientId() async{
   var response = await http.get(Uri.parse("http://10.0.2.2:8080/api/v1/get-patient/${globals.email}"), headers: {"Content-Type": "application/json", "Authorization":"Bearer ${globals.jwtToken}"});
   globals.userId = response.body;
-  Fluttertoast.showToast(msg: globals.userId.toString());
 }
 
 Future findDoctorId() async{
   var response = await http.get(Uri.parse("http://10.0.2.2:8080/api/v1/get-doctor/${globals.email}"), headers: {"Content-Type": "application/json", "Authorization":"Bearer ${globals.jwtToken}"});
   globals.userId = response.body;
-  Fluttertoast.showToast(msg: globals.userId.toString());
 
 }
 
@@ -43,14 +41,14 @@ Future submitLoginDetails() async{
     globals.jwtToken = temp["jwtToken"];
     payload = Jwt.parseJwt(response.body);
     if(payload.containsValue("ROLE_PATIENT")){
-      // Navigator.pushNamed(context, '/LogintoPDashboard');
       findPatientId();
       globals.role = "ROLE_PATIENT";
+      Navigator.pushNamed(context, '/LogintoPDashboard');
     }
     else if (payload.containsValue("ROLE_DOCTOR")){
-      // Navigator.pushNamed(context, '/LogintoDDashboard');
       findDoctorId();
       globals.role = "ROLE_DOCTOR";
+      Navigator.pushNamed(context, '/LogintoDDashboard');
     }
   }
   else{
