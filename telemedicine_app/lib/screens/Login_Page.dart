@@ -17,6 +17,7 @@ class _Login extends State<Login>{
   TextEditingController Username = TextEditingController();
   TextEditingController Password = TextEditingController();
   Map<String, dynamic> payload = Map<String, dynamic>();
+  //Map<String, dynamic> tokenDecoded = Map<String, dynamic>(); Not sure if needed
 
 Future submitLoginDetails() async{
   var response = await http.post(Uri.parse("http://10.0.2.2:8080/api/v1/authenticate"),  headers: {"Content-Type": "application/json"}, body: jsonEncode(
@@ -40,6 +41,50 @@ Future submitLoginDetails() async{
   }
   
 }
+
+//Getting user Email through decoding JWT token
+Map<String, dynamic> parseJwt(String token) {
+  final parts = token.split('.');
+  if (parts.length != 3) {
+    throw Exception('invalid token');
+  }
+
+
+  final payload = _decodeBase64(parts[1]);
+  final payloadMap = json.decode(payload);
+  if (payloadMap is! Map<String, dynamic>) {
+    throw Exception('invalid payload');
+  }
+
+  return payloadMap;
+}
+
+
+String _decodeBase64(String str) {
+  String output = str.replaceAll('-', '+').replaceAll('_', '/');
+
+  switch (output.length % 4) {
+    case 0:
+      break;
+    case 2:
+      output += '==';
+      break;
+    case 3:
+      output += '=';
+      break;
+    default:
+      throw Exception('Illegal base64url string!"');
+  }
+  return utf8.decode(base64Url.decode(output));
+}
+
+_decodeJWT(String token){
+  Map<String, dynamic> tokenDecoded = parseJwt(token);
+  globals.email = tokenDecoded['email'];
+}
+
+//Getting userId through email
+
 
  @override
   Widget build(BuildContext context) {
