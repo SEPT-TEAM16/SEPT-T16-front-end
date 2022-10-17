@@ -19,6 +19,19 @@ class _Login extends State<Login>{
   Map<String, dynamic> payload = Map<String, dynamic>();
   //Map<String, dynamic> tokenDecoded = Map<String, dynamic>(); Not sure if needed
 
+Future findPatientId() async{
+  var response = await http.get(Uri.parse("http://10.0.2.2:8080/api/v1/get-patient/${globals.email}"), headers: {"Content-Type": "application/json", "Authorization":"Bearer ${globals.jwtToken}"});
+  globals.userId = response.body;
+  Fluttertoast.showToast(msg: globals.userId.toString());
+}
+
+Future findDoctorId() async{
+  var response = await http.get(Uri.parse("http://10.0.2.2:8080/api/v1/get-doctor/${globals.email}"), headers: {"Content-Type": "application/json", "Authorization":"Bearer ${globals.jwtToken}"});
+  globals.userId = response.body;
+  Fluttertoast.showToast(msg: globals.userId.toString());
+
+}
+
 Future submitLoginDetails() async{
   var response = await http.post(Uri.parse("http://10.0.2.2:8080/api/v1/authenticate"),  headers: {"Content-Type": "application/json"}, body: jsonEncode(
   {
@@ -26,14 +39,17 @@ Future submitLoginDetails() async{
       "password": Password.text
   }));
   if (response.statusCode == 200){
-    globals.jwtToken = response.body;
+    var temp = json.decode(response.body);
+    globals.jwtToken = temp["jwtToken"];
     payload = Jwt.parseJwt(response.body);
     if(payload.containsValue("ROLE_PATIENT")){
-      Navigator.pushNamed(context, '/LogintoPDashboard');
+      // Navigator.pushNamed(context, '/LogintoPDashboard');
+      findPatientId();
       globals.role = "ROLE_PATIENT";
     }
     else if (payload.containsValue("ROLE_DOCTOR")){
-      Navigator.pushNamed(context, '/LogintoDDashboard');
+      // Navigator.pushNamed(context, '/LogintoDDashboard');
+      findDoctorId();
       globals.role = "ROLE_DOCTOR";
     }
   }
