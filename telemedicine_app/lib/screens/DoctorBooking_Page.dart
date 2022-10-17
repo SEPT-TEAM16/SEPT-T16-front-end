@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:telemedicine_app/constants/api_service.dart';
 
 import 'package:telemedicine_app/modules/profile/models/appointment_models.dart';
-
+import 'package:telemedicine_app/globals/global_variable.dart' as globals;
 
 //List for the time periods that shows on doctors booking
 const List<Widget> times = <Widget>[

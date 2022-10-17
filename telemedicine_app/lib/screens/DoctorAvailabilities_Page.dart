@@ -4,6 +4,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 import 'package:telemedicine_app/Submit_Futures/PatientProfile_Page/futures.dart';
+import 'package:telemedicine_app/globals/global_variable.dart' as globals;
 
 // Avaliabilities Time 7am to 5pm in 24hour time
 const List<String> Times = <String>['07:00','08:00','09:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00','17:00'];
@@ -54,7 +55,7 @@ class DoctorAvailabilityState extends State<DoctorAvailability>{
   // Submit Doctor Avaliability
   Future _submitDoctorAvalibitiy() async { 
   final response = await http.post(Uri.parse("http://10.0.2.2:8082/api/v1/create-doc-availability"),  headers: {"Content-Type": "application/json"}, body: jsonEncode({  
-    "doctorId" : 2,
+    "doctorId" : globals.userId,
     "schedule" : [
       {
         "start": Start1,

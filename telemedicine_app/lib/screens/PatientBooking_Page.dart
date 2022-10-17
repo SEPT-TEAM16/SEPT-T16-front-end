@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
 import 'package:http/http.dart' as http;
+import 'package:telemedicine_app/globals/global_variable.dart' as globals;
 
 // HARDCODED DOCTORS AND TIMES FOR TESTING
 const List<String> Doctorlist = <String>['Doctor 1', 'Doctor 2', 'Doctor 3']; // temporary Doctor names
@@ -30,7 +31,7 @@ class PatientBookingState extends State<PatientBooking>{
   String y = appdate.toIso8601String();
     final response = await http.post(Uri.parse("http://10.0.2.2:8082/api/v1/create-appointment"),  headers: {"Content-Type": "application/json"}, body: jsonEncode({
       "appointmentStartDate" : y,
-      "patientId": 12344, // Temp Value
+      "patientId": globals.userId,
       "doctorId" : 44321, // Temp Value
       "appointmentStatus": "ACTIVE", // Temp value
 
