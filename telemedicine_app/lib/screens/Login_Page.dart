@@ -26,6 +26,7 @@ Future submitLoginDetails() async{
       "password": Password.text
   }));
   if (response.statusCode == 200){
+    globals.jwtToken = response.body;
     payload = Jwt.parseJwt(response.body);
     if(payload.containsValue("ROLE_PATIENT")){
       Navigator.pushNamed(context, '/LogintoPDashboard');
