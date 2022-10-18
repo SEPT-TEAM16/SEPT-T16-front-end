@@ -7,6 +7,8 @@ import 'package:telemedicine_app/Submit_Futures/PatientProfile_Page/futures.dart
 import 'package:telemedicine_app/globals/global_variable.dart' as globals;
 
 // Avaliabilities Time 7am to 5pm in 24hour time
+
+//CHANGE THIS PLASE USING MODEL
 const List<String> Times = <String>['','07:00','08:00','09:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00','17:00'];
 
 class DoctorAvailability extends StatefulWidget {

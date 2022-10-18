@@ -103,13 +103,6 @@ class DoctorBookingState extends State<DoctorBooking>{
             children: <Widget>[
               if (today == true) ...[
               Container(
-                // height: 300,
-                // width: MediaQuery.of(context).size.width,
-                // // child: Text('Show todays bookings from get'), //GET
-                // //We will need: appointmentStartDate + appointmentEndDate + patient + appointmentStatus
-                // //from the response body from get i think
-
-                //Get Test
 
                 child: FutureBuilder<AppInfo>(
                   future: futureAppInfo,
@@ -126,16 +119,12 @@ class DoctorBookingState extends State<DoctorBooking>{
               ]
               else if (tomorrow == true) ...[
                 Container(
-                height: 300,
-                width: MediaQuery.of(context).size.width,
-                child: Text('Show tomorrows bookings from get'), //GET
+                child: const CircularProgressIndicator(),
               ),
               ]
               else if (week == true) ...[
                 Container(
-                height: 300,
-                width: MediaQuery.of(context).size.width,
-                child: Text('Show weeks bookings from get'), //GET
+                child: const CircularProgressIndicator(),
               )
               ]
             ],
