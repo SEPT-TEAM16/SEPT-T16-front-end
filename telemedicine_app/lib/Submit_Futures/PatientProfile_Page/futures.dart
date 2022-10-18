@@ -29,7 +29,7 @@ TextEditingController PatientGender = new TextEditingController();
 //General Account Information
 Future submitGAI() async{
   final response = await http.put(Uri.parse("http://10.0.2.2:8080/api/v1/update-user/${globals.userId}"),
-    headers: {"Content-Type": "application/json"},
+    headers: {"Content-Type": "application/json", "Authorization":"Bearer ${globals.jwtToken}"},
     body: jsonEncode({
       "email": EmailAddress.text,
       "firstName": first_Name.text,
