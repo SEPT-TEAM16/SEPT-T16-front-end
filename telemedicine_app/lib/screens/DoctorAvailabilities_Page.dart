@@ -7,7 +7,7 @@ import 'package:telemedicine_app/Submit_Futures/PatientProfile_Page/futures.dart
 import 'package:telemedicine_app/globals/global_variable.dart' as globals;
 
 // Avaliabilities Time 7am to 5pm in 24hour time
-const List<String> Times = <String>['07:00','08:00','09:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00','17:00'];
+const List<String> Times = <String>['','07:00','08:00','09:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00','17:00'];
 
 class DoctorAvailability extends StatefulWidget {
   const DoctorAvailability({super.key});
@@ -29,6 +29,7 @@ class DoctorAvailabilityState extends State<DoctorAvailability>{
   TextEditingController FridayEndTime =new TextEditingController();
   DateRangePickerController dateRange =new DateRangePickerController();
 
+//Start and end Day variables
   String MondayStart = Times.first;
   String MondayEnd = Times.first;
   String TuesdayStart = Times.first;
@@ -90,6 +91,7 @@ class DoctorAvailabilityState extends State<DoctorAvailability>{
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
         //Different Fields
+        Center(child: Text('Please Select day a week to fill in avalibities for [Monday to Friday]', textScaleFactor: 1.3,) ),
           Center(child: Row(
             children: <Widget>[
               Expanded(

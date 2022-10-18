@@ -1,20 +1,17 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:intl/intl.dart';
 import 'package:http/http.dart' as http;
 import 'package:telemedicine_app/globals/global_variable.dart' as globals;
 import 'package:telemedicine_app/Submit_Futures/PatientProfile_Page/futures.dart';
 
 // HARDCODED DOCTORS AND TIMES FOR TESTING
-const List<String> Doctorlist = <String>['Doctor 1', 'Doctor 2', 'Doctor 3']; // temporary Doctor names
-const List<String> TimeList = <String>['11:00', '15:00', '15:30']; // Temporary Times
+const List<String> Doctorlist = <String>['','Doctor Lucas Smith', 'Doctor Nelson Jones', 'Doctor Daniel Ye', 'Doctor Wyatt Ye', 'Doctor Rico Nguyen']; // temporary Doctor names
 
 
 
 //Strings for the dropdown values
 String doctorDropDownValue = Doctorlist.first;
-String timeDropDownValue = TimeList.first;
 
 class PatientBooking extends StatefulWidget {
   const PatientBooking({super.key});
@@ -41,6 +38,7 @@ class PatientBookingState extends State<PatientBooking>{
     }));
     if(response.statusCode == 200 ){  
       Fluttertoast.showToast(msg:"Appointment booked");
+      Navigator.pushNamed(context,'/LogintoPDashboard');
     }else{
       Fluttertoast.showToast(msg:"Appointment booking failed");
     };
@@ -73,11 +71,14 @@ class PatientBookingState extends State<PatientBooking>{
                 TimeOfDay? pickedTime = await showTimePicker(context: context, initialTime: TimeOfDay.now());
                 if (pickedDate != null && pickedTime != null){
                   setState((){
+                    String bookingDateMin;
                     int Minute;
                     if(pickedTime.minute < 30){
+                      bookingDateMin = "00";
                       Minute = 0;
                     }
                     else{
+                      bookingDateMin = "30";
                       Minute = 30;
                     }
                     final bookedDate = DateTime(pickedDate.year, pickedDate.month, pickedDate.day, pickedTime.hour, Minute, );

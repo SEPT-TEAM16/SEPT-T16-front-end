@@ -6,7 +6,7 @@ import 'package:intl/intl.dart';
 import 'package:http/http.dart' as http;
 
 //String list for the role dropdown
-const List<String> role = <String>['Patient','Doctor'];
+const List<String> role = <String>['','Patient','Doctor'];
 
 class MyCustomForm extends StatefulWidget {
   const MyCustomForm({super.key});
@@ -48,13 +48,12 @@ class _MyCustomFormState extends State<MyCustomForm>{
             "role":"PATIENT"
     }));
 
-    Fluttertoast.showToast(msg: response.body);
-    //  var data = json.decode(response.body);
-    //  if(data == "Success"){
-    //     Fluttertoast.showToast(msg: "Registration Successfull");
-    //  } else{
-    //   Fluttertoast.showToast(msg: "Registration Failed");
-    //  }
+     if(response.statusCode == 200){
+        Fluttertoast.showToast(msg: "Registration Successfull");
+        Navigator.pushNamed(context, '/RegotoProfile');
+     } else{
+      Fluttertoast.showToast(msg: "Registration Failed");
+     }
   }
 
   //Where we build the screen with widgets
@@ -283,9 +282,12 @@ class _MyCustomFormState extends State<MyCustomForm>{
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 8,vertical: 16),
           child: ElevatedButton(
-            onPressed: (){  
-            _submit();
-            // Navigator.pushNamed(context, '/RegotoProfile');
+            onPressed: (){
+              if(selectedRole.text == ""){
+                Fluttertoast.showToast(msg: "No role selected");
+              }else{
+                _submit();
+              }
             },
           child: Text("Submit"),
           ),
