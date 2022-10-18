@@ -20,19 +20,19 @@ class _Login extends State<Login>{
   //Map<String, dynamic> tokenDecoded = Map<String, dynamic>(); Not sure if needed
 
 Future findPatientId() async{
-  var response = await http.get(Uri.parse("http://10.0.2.2:8080/api/v1/get-patient/${globals.email}"), headers: {"Content-Type": "application/json", "Authorization":"Bearer ${globals.jwtToken}"});
+  var response = await http.get(Uri.parse("http://host.docker.internal:8080/api/v1/get-patient/${globals.email}"), headers: {"Content-Type": "application/json", "Authorization":"Bearer ${globals.jwtToken}"});
   globals.userId = response.body;
 }
 
 Future findDoctorId() async{
-  var response = await http.get(Uri.parse("http://10.0.2.2:8080/api/v1/get-doctor/${globals.email}"), headers: {"Content-Type": "application/json", "Authorization":"Bearer ${globals.jwtToken}"});
+  var response = await http.get(Uri.parse("http://host.docker.internal:8080/api/v1/get-doctor/${globals.email}"), headers: {"Content-Type": "application/json", "Authorization":"Bearer ${globals.jwtToken}"});
   globals.userId = response.body ;
 }
 
 String jToken = "";
 
 Future submitLoginDetails() async{
-  var response = await http.post(Uri.parse("http://10.0.2.2:8080/api/v1/authenticate"),  headers: {"Content-Type": "application/json"}, body: jsonEncode(
+  var response = await http.post(Uri.parse("http://host.docker.internal:8080/api/v1/authenticate"),  headers: {"Content-Type": "application/json"}, body: jsonEncode(
   {
       "username": Username.text, 
       "password": Password.text

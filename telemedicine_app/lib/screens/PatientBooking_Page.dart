@@ -29,7 +29,7 @@ class PatientBookingState extends State<PatientBooking>{
   Future _submitBooking() async {
   DateTime appdate = DateTime.parse("${dateTime.text}${"+10:00"}") ;
   String y = appdate.toIso8601String();
-    final response = await http.post(Uri.parse("http://10.0.2.2:8082/api/v1/create-appointment"),  headers: {"Content-Type": "application/json"}, body: jsonEncode({
+    final response = await http.post(Uri.parse("http://host.docker.internal:8082/api/v1/create-appointment"),  headers: {"Content-Type": "application/json"}, body: jsonEncode({
       "appointmentStartDate" : y,
       "patientId": globals.userId,
       "doctorId" : 44321, // Temp Value

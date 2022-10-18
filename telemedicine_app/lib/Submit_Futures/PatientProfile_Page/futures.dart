@@ -28,7 +28,7 @@ TextEditingController PatientGender = new TextEditingController();
 
 //General Account Information
 Future submitGAI() async{
-  final response = await http.post(Uri.parse("http://localhost:8081/api/v1/update-user/${globals.userId}"),
+  final response = await http.put(Uri.parse("http://host.docker.internal:8080/api/v1/update-user/${globals.userId}"),
     headers: {"Content-Type": "application/json"},
     body: jsonEncode({
       "firstName": first_Name.text,
@@ -50,7 +50,7 @@ Future submitGAI() async{
 
 //Medical Records
 Future submitMR() async{
-  final response = await http.post(Uri.parse("http://localhost:8081/api/v1/medical-record/${globals.userId}"),
+  final response = await http.post(Uri.parse("http://host.docker.internal:8080/api/v1/medical-record/${globals.userId}"),
     headers: {"Content-Type": "application/json"},
     body: jsonEncode({
       "medicareNo": MedicareNumber.text,
@@ -71,7 +71,7 @@ Future submitMR() async{
 
 //Getting List of Doctors and Times
 Future getDrTime() async{
-  final response = await http.get(Uri.parse("http://10.0.2.2:8082/api/v1/get-timeslots/${globals.finalDate}}"),
+  final response = await http.get(Uri.parse("http://host.docker.internal:8082/api/v1/get-timeslots/${globals.finalDate}}"),
   headers: {"Content-Type": "application/json"},
   );
 

@@ -1,5 +1,5 @@
 class ApiConstants {
-  static String baseURL = 'http://10.0.0.2/api/v1/8082';
+  static String baseURL = 'http://host.docker.internal:8080/api/v1';
   static String RegistrationEnd = '/register';
   static String AppointmentEnd = '/create-appointment';
   static String DoctorAvailabilities = '/avalibities';

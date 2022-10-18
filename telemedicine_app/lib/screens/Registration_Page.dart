@@ -36,7 +36,7 @@ class _MyCustomFormState extends State<MyCustomForm>{
 
   //Our submit function to wrap the data into JSON and parsing into the selected endpoint in our database
   Future _submit() async {
-    final response = await http.post(Uri.parse("http://10.0.2.2:8080/api/v1/register"),  headers: {"Content-Type": "application/json"}, body: jsonEncode({
+    final response = await http.post(Uri.parse("http://host.docker.internal:8080/api/v1/register"),  headers: {"Content-Type": "application/json"}, body: jsonEncode({
             "email": email.text,
             "firstName": firstName.text,
             "lastName": lastName.text,
