@@ -43,6 +43,9 @@ Future submitLoginDetails() async{
     globals.jwtToken = temp["jwtToken"];
     payload = Jwt.parseJwt(response.body);
     _decodeJWT(globals.jwtToken);
+    // Clear inputs so when you backtrack its not there anymore
+    Username.text = "";
+    Password.text = "";
     if(payload.containsValue("ROLE_PATIENT")){
       findPatientId();
       globals.role = "ROLE_PATIENT";
