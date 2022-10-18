@@ -66,12 +66,12 @@ Future submitMR() async{
     }),
   );
   
-  var data = json.decode(response.body);
-  if(data == "Success"){
-    Fluttertoast.showToast(msg: "Successfully updated!");
-  } else{
-    Fluttertoast.showToast(msg: "Error: Server Error");
-  }
+  // var data = json.decode(response.body);
+  // if(data == "Success"){
+  //   Fluttertoast.showToast(msg: "Successfully updated!");
+  // } else{
+  //   Fluttertoast.showToast(msg: "Error: Server Error");
+  // }
 }
 
 //Getting List of Doctors and Times
