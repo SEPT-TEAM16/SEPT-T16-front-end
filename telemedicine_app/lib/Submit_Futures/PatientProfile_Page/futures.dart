@@ -28,29 +28,34 @@ TextEditingController PatientGender = new TextEditingController();
 
 //General Account Information
 Future submitGAI() async{
-  final response = await http.post(Uri.parse("http://localhost:8081/api/v1/update-user/${globals.userId}"),
+  final response = await http.post(Uri.parse("http://10.0.2.2:8080/api/v1/update-user/${globals.userId}"),
     headers: {"Content-Type": "application/json"},
     body: jsonEncode({
+      "email": EmailAddress.text,
       "firstName": first_Name.text,
       "lastName": last_Name.text,
-      "DoB":  DOB.text,
-      "email": EmailAddress.text,
-      "address": Address.text,
       "password": NewPassword.text,
+      "DoB":  DOB.text,
+      "address": Address.text,
     }),
   );
   
-  var data = json.decode(response.body);
-  if(data == "Success"){
-    Fluttertoast.showToast(msg: "Successfully updated!");
-  } else{
-    Fluttertoast.showToast(msg: "Error: Server Error");
+  if(response.statusCode == 200){
+    print("workijg");
+  }else{
+    print("no");
   }
+  // var data = json.decode(response.body);
+  // if(data == "Success"){
+  //   Fluttertoast.showToast(msg: "Successfully updated!");
+  // } else{
+  //   Fluttertoast.showToast(msg: "Error: Server Error");
+  // }
 }
 
 //Medical Records
 Future submitMR() async{
-  final response = await http.post(Uri.parse("http://localhost:8081/api/v1/medical-record/${globals.userId}"),
+  final response = await http.post(Uri.parse("http://10.0.2.2:8080/api/v1/medical-record/${globals.userId}"),
     headers: {"Content-Type": "application/json"},
     body: jsonEncode({
       "medicareNo": MedicareNumber.text,

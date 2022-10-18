@@ -119,7 +119,7 @@ class PatientProfileState extends State<PatientProfile>{
                           child: Text("Submit"),
                           onPressed: () {
                             submitGAI();
-                            Navigator.pushNamed(context, 'PdashtoProfile');
+                            Navigator.pushNamed(context, '/PdashtoProfile');
                           })
                     ],
                   );
