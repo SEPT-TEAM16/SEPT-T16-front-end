@@ -30,7 +30,6 @@ Future findDoctorId() async{
   if(response.statusCode == 200){
 
   }else{
-    print(response.body);
   }
 
 }
@@ -44,7 +43,7 @@ Future submitLoginDetails() async{
   if (response.statusCode == 200){
     var temp = json.decode(response.body);
     globals.jwtToken = temp["jwtToken"];
-    payload = Jwt.parseJwt(response.body);
+    _decodeJWT(globals.jwtToken);
     if(payload.containsValue("ROLE_PATIENT")){
       findPatientId();
       globals.role = "ROLE_PATIENT";
@@ -63,12 +62,11 @@ Future submitLoginDetails() async{
 }
 
 //Getting user Email through decoding JWT token
-Map<String, dynamic> parseJwt(String jwtToken) {
-  final parts = jwtToken.split('.');
+Map<String, dynamic> parseJwt(String Token) {
+  final parts = Token.split('.');
   if (parts.length != 3) {
     throw Exception('invalid token');
   }
-
 
   final payload = _decodeBase64(parts[1]);
   final payloadMap = json.decode(payload);
@@ -98,9 +96,9 @@ String _decodeBase64(String str) {
   return utf8.decode(base64Url.decode(output));
 }
 
-_decodeJWT(String jwtToken){
-  Map<String, dynamic> tokenDecoded = parseJwt(jwtToken);
-  globals.email = tokenDecoded['email'];
+_decodeJWT(String Token){
+  Map<String, dynamic> tokenDecoded = parseJwt(Token);
+  globals.email = tokenDecoded['sub'];
 }
 
 //Getting userId through email

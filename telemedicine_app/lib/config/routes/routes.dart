@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:telemedicine_app/main.dart';
 import 'package:telemedicine_app/screens/DoctorBooking_Page.dart';
+import 'package:telemedicine_app/screens/Login_Page.dart';
 import 'package:telemedicine_app/screens/PatientMed_Page.dart';
 import 'package:telemedicine_app/widgets/quotes/core/domain/quotes_entity.dart';
 import '/main.dart';
@@ -8,7 +9,7 @@ import '/main.dart';
 
 var customRoutes = <String, WidgetBuilder>{
   //Set for home screen: Can use for testing page, will set to login once everything done.
-  '/': (context) => DoctorBookingPage(),
+  '/': (context) => LoginPage(),
 
   //Routes for program
   '/DdashtoAvailability': (context) => DoctorsAvailabilitiesPage(),
