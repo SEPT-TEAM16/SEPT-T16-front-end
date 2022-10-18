@@ -34,6 +34,8 @@ Future findDoctorId() async{
 
 }
 
+String jToken = "";
+
 Future submitLoginDetails() async{
   var response = await http.post(Uri.parse("http://10.0.2.2:8080/api/v1/authenticate"),  headers: {"Content-Type": "application/json"}, body: jsonEncode(
   {
@@ -42,6 +44,7 @@ Future submitLoginDetails() async{
   }));
   if (response.statusCode == 200){
     var temp = json.decode(response.body);
+    jToken = temp.toString();
     globals.jwtToken = temp["jwtToken"];
     _decodeJWT(globals.jwtToken);
     if(payload.containsValue("ROLE_PATIENT")){
@@ -62,8 +65,8 @@ Future submitLoginDetails() async{
 }
 
 //Getting user Email through decoding JWT token
-Map<String, dynamic> parseJwt(String Token) {
-  final parts = Token.split('.');
+Map<String, dynamic> parseJwt(String jwtToken) {
+  final parts = jwtToken.split('.');
   if (parts.length != 3) {
     throw Exception('invalid token');
   }
@@ -101,7 +104,6 @@ _decodeJWT(String Token){
   globals.email = tokenDecoded['sub'];
 }
 
-//Getting userId through email
 
 
  @override
