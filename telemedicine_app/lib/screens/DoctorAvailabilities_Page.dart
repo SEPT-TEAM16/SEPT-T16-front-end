@@ -28,7 +28,8 @@ class DoctorAvailabilityState extends State<DoctorAvailability>{
   TextEditingController FridayStartTime =new TextEditingController();
   TextEditingController FridayEndTime =new TextEditingController();
   DateRangePickerController dateRange =new DateRangePickerController();
-
+  
+//Start and end Day variables
   String MondayStart = Times.first;
   String MondayEnd = Times.first;
   String TuesdayStart = Times.first;
