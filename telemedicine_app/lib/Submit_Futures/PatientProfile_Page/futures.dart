@@ -2,7 +2,9 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
+import 'package:telemedicine_app/globals/global_variable.dart' as globals;
 
+import 'package:telemedicine_app/screens/PatientBooking_Page.dart';
  
 //CONTROLLERS
 
@@ -26,7 +28,7 @@ TextEditingController PatientGender = new TextEditingController();
 
 //General Account Information
 Future submitGAI() async{
-  final response = await http.post(Uri.parse("http://localhost:8081/api/v1/update-user/" + "userId"), //GET USER ID
+  final response = await http.post(Uri.parse("http://localhost:8081/api/v1/update-user/${globals.userId}"),
     headers: {"Content-Type": "application/json"},
     body: jsonEncode({
       "firstName": first_Name.text,
@@ -48,7 +50,7 @@ Future submitGAI() async{
 
 //Medical Records
 Future submitMR() async{
-  final response = await http.post(Uri.parse("http://localhost:8081/api/v1/medical-record/" + "userId"), //GET USER ID
+  final response = await http.post(Uri.parse("http://localhost:8081/api/v1/medical-record/${globals.userId}"),
     headers: {"Content-Type": "application/json"},
     body: jsonEncode({
       "medicareNo": MedicareNumber.text,
@@ -65,4 +67,12 @@ Future submitMR() async{
   } else{
     Fluttertoast.showToast(msg: "Error: Server Error");
   }
+}
+
+//Getting List of Doctors and Times
+Future getDrTime() async{
+  final response = await http.get(Uri.parse("http://10.0.2.2:8082/api/v1/get-timeslots/${globals.finalDate}}"),
+  headers: {"Content-Type": "application/json"},
+  );
+
 }

@@ -58,8 +58,8 @@ Future submitLoginDetails() async{
 }
 
 //Getting user Email through decoding JWT token
-Map<String, dynamic> parseJwt(String token) {
-  final parts = token.split('.');
+Map<String, dynamic> parseJwt(String jwtToken) {
+  final parts = jwtToken.split('.');
   if (parts.length != 3) {
     throw Exception('invalid token');
   }
@@ -93,8 +93,8 @@ String _decodeBase64(String str) {
   return utf8.decode(base64Url.decode(output));
 }
 
-_decodeJWT(String token){
-  Map<String, dynamic> tokenDecoded = parseJwt(token);
+_decodeJWT(String jwtToken){
+  Map<String, dynamic> tokenDecoded = parseJwt(jwtToken);
   globals.email = tokenDecoded['email'];
 }
 

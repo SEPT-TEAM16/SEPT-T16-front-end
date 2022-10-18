@@ -4,7 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:telemedicine_app/widgets/quotes/core/locator.dart';
 import 'package:telemedicine_app/widgets/quotes/quotes_widget.dart';
 import 'package:telemedicine_app/widgets/quotes/quotes_widget_controller.dart';
-
+import 'package:telemedicine_app/globals/global_variable.dart';
 
 
 
@@ -35,8 +35,10 @@ class PatientDashboardState extends State<PatientDashboard>{
 
   @override
   Widget build(BuildContext context) {
+
+  
     
-    //Getting Doctor Name
+  //Getting Doctor Name
   String pName = ' Oscar ' + ' Nguyen '; //string should be first_name + last_name for Patient
   //Getting Date
   var dt = DateTime.now();
@@ -205,8 +207,8 @@ class PatientDashboardState extends State<PatientDashboard>{
           height: 30,
         ),
 
-        //Medicing box maybe we keep maybe we dont. Need to find way to push to side please
-        Container(
+        InkWell(
+          child: Container(
           padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
           height: 130,
           width: MediaQuery.of(context).size.width * 0.45,
@@ -230,6 +232,11 @@ class PatientDashboardState extends State<PatientDashboard>{
               profMed //we would have to pull other stuff
             ],
           ),
+        ),
+
+        onTap: (() {
+          Navigator.pushNamed(context, '/PdashtoMed');
+        }),
         ),
 
         //Edit Details
