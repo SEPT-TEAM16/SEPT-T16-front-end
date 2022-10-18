@@ -91,6 +91,7 @@ class DoctorAvailabilityState extends State<DoctorAvailability>{
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
         //Different Fields
+        Center(child: Text('Please Select day a week to fill in avalibities for [Monday to Friday]', textScaleFactor: 1.3,) ),
           Center(child: Row(
             children: <Widget>[
               Expanded(

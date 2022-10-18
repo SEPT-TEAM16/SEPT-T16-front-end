@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -69,19 +71,22 @@ class PatientBookingState extends State<PatientBooking>{
                 TimeOfDay? pickedTime = await showTimePicker(context: context, initialTime: TimeOfDay.now());
                 if (pickedDate != null && pickedTime != null){
                   setState((){
-                    int Minute;
+                    String bookingDateMin;
+                    int minuteNum;
                     if(pickedTime.minute < 30){
-                      Minute = 0;
+                      bookingDateMin = "00";
+                      minuteNum = 0;
                     }
                     else{
-                      Minute = 30;
+                      bookingDateMin = "30";
+                      minuteNum = 30;
                     }
-                    final bookedDate = DateTime(pickedDate.year, pickedDate.month, pickedDate.day, pickedTime.hour, Minute, );
+                    final bookedDate = DateTime(pickedDate.year, pickedDate.month, pickedDate.day, pickedTime.hour, minuteNum, );
                     dateTime.text = bookedDate.toString();
                     if (pickedTime.hour > 12){
-                      dateTimeText.text = "${pickedDate.year}-${pickedDate.month}-${pickedDate.day} at ${pickedTime.hour - 12}:${Minute}pm";
+                      dateTimeText.text = "${pickedDate.year}-${pickedDate.month}-${pickedDate.day} at ${pickedTime.hour - 12}:${bookingDateMin}pm";
                     }else{
-                      dateTimeText.text = "${pickedDate.year}-${pickedDate.month}-${pickedDate.day} at ${pickedTime.hour}:${Minute}am";
+                      dateTimeText.text = "${pickedDate.year}-${pickedDate.month}-${pickedDate.day} at ${pickedTime.hour}:${bookingDateMin}am";
                     }
                   }
                   );
