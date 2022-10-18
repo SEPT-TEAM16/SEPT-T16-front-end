@@ -82,7 +82,12 @@ class DoctorAvailabilityState extends State<DoctorAvailability>{
 
   }
   ));
-    
+  if(response.statusCode == 200){
+    Fluttertoast.showToast(msg: "Avalibities successfully set");
+    Navigator.pushNamed(context, '/LogintoDDashboard');
+  }else {
+    Fluttertoast.showToast(msg: "Failed to send avalibities");
+  }
 }
   @override
   Widget build(BuildContext context) {
@@ -546,7 +551,6 @@ class DoctorAvailabilityState extends State<DoctorAvailability>{
       Center(
         child: ElevatedButton(
             onPressed: (){
-              // _submitDoctorAvalibitiy(); will be used later when intergrating front to back
 
 
               // Get All dates
@@ -557,7 +561,13 @@ class DoctorAvailabilityState extends State<DoctorAvailability>{
                 }
                 return days;
               }
-              DateTime startDate = dateRange.selectedRange!.startDate as  DateTime;
+
+    
+
+              if(MondayStartTime.text == "" || TuesdayStartTime.text == "" || WednesdayStartTime.text == "" || ThursdayStartTime.text == "" || FridayStartTime.text == "" || MondayEndTime.text == "" ||TuesdayEndTime.text == "" || WednesdayEndTime == "" ||ThursdayEndTime.text == "" || FridayEndTime.text == "" ){
+                Fluttertoast.showToast(msg: "Missing start or end time");
+              }else{
+                DateTime startDate = dateRange.selectedRange!.startDate as  DateTime;
               DateTime endDate = dateRange.selectedRange!.endDate as  DateTime; 
               List<DateTime> days = getDaysInBetween(startDate, endDate);
 
@@ -636,21 +646,8 @@ class DoctorAvailabilityState extends State<DoctorAvailability>{
               mS1 = "$x${" "}${FridayEndTime.text}";
               appdate = DateTime.parse(mS1);
               End5 = appdate.toIso8601String();
-
-
               _submitDoctorAvalibitiy();
-              // print(Start1);
-              // print(End1);
-              // print(Start2);
-              // print(End2);
-              // print(Start3);
-              // print(End3);
-              // print(Start4);
-              // print(End4);
-              // print(Start5);
-              // print(End5);
-
-              // Navigator.pushNamed(context, '/LogintoDDashboard');
+              }
             },
             child: Text("Submit Avalibities"),
           ),

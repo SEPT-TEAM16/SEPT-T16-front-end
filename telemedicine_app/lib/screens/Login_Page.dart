@@ -26,7 +26,12 @@ Future findPatientId() async{
 
 Future findDoctorId() async{
   var response = await http.get(Uri.parse("http://10.0.2.2:8080/api/v1/get-doctor/${globals.email}"), headers: {"Content-Type": "application/json", "Authorization":"Bearer ${globals.jwtToken}"});
-  globals.userId = response.body;
+  globals.userId = response.body ;
+  if(response.statusCode == 200){
+
+  }else{
+    print(response.body);
+  }
 
 }
 
