@@ -181,7 +181,7 @@ class PatientProfileState extends State<PatientProfile>{
                       ElevatedButton(
                         child: Text('Submit'),
                         onPressed: () {
-                          //NEED TO POST
+                          Navigator.pushNamed(context, '/PdashtoProfile');
                         }
                       )
                     ],
@@ -248,7 +248,7 @@ class PatientProfileState extends State<PatientProfile>{
                       ElevatedButton(
                         child: Text('Submit'),
                         onPressed: () {
-                          //NEED TO POST
+                          Navigator.pushNamed(context, '/PdashtoProfile');
                         }
                       )
                     ],
