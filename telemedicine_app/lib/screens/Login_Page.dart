@@ -27,11 +27,6 @@ Future findPatientId() async{
 Future findDoctorId() async{
   var response = await http.get(Uri.parse("http://10.0.2.2:8080/api/v1/get-doctor/${globals.email}"), headers: {"Content-Type": "application/json", "Authorization":"Bearer ${globals.jwtToken}"});
   globals.userId = response.body ;
-  if(response.statusCode == 200){
-
-  }else{
-  }
-
 }
 
 String jToken = "";
@@ -46,6 +41,7 @@ Future submitLoginDetails() async{
     var temp = json.decode(response.body);
     jToken = temp.toString();
     globals.jwtToken = temp["jwtToken"];
+    payload = Jwt.parseJwt(response.body);
     _decodeJWT(globals.jwtToken);
     if(payload.containsValue("ROLE_PATIENT")){
       findPatientId();
