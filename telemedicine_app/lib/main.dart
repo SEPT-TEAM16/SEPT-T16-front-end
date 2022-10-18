@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:telemedicine_app/screens/PatientBooking_Page.dart';
+import 'package:telemedicine_app/screens/PatientMed_Page.dart';
 import "/config/routes/routes.dart";
 import 'package:telemedicine_app/widgets/quotes/core/locator.dart';
 
@@ -148,3 +149,14 @@ class PatientsBookingPage extends StatelessWidget{
   }
 }
 
+class PatientMedicationPage extends StatelessWidget{
+  @override
+  Widget build(BuildContext context){
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Medication')
+      ),
+      body: SingleChildScrollView(child: PatientMed()),
+    );
+  }
+}

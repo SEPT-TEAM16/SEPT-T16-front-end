@@ -3,9 +3,12 @@ import 'dart:convert';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'package:telemedicine_app/globals/global_variable.dart' as globals;
+import 'package:telemedicine_app/Submit_Futures/PatientProfile_Page/futures.dart';
 
 // HARDCODED DOCTORS AND TIMES FOR TESTING
 const List<String> Doctorlist = <String>['','Doctor Lucas Smith', 'Doctor Nelson Jones', 'Doctor Daniel Ye', 'Doctor Wyatt Ye', 'Doctor Rico Nguyen']; // temporary Doctor names
+
+
 
 //Strings for the dropdown values
 String doctorDropDownValue = Doctorlist.first;
@@ -69,23 +72,27 @@ class PatientBookingState extends State<PatientBooking>{
                 if (pickedDate != null && pickedTime != null){
                   setState((){
                     String bookingDateMin;
-                    int minuteNum;
+                    int Minute;
                     if(pickedTime.minute < 30){
                       bookingDateMin = "00";
-                      minuteNum = 0;
+                      Minute = 0;
                     }
                     else{
                       bookingDateMin = "30";
-                      minuteNum = 30;
+                      Minute = 30;
                     }
-                    final bookedDate = DateTime(pickedDate.year, pickedDate.month, pickedDate.day, pickedTime.hour, minuteNum, );
+                    final bookedDate = DateTime(pickedDate.year, pickedDate.month, pickedDate.day, pickedTime.hour, Minute, );
                     dateTime.text = bookedDate.toString();
                     if (pickedTime.hour > 12){
-                      dateTimeText.text = "${pickedDate.year}-${pickedDate.month}-${pickedDate.day} at ${pickedTime.hour - 12}:${bookingDateMin}pm";
+                      dateTimeText.text = "${pickedDate.year}-${pickedDate.month}-${pickedDate.day} at ${pickedTime.hour - 12}:${Minute}pm";
                     }else{
-                      dateTimeText.text = "${pickedDate.year}-${pickedDate.month}-${pickedDate.day} at ${pickedTime.hour}:${bookingDateMin}am";
+                      dateTimeText.text = "${pickedDate.year}-${pickedDate.month}-${pickedDate.day} at ${pickedTime.hour}:${Minute}am";
+                      globals.finalDate = dateTimeText.text;
                     }
+
+                    getDrTime();
                   }
+                  
                   );
                 }
               }
